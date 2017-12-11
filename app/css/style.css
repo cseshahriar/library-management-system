@@ -1,0 +1,43 @@
+/* 
+project: Simple Crud Theme
+Author: Md.Shahriar Hosen
+URL: http://www.shahriarwebsolution.com/
+licence: open
+*/
+header{
+	padding: 15px;
+}
+.crud-mange-header{
+	margin-bottom: 15px;
+	padding:0px 15px;
+}
+.crud-mange-header h2{
+	margin: 0px;
+	padding: 0px;
+}
+.section-padding{
+	padding: 30px 0px;
+}
+table tr{
+	padding: 8px;
+}
+table tr th {
+   text-align: center;
+}
+table tr td{
+   text-align: center;
+}
+.view-table{
+	text-align: left;
+}
+.view-img{
+	padding: 4px;
+	border: 1px solid #ddd;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	min-width: 100px;
+}
+.view-img:hover{
+	transform: scale(3);
+}

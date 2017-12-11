@@ -1,0 +1,34 @@
+<?php 
+    //catch data
+    if(isset($_POST)){
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+      $ = $_POST[''];
+
+      //mysql query
+      if(!empty($name)){
+        $insert ="INSERT INTO std_regi_info() VALUES('')";
+        $insert_query=mysqli_query($databaseConnection, $insert); //insert query
+        //innser if else or nested if else
+        if($insert_query){
+            echo "Data has ben Inserted Successfullt";
+            header("Location:index.php");
+        }else{
+          echo "Data Insert Error!";
+        }//End of the inner if else 
+      }else{
+        echo "Every Input Field must not Empty!";  
+    }
+
+  }
+?>

@@ -1,0 +1,20 @@
+<?php 
+    //catch data
+    if(isset($_POST)){
+      $companyName = $_POST['companyName'];
+      //mysql query
+      if(!empty($companyName)){
+        $insertCompanyName ="INSERT INTO std_regi_info(company_name) VALUES('$companyName')";
+        $insert_query=mysqli_query($databaseConnection, $insertCompanyName); //insert query
+        //innser if else or nested if else
+        if($insert_query){
+            $message = "Company Name has ben Inserted Successfullt";
+            header("Location:index.php");
+        }else{
+          $message = "Data Insert Error!";
+        }//End of the inner if else 
+      }else{
+        $message = "Every Input Field must not Empty!";  
+      } 
+    }
+?>
