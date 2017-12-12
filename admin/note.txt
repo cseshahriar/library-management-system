@@ -1,3 +1,0 @@
-damage product + stock product input form (relation product_receive_info) // all select input mathod
-
-# damage product (date expire holy damage tabily asby )

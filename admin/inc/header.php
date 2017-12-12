@@ -9,14 +9,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="icon" href="images/logo.png" type="image/x-icon">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon">
 </head>
 <body class="sidebar-mini fixed">
 <div class="wrapper">
 <!-- Navbar-->
   <header class="main-header hidden-print" >
     <a class="logo" href="index.php">
-      <b style="color:#530000; font-size: 30px; 
+      <b style="color:#fff; font-size: 30px; 
         font-style:italic; font-family:Courier, Monaco, monospace;">LMS </b>Admin Panel </a>
     <nav class="navbar navbar-static-top" >
       <a class="sidebar-toggle" href="" data-toggle="offcanvas"></a>

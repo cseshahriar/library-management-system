@@ -80,11 +80,6 @@
 </div>
 
 
-
-
-
-
-
 <!--modal-->    
 <form class="form-horizontal">      
 
