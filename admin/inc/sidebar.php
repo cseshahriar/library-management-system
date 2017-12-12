@@ -17,15 +17,20 @@
           <!-- Subment Menu-->
           <ul class="sidebar-menu">
             <li class="active" style="border-bottom: 1px solid #000 !important;">
-              <a href="index.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+              <a href="book_list.php"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
             </li>
             <!-- users-->
             <li class="treeview " style="border-bottom: 1px solid #000 !important;">
               <a href="#"><i class="fa fa-users"></i><span>Users</span><i class="fa fa-angle-right"></i></a>    
               <ul class="treeview-menu">
                 <li class="sub">
-                  <a href="user_add.php">  
-                    <i class="fa fa-plus" aria-hidden="true"></i> Add User
+                  <a href="user_admin_add.php" title="Admin Panel User">  
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add Admin
+                  </a>
+                </li>
+                <li class="sub">
+                  <a href="user_student_teacher_add.php" title="App Users">  
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add Student or Teacher
                   </a>
                 </li>
                 <li class="sub">
@@ -34,15 +39,20 @@
                   </a>
                 </li>
                 <li class="sub">
-                  <a href="#">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Update User Data
-                     </a>
+                  <a href="user_admin_update.php" title="Update Admin Data">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Update Admin Data
+                  </a>
                 </li>
                 <li class="sub">
+                  <a href="#" title="Update Students or Teachers Data">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Update Users Data
+                  </a>
+                </li>
+               <!--  <li class="sub">
                   <a href="#">
                     <i class="fa fa-minus" aria-hidden="true"></i> Delete User Data 
                      </a>
-                </li>
+                </li> -->
       
               </ul>
             </li> 

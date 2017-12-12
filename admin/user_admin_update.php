@@ -6,7 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="text-success">Admin Registration</h2>
+          <h2 class="text-success">Update Admin Data</h2>
         </div>
         <div class="panel-body">
           <!-- admin registration -->
@@ -31,7 +31,7 @@
             <!-- username -->
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+              <input type="text" name="username" id="username" class="form-control" placeholder="Username" disabled>
             </div>
             <!-- phone -->
             <div class="form-group"> 
@@ -43,17 +43,18 @@
               <input type="email" name="email" id="email" class="form-control" placeholder="Email"/>
             </div>
             <div class="form-group"> 
-              <label for="password">New Password</label>
+              <label for="password">Password</label>
               <input type="password" name="password" id="password" class="form-control" placeholder="password"/> 
             </div>
             <div class="form-group"> 
               <label for="re-password">Re-Password</label>
               <input type="password" name="re-password" id="re-password" class="form-control" placeholder="re-password"/>  
             </div>
-            <div class="form-group">
+            <!-- picture change from sidebar -->
+            <!-- <div class="form-group">
               <label for="picture">Picture</label>
               <input type="file" name="picture" class="form-control-file">
-            </div>
+            </div> --> 
             <div class="form-group">
               <label for="address">Address</label>
               <input type="text" name="address" id="address" class="form-control" placeholder="Address">
