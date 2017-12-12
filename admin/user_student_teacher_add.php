@@ -13,6 +13,14 @@
           <form action="process.php" method="post" enctype="multipart/form-data">
             <!-- admin role is 1  -->
             <div class="form-group">
+              <label for="role">User Role</label>
+              <select name="role" class="form-control input-lg">
+                <option selected value="">Choose User Role</option>
+                <option value="2">Teacher</option>
+                <option value="3">Student</option> 
+              </select>
+            </div>
+            <div class="form-group">
               <label for="name">Name</label>
               <input type="email" class="form-control" id="name" placeholder="Name">
             </div>
