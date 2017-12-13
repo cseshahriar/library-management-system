@@ -6,7 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="text-success">Admin Registration</h2>
+          <h2 class="text-center">Admin Registration</h2>
         </div>
         <div class="panel-body">
           <!-- admin registration -->
@@ -58,7 +58,7 @@
               <label for="address">Address</label>
               <input type="text" name="address" id="address" class="form-control" placeholder="Address">
             </div>
-            <button type="submit" class="btn btn-primary btn-block btn-lg">Register</button>
+            <button type="submit" class="btn btn-success btn-block btn-lg">Register</button>
            
           </form> 
         </div>

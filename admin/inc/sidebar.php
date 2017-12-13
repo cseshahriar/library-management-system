@@ -21,7 +21,7 @@
             </li>
             <!-- users-->
             <li class="treeview " style="border-bottom: 1px solid #000 !important;">
-              <a href="#"><i class="fa fa-users"></i><span>Users</span><i class="fa fa-angle-right"></i></a>    
+              <a href="users_list.php"><i class="fa fa-users"></i><span>Users</span><i class="fa fa-angle-right"></i></a>    
               <ul class="treeview-menu">
                 <li class="sub">
                   <a href="user_admin_add.php" title="Admin Panel User">  
@@ -44,7 +44,7 @@
                   </a>
                 </li>
                 <li class="sub">
-                  <a href="#" title="Update Students or Teachers Data">
+                  <a href="user_update.php" title="Update Students or Teachers Data">
                     <i class="fa fa-pencil" aria-hidden="true"></i> Update Users Data
                   </a>
                 </li>
@@ -59,20 +59,20 @@
 
             <!-- books -->
             <li class="treeview " style="border-bottom: 1px solid #000 !important;">
-              <a href="#"><i class="fa fa-book"></i><span>Books</span><i class="fa fa-angle-right"></i></a>    
+              <a href="book_list.php"><i class="fa fa-book"></i><span>Books</span><i class="fa fa-angle-right"></i></a>     
               <ul class="treeview-menu">
                 <li class="sub">
-                  <a href="#">
+                  <a href="book_add.php">
                     <i class="fa fa-plus" aria-hidden="true"></i> Add Book
                   </a>
                 </li>
                 <li class="sub">
-                  <a href="users_list.php">
+                  <a href="book_list.php">
                     <i class="fa fa-eye" aria-hidden="true"></i> Book List
                   </a>
                 </li>
                 <li class="sub">
-                  <a href="#">
+                  <a href="book_edit.php">
                     <i class="fa fa-pencil" aria-hidden="true"></i> Update Book
                      </a>
                 </li>
@@ -87,7 +87,7 @@
             </li> 
         
             <li style="border-bottom: 1px solid #000 !important;">
-              <a href="logout.php"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a>
+              <a href="settings.php"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a>
             </li>
         
             <li style="border-bottom: 1px solid #000 !important;">
