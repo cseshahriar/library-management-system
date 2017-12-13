@@ -85,10 +85,24 @@
             
               </ul>
             </li> 
-        
-            <li style="border-bottom: 1px solid #000 !important;">
-              <a href="settings.php"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span></a>
-            </li>
+             <!-- Settings -->
+            <li class="treeview " style="border-bottom: 1px solid #000 !important;">
+               <a href="settings.php"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span><i class="fa fa-angle-right"></i></a>
+
+              <ul class="treeview-menu">
+                <li class="sub">
+                  <a href="settings_student.php">
+                    <i class="fa fa-cog" aria-hidden="true"></i>Settings for Students
+                  </a>
+                </li> 
+                <li class="sub"> 
+                  <a href="settings_teachers.php">
+                    <i class="fa fa-cog" aria-hidden="true"></i>Settings for Teachers
+                  </a>
+                </li>
+                &nbsp;
+              </ul>
+            </li> 
         
             <li style="border-bottom: 1px solid #000 !important;">
               <a href="logout.php"><i class="fa fa-sign-out"></i><span>Logout</span></a>
