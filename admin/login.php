@@ -7,7 +7,6 @@
     <!-- CSS-->
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>Welcome To Doctor's Farma </title>
-  
   </head>
   <body>
     <section class="material-half-bg">

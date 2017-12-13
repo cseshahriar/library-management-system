@@ -50,7 +50,7 @@
                   <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;<span class="hidden-xs"><b>Admin</b></span>
               </a>
               <ul class="dropdown-menu settings-menu">
-                  <li><a href="settings.php"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
+                  <li><a href="settings_admin.php"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
                   <li><a href="profile.php"><i class="fa fa-user fa-lg"></i> Profile</a></li>
                   <li><a href="login.php"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
               </ul>

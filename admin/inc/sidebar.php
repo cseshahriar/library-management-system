@@ -77,7 +77,7 @@
                      </a>
                 </li>
                 <li class="sub">
-                  <a href="#">
+                  <a href="delete.php">
                     <i class="fa fa-minus" aria-hidden="true"></i> Delete Book
                      </a>
                 </li>
