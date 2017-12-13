@@ -33,7 +33,7 @@
               <div class="animated-checkbox">
                 <label class="semibold-text">
                  
-                </label>
+                </label> 
               </div>
               <p class="semibold-text mb-0"><a data-toggle="flip">Forgot Password ?</a></p>
             </div>
