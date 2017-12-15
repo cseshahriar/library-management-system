@@ -1,5 +1,5 @@
+<?php session_start(); ?>
 <?php require_once('inc/header.php'); ?>
-
 <?php include_once('inc/sidebar.php'); ?>
 
 <div class="content-wrapper">
@@ -16,6 +16,14 @@
     </div>
   </div>
   <div class="row">
+    <?php if(isset($_SESSION['logInSuccess'])): ?>
+    <!-- alert -->
+        <div id="msg" class="alert alert-success alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-user"></i>
+          <strong ><?php echo $_SESSION['logInSuccess']; ?></strong> 
+        </div>
+      <?php endif; ?>
   </div>
 </div>
 

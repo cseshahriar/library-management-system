@@ -1,3 +1,13 @@
+<?php session_start();
+  require_once('../classes/Database.php');
+  $db = new Database();
+
+  if( isset($_POST['username_email'], $_POST['password'])) {  
+    $userEmail = $_POST['username_email'];
+    $password = $_POST['password'];
+    $db->login($userEmail, $password);         
+  } 
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,22 +23,28 @@
       <div class="cover"></div>
     </section>
     <section class="login-content">
-      <div class="logo">
-        <h1><b style="color:#530000; 
-      font-style:italic; font-family:Courier, Monaco, monospace;">D</b>octors Pharma </h1>
+      <div class="logo" style="font-family: verdana;color:#fff;">
+
+        <?php 
+            if(isset($userOrEmailError) || isset($passwordError)) {
+              echo '<p id="msg">Username or Email or Password Must not be empty</p>';    
+            } 
+         ?>  
       </div>
       <div class="login-box">
-        <form class="login-form" action="index.html">
-          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+
+        <!-- admin login form -->
+        <form class="login-form" action="" method="POST">  
+          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Admin Sign In</h3>
           <div class="form-group">
-            <label class="control-label">USERNAME</label>
-            <input class="form-control" type="text" placeholder="Email" autofocus>
+            <label for="username_email">Username or Email</label>
+            <input type="text" class="form-control" name="username_email" id="username_email" placeholder="Username or Email" autofocus> 
           </div>
           <div class="form-group">
-            <label class="control-label">PASSWORD</label>
-            <input class="form-control" type="password" placeholder="Password">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control"  placeholder="Password"> 
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <div class="utility">
               <div class="animated-checkbox">
                 <label class="semibold-text">
@@ -37,12 +53,13 @@
               </div>
               <p class="semibold-text mb-0"><a data-toggle="flip">Forgot Password ?</a></p>
             </div>
+          </div> -->
+          <div class="form-group btn-container"> 
+            <button type="submit" name="loginForm" class="btn btn-primary btn-block">SIGN IN<i class="fa fa-sign-in fa-lg"></i></button>
           </div>
-          <div class="form-group btn-container">
-            <button class="btn btn-primary btn-block">SIGN IN<i class="fa fa-sign-in fa-lg"></i></button>
-          </div>
-        </form>
-        <form class="forget-form" action="index.html">
+        </form> 
+
+        <!-- <form class="forget-form" action="index.html">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
           <div class="form-group">
             <label class="control-label">EMAIL</label>
@@ -54,7 +71,7 @@
           <div class="form-group mt-20">
             <p class="semibold-text mb-0"><a data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
           </div>
-        </form>
+        </form> -->
       </div>
     </section>
   </body>
@@ -62,4 +79,12 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/plugins/pace.min.js"></script>
   <script src="js/main.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#msg").show();
+      setTimeout(function(){
+        $("#msg").hide();
+      },5000);
+    });
+  </script>
 </html>

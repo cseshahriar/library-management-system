@@ -136,5 +136,13 @@
         });
       });
     </script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#msg").show();
+      setTimeout(function(){
+        $("#msg").hide();
+      },5000);
+    });
+  </script>
   </body>
 </html>
