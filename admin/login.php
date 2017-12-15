@@ -1,14 +1,21 @@
 <?php session_start();
-  require_once('../classes/Database.php');
-  $db = new Database();
-
+  //require_once('../classes/Database.php');
+  require_once('../classes/Admin.php');
+  //$db = new Database();
+  $admin = new Admin(); 
   if( isset($_POST['username_email'], $_POST['password'])) {  
-    $userEmail = $_POST['username_email'];
-    $password = $_POST['password'];
-    $db->login($userEmail, $password);         
+
+      if(empty($_POST['username_email'] || $_POST['password'] )) {
+        $_SESSION['logInError'] = 'Username or Email And Password must not be empty!';
+      } else {
+          $userEmail = $_POST['username_email'];
+          $password = $_POST['password'];
+          //$db->login($userEmail, $password);            
+          $admin->login($userEmail, $password);              
+      }
   } 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
   <head>
     <meta charset="utf-8">
@@ -24,12 +31,14 @@
     </section>
     <section class="login-content">
       <div class="logo" style="font-family: verdana;color:#fff;">
-
-        <?php 
-            if(isset($userOrEmailError) || isset($passwordError)) {
-              echo '<p id="msg">Username or Email or Password Must not be empty</p>';    
-            } 
-         ?>  
+        <?php if(isset($_SESSION['logInError'])): ?>
+        <!-- alert -->
+        <div id="msg" class="alert alert-success alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-user"></i>
+          <strong ><?php echo $_SESSION['logInError']; ?></strong> 
+        </div>
+      <?php endif; ?>
       </div>
       <div class="login-box">
 

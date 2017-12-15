@@ -1,3 +1,18 @@
+<?php session_start();
+  require_once('../classes/Database.php');
+  $db = new Database();
+
+  if( isset($_POST['username_email'], $_POST['password'])) {  
+
+      if(empty($_POST['username_email'] || $_POST['password'] )) {
+        $_SESSION['logInError'] = 'Username or Email And Password must not be empty!';
+      } else {
+          $userEmail = $_POST['username_email'];
+          $password = $_POST['password'];
+          $db->login($userEmail, $password);            
+      }
+  } 
+?> 
 <?php require_once('include/header.php'); ?>
 <!-- start nav -->
 <div class="container-fluid">
@@ -37,6 +52,14 @@
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-success" style="margin-top: 50px">
 				<div class="panel-heading">
+					  <?php if(isset($_SESSION['logInError'])): ?>
+				        <!-- alert -->
+				        <div id="msg" class="alert alert-success alert-dismissable">
+				          <a class="panel-close close" data-dismiss="alert">×</a> 
+				          <i class="fa fa-user"></i>
+				          <strong ><?php echo $_SESSION['logInError']; ?></strong> 
+				        </div>
+				      <?php endif; ?>
 					<h2>Teacher or Student Login</h2>
 				</div>
 				<div class="panel-body">
