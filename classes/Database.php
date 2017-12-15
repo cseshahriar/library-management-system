@@ -50,8 +50,8 @@
 		 */
 		public function get($tableName, $order=false)
 		{	
-			if (!$order_by == true) {
-				$sql = "SELECT * FROM $table";
+			if (!$order == true) {
+				$sql = "SELECT * FROM $tableName";
 				$data = $this->link->query($sql) or die($this->link->error.__LINE__);
 				if($data->num_rows > 0) {
 					return $data;
@@ -59,7 +59,7 @@
 					return false;  
 				} 
 			} else {
-				$sql = "SELECT * FROM $table ORDER BYE $order";
+				$sql = "SELECT * FROM $tableName ORDER BYE $order";
 				$data = $this->link->query($sql) or die($this->link->error.__LINE__);
 				if($data->num_rows > 0) {
 					return $data;
@@ -110,7 +110,7 @@
 			if ($data) {
 				return true;
 			} else {
-				return false;
+				return false; 
 			}
 
 		}
@@ -154,7 +154,7 @@
 		 * @param  [type] $query [description]
 		 * @return [type]        [description]
 		 */
-		public function inActive($query)  
+		public function active($query)  
 		{
 			$data = $this->link->query($query) or die($this->link->error.__LINE__); 
 			if ($data) {

@@ -4,7 +4,7 @@
   //$admin = new Admin();
   $db = new Database();   
 
-  $name = $gender = $username = $email = $password = $phone = $image = $address = $image_name = '';
+  $name = $gender = $username = $email = $password = $phone = $image = $address = $image_name = $uplodad_directory = '';
   $name_error = $gender_error = $username_error = $email_error = $password_error = $phone_error = $image_error = $address_error = $pass_mathc_error = '';      
 
   if( isset($_POST['admin_register'])) {
@@ -88,18 +88,18 @@
         $img_size = $_FILES['image']['size'];
         $uplodad_directory = 'images/'; 
         $image_name = 'admin-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);  
+        //move_uploaded_file($tmp_name, $uplodad_directory.$image_name);       
     }    
-
     // validation end
     if(!($name_error && $gender_error && $username_error && $email_error && $password_error && $pass_mathc_error && $phone_error && $address_error)) { 
-        move_uploaded_file($image_name, $uplodad_directory);  
+        move_uploaded_file($tmp_name, $uplodad_directory.$image_name);   
         // insert process
         $sql = "INSERT INTO admin(role_id, name, gender, username, email, password, phone, image,address) 
                 VALUES('1', '$name', '$gender', '$username', '$email', '$password', '$phone', '$image_name','$address')";
         $user = $db->insert($sql);    
 
         if($user) { 
-          header("Location: users_list.php");   
+          header("Location: users_admin_list.php");     
         }
     }
 
