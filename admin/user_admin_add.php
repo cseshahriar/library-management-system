@@ -1,8 +1,10 @@
 <?php 
-  require_once('../classes/Admin.php');
-  $admin = new Admin();
+  //require_once('../classes/Admin.php');
+  require_once('../classes/Database.php');
+  //$admin = new Admin();
+  $db = new Database();   
 
-  $name = $gender = $username = $email = $password = $phone = $image = $address = '';
+  $name = $gender = $username = $email = $password = $phone = $image = $address = $image_name = '';
   $name_error = $gender_error = $username_error = $email_error = $password_error = $phone_error = $image_error = $address_error = $pass_mathc_error = '';      
 
   if( isset($_POST['admin_register'])) {
@@ -20,9 +22,9 @@
 
     //gender validation
     if(empty($_POST['gender'])) {
-          $gender_error = 'Gender is required';     
+          $gender_error = 'Gender is required';      
     } else {
-        $gender = ($_POST['gender']);
+        $gender = checkInput($_POST['gender']);
     }
 
     //username validation
@@ -49,8 +51,9 @@
     if(empty($_POST['password'])) {
           $password_error = 'Password is required';     
     } else {
-        $password = ($_POST['password']); 
-    }
+        $password = checkInput($_POST['password']); 
+        $password = md5($password); 
+    }  
 
     //match password 
     if(empty($_POST['confirmpassword'])) {
@@ -76,7 +79,28 @@
       $address = checkInput($_POST['address']); 
       if(!preg_match("/^[A-Za-z0-9_-, ]*$/", $address)) {
           $address_error = 'Only Letters, Numbers, _,-, comma and white space are allowed';  
-      }
+      } 
+    }
+
+    if(!empty($_FILES['image'])) {
+        $img_file = $_FILES['image']['name']; 
+        $tmp_name = $_FILES['image']['tmp_name'];  
+        $img_size = $_FILES['image']['size'];
+        $uplodad_directory = 'images/'; 
+        $image_name = 'admin-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);  
+    }    
+
+    // validation end
+    if(!($name_error && $gender_error && $username_error && $email_error && $password_error && $pass_mathc_error && $phone_error && $address_error)) { 
+        move_uploaded_file($image_name, $uplodad_directory);  
+        // insert process
+        $sql = "INSERT INTO admin(role_id, name, gender, username, email, password, phone, image,address) 
+                VALUES('1', '$name', '$gender', '$username', '$email', '$password', '$phone', '$image_name','$address')";
+        $user = $db->insert($sql);    
+
+        if($user) { 
+          header("Location: users_list.php");   
+        }
     }
 
   }     
@@ -107,21 +131,21 @@
           <!-- admin registration -->
           <form action="" method="post" enctype="multipart/form-data">
             <!-- admin role is 1  -->
-            <div class="form-group">
+            <div class="form-group"> 
               <label for="name">Name <i class="fa fa-star text-danger" aria-hidden="true"></i></label>
-              <input type="email" class="form-control" id="name" placeholder="Name">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Name">
               <span id="msg" class="error text-danger"><?php if(isset($name_error)) {echo $name_error; } ?></span>    
             </div>
             <!-- gender -->
             <div class="radio">
               <p><strong>Choose Gender <i class="fa fa-star text-danger" aria-hidden="true"></i></strong></p>
               <label>
-                <input type="radio" name="radio" value="Male" /> Male
+                <input type="radio" name="gender" value="Male" /> Male
               </label>
             </div>
             <div class="radio">
               <label>
-                <input type="radio" name="radio" value="Female" /> Female
+                <input type="radio" name="gender" value="Female" /> Female 
               </label><br>
               <span id="msg" class="error text-danger"><?php if(isset($gender_error)) {echo $gender_error; } ?></span>
             </div> 
@@ -155,7 +179,7 @@
             </div>
             <div class="form-group">
               <label for="picture">Picture</label>
-              <input type="file" name="picture" class="form-control-file">
+              <input type="file" name="image" class="form-control-file">
             </div>
             <div class="form-group">
               <label for="address">Address <i class="fa fa-star text-danger" aria-hidden="true"></i></label>
@@ -164,7 +188,7 @@
             </div>  
             <button type="submit" name="admin_register" class="btn btn-success btn-block btn-lg">Register</button>
            
-          </form> 
+          </form>   
         </div>
       </div>
     </div>

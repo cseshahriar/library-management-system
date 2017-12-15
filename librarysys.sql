@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2017 at 09:43 AM
+-- Generation Time: Dec 15, 2017 at 01:02 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -36,6 +36,7 @@ CREATE TABLE `admin` (
   `username` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
+  `phone` varchar(35) NOT NULL,
   `image` varchar(255) NOT NULL,
   `address` varchar(100) NOT NULL,
   `joined_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -46,8 +47,10 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `role_id`, `name`, `gender`, `username`, `email`, `password`, `image`, `address`, `joined_at`, `active`) VALUES
-(1, 1, 'Md. Shahriar', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', 'admin.jpg', 'dhaka', '2017-12-15 08:36:10', 1);
+INSERT INTO `admin` (`id`, `role_id`, `name`, `gender`, `username`, `email`, `password`, `phone`, `image`, `address`, `joined_at`, `active`) VALUES
+(1, 1, 'Md. Shahriar', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', '01710835453', 'admin.jpg', 'dhaka', '2017-12-15 08:36:10', 1),
+(6, 1, 'salpin', 'Male', 'salpin', 'salpin@mail.com', 'bc0c61bc9cb001a3c7a19c643f5837a8', '1234567890', 'admin-151333909060286.png', '', '2017-12-15 11:58:10', 1),
+(7, 1, 'Md.Shahriar Hosen', 'Male', 'cseshahriar', 'cseshahriar@yahoo.com', 'b921530e7e31b066f9d6aa4c8e49e0a6', '01710835653', 'admin-151333928356972.png', 'Mirpur, Dhaka', '2017-12-15 12:01:23', 1);
 
 -- --------------------------------------------------------
 
@@ -257,7 +260,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `books`
