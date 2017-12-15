@@ -137,11 +137,17 @@
       });
     </script>
     <script type="text/javascript">
-    $(document).ready(function(){
-      $("#msg").show();
+    $(document).ready(function() { 
+      // $("#msg").show();
+      // setTimeout(function(){
+      //   $("#msg").hide();
+      // },5000); 
+      $(".error").show(); 
       setTimeout(function(){
-        $("#msg").hide();
+        $(".error").hide();      
       },5000);
+
+
     });
   </script>
   </body>

@@ -156,12 +156,12 @@
 		 */
 		public function inActive($query)  
 		{
-			$data = $this->link->query($query) or die($this->link->error.__LINE__);
+			$data = $this->link->query($query) or die($this->link->error.__LINE__); 
 			if ($data) {
 				return true;
 			} else {
 				return false; 
-			}
+			}  
 		}
 
 	}//end of the database class

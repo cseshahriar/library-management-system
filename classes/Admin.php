@@ -39,15 +39,15 @@ class Admin extends Database
 	 * @param [type] $email    [description]
 	 * @param [type] $role_id  [description]
 	 */
-	public function setSession($id, $name, $username, $email, $role_id)
+	public function setSession($id, $name, $username, $email, $role_id) 
 	{
-		$_SESSION['user_id'] = $id;
+		$_SESSION['user_id'] = $id;  
 		$_SESSION['user_name'] = $name;
 		$_SESSION['user_username'] = $username;
 		$_SESSION['user_email'] = $email;
 		$_SESSION['user_role_id'] = $role_id;
 
-	} 
+	}  
 
 	/**
 	 * [logout description]

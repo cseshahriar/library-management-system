@@ -12,7 +12,7 @@
           $password = $_POST['password'];
           //$db->login($userEmail, $password);            
           $admin->login($userEmail, $password);              
-      }
+      } 
   } 
 ?>
 <!DOCTYPE html> 
