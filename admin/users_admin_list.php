@@ -11,7 +11,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="text-success">Users List <a href="user_admin_add.php" class="btn btn-success pull-right">Add Admin</a></h2> 
+          <h2 class="text-success">Admin List <a href="user_admin_add.php" class="btn btn-success pull-right">Add Admin</a></h2> 
         </div>
         <div class="panel-body"> 
           <table class="table table-striped table-responsive table-bordered">

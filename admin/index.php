@@ -21,7 +21,7 @@
   <div class="row">
     <?php if(isset($_SESSION['logInSuccess'])): ?>
     <!-- alert -->
-        <div id="msg" class="alert alert-success alert-dismissable">
+        <div class="error alert alert-success alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-user"></i>
           <strong ><?php echo $_SESSION['logInSuccess']; ?></strong> 

@@ -86,7 +86,7 @@
         $img_file = $_FILES['image']['name']; 
         $tmp_name = $_FILES['image']['tmp_name'];  
         $img_size = $_FILES['image']['size'];
-        $uplodad_directory = 'images/'; 
+        $uplodad_directory = 'images/admin/';  
         $image_name = 'admin-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);  
         //move_uploaded_file($tmp_name, $uplodad_directory.$image_name);       
     }    

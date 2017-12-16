@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                   <td>Picture</td>
-                  <td><img src="images/<?= $row['image']; ?>"></td> 
+                  <td><img src="images/admin/<?= $row['image']; ?>"></td> 
                 </tr>
                 <tr>
                   <td>Address</td>

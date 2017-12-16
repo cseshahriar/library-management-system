@@ -283,3 +283,7 @@ body {
 .selpadfix{
   padding: 5px 12px;
 }
+.error {
+  padding-top: 5px;
+  padding-left: 5px;
+}
