@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['user_id']) : ?>
 <?php $id = $_GET['id'];
     require_once('../classes/Database.php');
     $db = new Database();

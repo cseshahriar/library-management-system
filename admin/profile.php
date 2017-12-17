@@ -1,6 +1,6 @@
-  <?php include "inc/header.php";?> 
-  <?php include "inc/sidebar.php";?> 
-      
+<?php session_start(); if($_SESSION['user_id']) : ?>
+<?php include "inc/header.php";?> 
+<?php include "inc/sidebar.php";?>       
 <div class="container">
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -127,3 +127,4 @@
     });
 });
     </script>
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 

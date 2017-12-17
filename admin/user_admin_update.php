@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['user_id']) : ?>
 <?php $id = $_GET['id']; 
   require_once('../classes/Database.php');  
   $db = new Database();   
@@ -146,3 +147,4 @@
 </div>
 
 <?php require_once('inc/footer.php'); ?>
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 

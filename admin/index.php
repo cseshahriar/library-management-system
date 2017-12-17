@@ -26,7 +26,7 @@
           <i class="fa fa-user"></i>
           <strong ><?php echo $_SESSION['logInSuccess']; ?></strong> 
         </div>
-      <?php endif; ?>
+    <?php endif; ?>
   </div>
 </div>
 

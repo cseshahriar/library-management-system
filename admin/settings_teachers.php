@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['user_id']) : ?>
 <?php include "inc/header.php";?> 
 <?php include "inc/sidebar.php";?> 
  
@@ -60,4 +61,5 @@
   </div>
 </div>
 </div>
-<?php include "inc/footer.php";?> 
+<?php include "inc/footer.php"; ?> 
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 

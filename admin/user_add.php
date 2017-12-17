@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['user_id']) : ?>
 <?php 
   //require_once('../classes/Admin.php');
   require_once('../classes/Database.php');
@@ -327,3 +328,4 @@
     });
   });
 </script>
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 

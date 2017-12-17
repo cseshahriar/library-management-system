@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['user_id']) : ?>
 <?php 
 	include_once('../classes/Database.php');
 	$db = new Database();
@@ -7,3 +8,4 @@
 	$db->active($sql);
 	header("Location: users_list.php"); 
 ?>
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 

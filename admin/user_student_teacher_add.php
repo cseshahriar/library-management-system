@@ -1,3 +1,4 @@
+<?php session_start(); if($_SESSION['user_id']) : ?>
 <?php require_once('inc/header.php'); ?>
 <?php include_once('inc/sidebar.php'); ?>
 
@@ -105,3 +106,4 @@
     <?php include_once('inc/copyright.php'); ?> <!-- copyright -->
 </div>
 <?php require_once('inc/footer.php'); ?> 
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 
