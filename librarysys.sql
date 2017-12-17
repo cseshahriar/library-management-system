@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2017 at 08:35 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Dec 17, 2017 at 11:57 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,12 +48,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `role_id`, `name`, `gender`, `username`, `email`, `password`, `phone`, `image`, `address`, `joined_at`, `active`) VALUES
-(1, 1, 'Md. Shahriar Hosen', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', '01710835453', 'user.png', 'dhaka', '2017-12-15 08:36:10', 1),
-(6, 1, 'salpin', 'Male', 'salpin', 'salpin@mail.com', 'bc0c61bc9cb001a3c7a19c643f5837a8', '1234567890', 'admin-151333909060286.png', '', '2017-12-15 11:58:10', 1),
-(7, 1, 'Shahriar alam', 'Female', 'cseshahriar', 'shahriar@mail.com', 'b921530e7e31b066f9d6aa4c8e49e0a6', '01710835657', 'admin-151333928356972.png', 'mirpur', '2017-12-15 12:01:23', 0),
-(8, 1, 'dolpin', 'Male', 'dolpin', 'dolpin@gmail.com', 'bb62e2cb4b7eb11df6d9c58f255ff3c5', '23456789', 'admin-151336436096771.png', 'Dhaka', '2017-12-15 18:59:20', 1),
-(9, 1, 'ms', 'Male', 'sm', 'sm@mail.com', 'ed79acb0cd3d7f8320c53c7798335ef0', '34567890', 'admin-151336473560844.png', 'Dhaka', '2017-12-15 19:05:35', 1),
-(10, 1, 'nc', 'Male', 'nc', 'nc@mail.com', '1e7342845e24eb3b5b3554490da1c128', '234567890', 'admin-151336504895269.png', 'Dhaka', '2017-12-15 19:10:48', 1);
+(1, 1, 'Md. Shahriar Hosen', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', '01710835453', 'user.png', 'Dhaka', '2017-12-15 08:36:10', 1),
+(12, 1, 'shahriar murol', 'Male', 'sm', 'shahriarmurol@gmail.com', 'ed79acb0cd3d7f8320c53c7798335ef0', '12345678', 'admin-151350531257583.png', 'Mirpur-Dhaka', '2017-12-17 10:08:32', 0);
 
 -- --------------------------------------------------------
 
@@ -123,7 +119,7 @@ CREATE TABLE `book_type` (
 --
 
 CREATE TABLE `class` (
-  `class_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `class_name` varchar(50) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -132,7 +128,7 @@ CREATE TABLE `class` (
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`class_id`, `class_name`, `active`) VALUES
+INSERT INTO `class` (`id`, `class_name`, `active`) VALUES
 (1, 'SSC', 1),
 (2, 'HSC', 1),
 (3, 'Degree', 1),
@@ -149,7 +145,7 @@ INSERT INTO `class` (`class_id`, `class_name`, `active`) VALUES
 --
 
 CREATE TABLE `department` (
-  `dept_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `dept_name` varchar(100) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -158,7 +154,7 @@ CREATE TABLE `department` (
 -- Dumping data for table `department`
 --
 
-INSERT INTO `department` (`dept_id`, `dept_name`, `active`) VALUES
+INSERT INTO `department` (`id`, `dept_name`, `active`) VALUES
 (1, 'Science ', 1),
 (2, 'Business Studies', 1),
 (3, 'Humanities Department', 1),
@@ -227,7 +223,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `class_id` int(11) NOT NULL,
+  `class_id` int(11) DEFAULT NULL,
   `dept_id` int(11) NOT NULL,
   `roll` int(11) NOT NULL,
   `designation` varchar(50) NOT NULL COMMENT 'for teachers',
@@ -242,8 +238,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `gender`, `phone`, `username`, `email`, `password`, `class_id`, `dept_id`, `roll`, `designation`, `address`, `image`, `joined_at`, `active`) VALUES
-(10, 1, 'Teacher', 'Male', '14234256372', 'teacher', 'teacher@gmail.com', '8d788385431273d11e8b43bb78f3aa41', 8, 1, 0, 'Instructor', 'Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 0),
-(11, 2, 'student', 'Male', '92389300', 'student', 'student@gmail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 747847, '', 'Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 0);
+(10, 1, 'Teacher2', 'Male', '23456787', 'teacher', 'teacher2@mail.com', '8d788385431273d11e8b43bb78f3aa41', NULL, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 0),
+(11, 2, 'Teacher2', 'Male', '23456787', 'student', 'teacher2@mail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 0),
+(19, 1, 'Teacher2', 'Male', '23456787', 'teacher1', 'teacher2@mail.com', '', 8, 0, 0, '', 'Mirpur-Dhaka', 'admin-151350619690353.png', '2017-12-17 10:23:16', 0);
 
 --
 -- Indexes for dumped tables
@@ -289,13 +286,13 @@ ALTER TABLE `book_type`
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
-  ADD PRIMARY KEY (`class_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `department`
 --
 ALTER TABLE `department`
-  ADD PRIMARY KEY (`dept_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `role`
@@ -309,8 +306,6 @@ ALTER TABLE `role`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `phone` (`phone`),
   ADD KEY `role_id` (`role_id`),
   ADD KEY `class_id` (`class_id`),
   ADD KEY `dept_id` (`dept_id`);
@@ -323,7 +318,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `books`
@@ -353,13 +348,13 @@ ALTER TABLE `book_type`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `dept_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -371,7 +366,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -381,9 +376,7 @@ ALTER TABLE `users`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`),
-  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`),
-  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

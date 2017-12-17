@@ -28,18 +28,8 @@
                     <i class="fa fa-eye" aria-hidden="true"></i>Admin List
                   
                 <li class="sub">
-                  <a href="users_list.php"> 
+                  <a href="users_list.php" tutle="Student and Teacher"> 
                     <i class="fa fa-eye" aria-hidden="true"></i>Users List
-                  </a>
-                </li>
-                <li class="sub">
-                  <a href="user_admin_add.php" title="Admin Panel User">  
-                    <i class="fa fa-plus" aria-hidden="true"></i> Add Admin
-                  </a>
-                </li>
-                <li class="sub"> 
-                  <a href="user_student_teacher_add.php" title="App Users">  
-                    <i class="fa fa-plus" aria-hidden="true"></i> Add Student or Teacher
                   </a>
                 </li>
                <!--  <li class="sub">

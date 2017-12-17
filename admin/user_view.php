@@ -1,59 +1,49 @@
+<?php $id = $_GET['id'];
+    require_once('../classes/Database.php');
+    $db = new Database();
+    $data = $db->getWhere("users", "id='$id'");       
+    $row = $data->fetch_assoc(); 
+?>
 <?php require_once('inc/header.php'); ?>
-<?php include_once('inc/sidebar.php'); ?>
+<?php include_once('inc/sidebar.php'); ?>    
 
 <div class="content-wrapper">
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="text-success">Username's Informations</h2>
+          <h2 class="text-success"><?= ucfirst($row['username']); ?>'s Informations</h2>
         </div>
         <div class="panel-body">
           <table class="table table-striped table-responsive table-bordered table-hover">
               <!-- single item for looping  -->
                 <tr>
                   <td>Name</td>
-                  <td>Md.Shahriar Hosen</td>
+                  <td><?= $row['name']; ?></td>
                 </tr>
                 <tr>
                   <td>User Role</td>
-                  <td>Admin</td>
+                  <td><?php if($row['role_id'] == 1){ echo 'Teacher';} else {echo 'Student';} ?></td>
                 </tr>
                 <tr>
                   <td>Gender</td>
-                  <td>Male</td>
+                  <td><?= $row['gender']; ?></td>
                 </tr>
                 <tr>
                   <td>Phone</td>
-                  <td>1234567890</td>
-                </tr>
-                <tr>
-                  <td>Class/Degree</td>
-                  <td>B.S.C</td>
-                </tr>
-                <tr>
-                  <td>Roll</td>
-                  <td>748748</td>
-                </tr>
-                <tr>
-                  <td>Department</td>
-                  <td>CSE</td>
-                </tr>
-                <tr>
-                  <td>Designation</td>
-                  <td>Web App Developer</td>
+                  <td><?= $row['phone']; ?></td>
                 </tr>
                 <tr>
                   <td>Username</td>
-                  <td>admin</td>
+                  <td><?= $row['username']; ?></td>
                 </tr>
                 <tr>
                   <td>Email</td>
-                  <td>shahriar@datatrixsoft.com</td>
+                  <td><?= $row['email']; ?></td>
                 </tr>
                 <tr>
                   <td>Picture</td>
-                  <td><img src="images/user.png"></td>
+                  <td><img src="images/users/<?= $row['image']; ?>" height="120"></td>  
                 </tr>
                 <tr>
                   <td>Address</td>
@@ -78,4 +68,4 @@
   </div>
 </div>
 
-<?php require_once('inc/footer.php'); ?>
+<?php require_once('inc/footer.php'); ?> 

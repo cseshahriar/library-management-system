@@ -4,3 +4,10 @@ $date2=date_create("2013-12-12");
 $diff=date_diff($date1,$date2);
 echo $diff->format("%R%a days");
 ?>  
+
+SELECT * FROM users LEFT JOIN department ON users.dept_id = department.id WHERE users.id=10 
+ALTER TABLE users DROP INDEX email; 
+
+//foreign key remove
+ALTER TABLE users
+DROP FOREIGN KEY users_ibfk_3  

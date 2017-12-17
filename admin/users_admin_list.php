@@ -46,8 +46,10 @@
                             echo '<span class="text-success"><strong>Active</strong></span>'; 
                         } else {
                             echo '<span class="text-danger"><strong>Inactive</strong></span><br>'; ?>
+                          
                             <a href="user_admin_active.php?id=<?= $row['id']; ?>" class="text-success"><strong> Make Active</strong></a>
-                       <?php } ?>
+                           
+                       <?php } ?>  
                     </td>
                   <td> 
                       <a href="user_admin_view.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> </a>
@@ -59,7 +61,7 @@
                       </a>   
                   </td> 
                 </tr>
-                <?php endwhile; ?>  
+                <?php endwhile; ?>    
                 <!-- /single item for looping  -->
                 
               </table>

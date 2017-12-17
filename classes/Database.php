@@ -70,6 +70,23 @@
 			}
 		}
 		
+
+		/**
+		 * [get get all data from table with join]
+		 * @param  [string] $query [receive sql query]
+		 * @return [object/array]      [table data return by object or array] 
+		 */
+		public function getQuery($query)
+		{	
+			$data = $this->link->query($query) or die($this->link->error.__LINE__);
+			if($data->num_rows > 0) {
+				return $data;
+			} else {
+				return false;       
+			} 
+		}
+		
+
 		/**
 		 * [getWhere data from wher key value]
 		 * @param  [type]  $tableName       [description]
@@ -88,7 +105,7 @@
 					return false;
 				}
 			} else {
-				$sql = "SELECT * FROM $tableName NATURAL JOIN $joinTableName WHERE $whereConditions";
+				$sql = "SELECT * FROM $tableName $joinTableName WHERE $whereConditions";
 				$data = $this->link->query($sql) or die($this->link->error.__LINE__);
 				if($data->num_rows > 0) {
 					return true;

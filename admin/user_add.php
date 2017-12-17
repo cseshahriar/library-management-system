@@ -110,7 +110,7 @@
           $address_error = 'Address is required';    
     } else {
       $address = checkInput($_POST['address']);  
-      if(!preg_match("/^[A-Za-z0-9,.- ]*$/", $address)) {
+      if(!preg_match("/^[A-Za-z0-9-, ]*$/", $address)) {
           $address_error = 'Only Letters, Numbers, _,-, comma and white space are allowed';  
       } 
     }

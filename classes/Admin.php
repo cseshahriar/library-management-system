@@ -13,7 +13,7 @@ class Admin extends Database
 	public function login($usesrNameOrEmail , $password) 
 	{
 		$pass = md5($password);
-		$sql = "SELECT * FROM admin WHERE (username='$usesrNameOrEmail' OR email='$usesrNameOrEmail') AND password='$pass' "; 
+		$sql = "SELECT * FROM admin WHERE (username='$usesrNameOrEmail' OR email='$usesrNameOrEmail') AND password='$pass' AND active='1' ";  
 		$data = $this->link->query($sql);   
 		$user = mysqli_fetch_object($data);  
 		var_dump($user);  

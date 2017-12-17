@@ -1,7 +1,7 @@
 <?php 
     require_once('../classes/Database.php');
     $db = new Database();
-    $data = $db->get("users");    
+    $data = $db->get("users");     
 ?>
 <?php require_once('inc/header.php'); ?>
 <?php include_once('inc/sidebar.php'); ?>
@@ -46,15 +46,15 @@
                             echo '<span class="text-success"><strong>Active</strong></span>'; 
                         } else {
                             echo '<span class="text-danger"><strong>Inactive</strong></span><br>'; ?>
-                            <a href="user_admin_active.php?id=<?= $row['id']; ?>" class="text-success"><strong> Make Active</strong></a>
-                       <?php } ?>
+                            <a href="user_active.php?id=<?= $row['id']; ?>" class="text-success"><strong> Make Active</strong></a>
+                       <?php } ?>   
                     </td>
                   <td> 
-                      <a href="user_admin_view.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> </a>
+                      <a href="user_view.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> </a> 
 
-                      <a href="user_admin_update.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
+                      <a href="user_update.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
 
-                     <a href="user_admin_inactive.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" >
+                     <a href="user_inactive.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" >
                       <i class="fa fa-trash"></i>
                       </a>   
                   </td> 
