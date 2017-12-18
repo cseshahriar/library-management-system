@@ -1,3 +1,11 @@
+<?php 
+  $id = $_GET['id'];
+  include_once('../classes/Database.php');
+  $db = new Database();
+  $sql = "SELECT * FROM books LEFT JOIN book_type ON books.cat_id=book_type.cat_id WHERE id='$id' ";
+  $Mybooks = $db->getQuery($sql); 
+  $book = $Mybooks->fetch_assoc(); 
+?>
 <?php require_once('inc/header.php'); ?>
 <?php include_once('inc/sidebar.php'); ?>
 
@@ -13,55 +21,55 @@
               <!-- single item for looping  -->
                 <tr>
                   <th>Title</th>
-                  <td>Head First Design Patterns</td>
+                  <td><?= $book['title']; ?></td>
                 </tr>
                 <tr>
                   <th>Book Catagory</th>
-                  <td>Programming</td>
+                  <td><?= $book['cat_name']; ?></td> <!-- cat_name not read for natural join problem -->
                 </tr>
                 <tr>
                   <th>Edition</th>
-                  <td>Third Edition</td>
+                  <td><?= $book['edition']; ?></td>
                 </tr>
                 <tr>
                   <th>Publish Year</th>
-                  <td>2004</td>
+                  <td><?= $book['year']; ?></td>
                 </tr>
                 <tr>
                   <th>Author</th>
-                  <td>O'Reilly Media</td>
+                  <td><?= $book['author']; ?></td>
                 </tr>
                 <tr>
                   <th>Publisher</th>
-                  <td>O'Reilly Media</td>
+                  <td><?= $book['publisher']; ?></td>
                 </tr>
                 <tr>
                   <th>ISBN NO.</th>
-                  <td>978-0-596-00712-6</td>
+                  <td><?= $book['isbn']; ?></td>
                 </tr>
                 <tr>
                   <th>Price</th>
-                  <td>$1200 TK</td>
+                  <td><?= $book['price']; ?></td>
                 </tr>
                 <tr>
                   <th>Pages</th>
-                  <td>1000</td>
+                  <td><?= $book['pages']; ?></td>
                 </tr>
                 <tr>
                   <th>Quantity</th>
-                  <td>03</td>
+                  <td><?= $book['quantity']; ?></td>
                 </tr>
                 <tr>
                   <th>Purchase Date</th>
-                  <td>12-12-2017</td>
+                  <td><?= $book['purchase_date']; ?></td>
                 </tr>
                 <tr>
-                  <th title="Purchase">Bill NO.</th>
-                  <td>1234567890</td>
+                  <th title="Purchase">Bill NO.</th> 
+                  <td><?= $book['bill_no']; ?></td>
                 </tr>
                 <tr>
                   <th>Status</th>
-                  <td>Active/inactive</td>
+                  <td><?php if($book['active'] == 1){echo 'Active'; } else {echo 'Inactive'; } ?></td>
                 </tr>
                 <!-- /single item for looping  -->
                 

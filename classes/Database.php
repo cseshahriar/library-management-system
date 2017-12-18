@@ -127,7 +127,7 @@
 			if ($data) {
 				return true;
 			} else {
-				return false; 
+				return false;  
 			}
 
 		}

@@ -1,9 +1,8 @@
 <?php session_start(); if($_SESSION['user_id']) : ?>
 <?php 
-  //require_once('../classes/Admin.php');
   require_once('../classes/Database.php');
-  //$admin = new Admin();
   $db = new Database();   
+  function checkInput($data){} //for problem fix
 
   $name = $gender = $username = $email = $password = $phone = $image = $address = $image_name = $uplodad_directory = '';
   $name_error = $gender_error = $username_error = $email_error = $password_error = $phone_error = $image_error = $address_error = $pass_mathc_error = '';      
@@ -52,7 +51,7 @@
     if(empty($_POST['password'])) {
           $password_error = 'Password is required';     
     } else {
-        $password = checkInput($_POST['password']); 
+        $password = checkInput($_POST['password']);  
         $password = md5($password); 
     }  
 
@@ -85,7 +84,7 @@
 
     if(!empty($_FILES['image'])) {
         $img_file = $_FILES['image']['name']; 
-        $tmp_name = $_FILES['image']['tmp_name'];  
+        $tmp_name = $_FILES['image']['tmp_name'];   
         $img_size = $_FILES['image']['size'];
         $uplodad_directory = 'images/admin/';  
         $image_name = 'admin-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);  
@@ -116,7 +115,7 @@
       $data = trim($data);
       $data = htmlentities($data);
       $data = htmlspecialchars($data);
-      return $data;   
+      return $data;    
   }   
 ?>
 <?php require_once('inc/header.php'); ?>
