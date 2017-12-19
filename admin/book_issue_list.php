@@ -52,10 +52,13 @@
                   <td>
                     <!-- <a href="book_issued_view.php" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> </a> -->
                     <!-- <a href="book_edit.php" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>  -->
-                   <a href="book_issue_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"  title="Make Inactive"><i class="fa fa-trash"></i> Inactive</a> 
+                   <a href="book_issue_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"  title="Make Inactive"><i class="fa fa-trash"></i> Inactive</a>
+
+                    <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');"  title="Make Inactive"><i class="fa fa-trash"></i>Return Book</a> 
+                    
                   </td> 
                 </tr> 
-              <?php endwhile; ?>  
+              <?php endwhile; ?>    
                 
                 <!-- /single item for looping  -->
                 
