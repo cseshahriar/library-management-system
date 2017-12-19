@@ -55,7 +55,7 @@
                    <a href="book_issue_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"  title="Make Inactive"><i class="fa fa-trash"></i> Inactive</a> 
                   </td> 
                 </tr> 
-              <?php endwhile; ?> 
+              <?php endwhile; ?>  
                 
                 <!-- /single item for looping  -->
                 

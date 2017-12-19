@@ -11,10 +11,10 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="text-success">Issued Books List <a href="book_issue.php" class="btn btn-primary pull-right">Issue Books</a></h2>
+          <h2 class="text-success">Issued Books List <a href="book_submit.php" class="btn btn-primary pull-right">Submit Books</a></h2>
         </div>
         <div class="panel-body">
-          <table class="table table-striped table-responsive table-bordered">
+          <table class="table table-striped table-responsive table-bordered"> 
               <!-- single item for looping  -->
                 <tr class="success">
                   <th>Sr No.</th>

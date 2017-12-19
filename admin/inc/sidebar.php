@@ -3,7 +3,7 @@
     li.sub:hover{
     background:#0D1214;
   }
-  </style>
+  </style> 
       <!-- Side-Nav-->
       <aside class="main-sidebar hidden-print" >
         <section class="sidebar">
