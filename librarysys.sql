@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2017 at 06:30 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: Dec 19, 2017 at 06:32 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -95,7 +95,7 @@ CREATE TABLE `book_issue` (
   `book_id` int(11) NOT NULL,
   `issue_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `submit_date` datetime NOT NULL COMMENT '7 days from issue date',
-  `active` int(11) NOT NULL DEFAULT '1'
+  `active` int(11) NOT NULL DEFAULT '1' COMMENT '0 is panding, 1 is active, 2 is submitted, 3 is canceled'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -103,9 +103,10 @@ CREATE TABLE `book_issue` (
 --
 
 INSERT INTO `book_issue` (`id`, `user_id`, `book_id`, `issue_date`, `submit_date`, `active`) VALUES
-(1, 10, 1, '2017-12-18 20:00:00', '2017-12-25 00:00:00', 1),
-(2, 11, 2, '2017-12-18 19:00:00', '2017-12-25 00:00:00', 1),
-(3, 11, 2, '2017-12-19 04:27:32', '2017-12-25 00:00:00', 0);
+(1, 10, 1, '2017-12-09 20:00:00', '2017-12-25 00:00:00', 2),
+(2, 11, 2, '2017-12-09 19:00:00', '2017-12-25 00:00:00', 1),
+(3, 11, 2, '2017-12-19 04:27:32', '2017-12-25 00:00:00', 0),
+(4, 11, 1, '2017-12-19 16:46:21', '2017-12-25 00:00:00', 3);
 
 -- --------------------------------------------------------
 
@@ -120,6 +121,13 @@ CREATE TABLE `book_return` (
   `fine` float NOT NULL,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `book_return`
+--
+
+INSERT INTO `book_return` (`id`, `issue_id`, `submited_date`, `fine`, `active`) VALUES
+(1, 1, '2017-12-18 18:00:00', 200, 1);
 
 -- --------------------------------------------------------
 
@@ -288,9 +296,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `gender`, `phone`, `username`, `email`, `password`, `class_id`, `dept_id`, `roll`, `designation`, `address`, `image`, `joined_at`, `active`) VALUES
-(10, 1, 'Teacher2', 'Male', '23456787', 'teacher', 'teacher2@mail.com', '8d788385431273d11e8b43bb78f3aa41', NULL, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 1),
-(11, 2, 'Teacher2', 'Male', '23456787', 'student', 'teacher2@mail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 1),
-(19, 1, 'Teacher2', 'Male', '23456787', 'teacher1', 'teacher2@mail.com', '', 8, 0, 0, '', 'Mirpur-Dhaka', 'admin-151350619690353.png', '2017-12-17 10:23:16', 0);
+(10, 1, 'Shahriar Hosen', 'Male', '23456787', 'Shahriar sir', 'teacher2@mail.com', '8d788385431273d11e8b43bb78f3aa41', NULL, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 1),
+(11, 2, 'Shahriar Alam', 'Male', '23456787', 'student', 'teacher2@mail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 1),
+(19, 1, 'Salpin', 'Male', '23456787', 'SM sir', 'teacher2@mail.com', '', 8, 0, 0, '', 'Mirpur-Dhaka', 'admin-151350619690353.png', '2017-12-17 10:23:16', 0);
 
 --
 -- Indexes for dumped tables
@@ -380,13 +388,13 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `book_issue`
 --
 ALTER TABLE `book_issue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `book_return`
 --
 ALTER TABLE `book_return`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `book_type`
@@ -434,12 +442,6 @@ ALTER TABLE `books`
 ALTER TABLE `book_issue`
   ADD CONSTRAINT `book_issue_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `book_issue_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`);
-
---
--- Constraints for table `book_return`
---
-ALTER TABLE `book_return`
-  ADD CONSTRAINT `book_return_ibfk_1` FOREIGN KEY (`issue_id`) REFERENCES `book_issue` (`id`);
 
 --
 -- Constraints for table `users`

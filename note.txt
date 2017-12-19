@@ -9,5 +9,4 @@ SELECT * FROM users LEFT JOIN department ON users.dept_id = department.id WHERE 
 ALTER TABLE users DROP INDEX email; 
 
 //foreign key remove
-ALTER TABLE users
-DROP FOREIGN KEY users_ibfk_3  
+ALTER TABLE users DROP FOREIGN KEY users_ibfk_3   

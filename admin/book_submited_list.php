@@ -1,10 +1,11 @@
 <?php 
   include_once('../classes/Database.php'); 
   $db = new Database();
-  $books = $db->get("book_issue");  
+  $sql = "SELECT * FROM book_return LEFT JOIN book_issue ON book_return.issue_id=book_issue.id";  
+  $books = $db->getQuery($sql);  
 ?>
 <?php require_once('inc/header.php'); ?> 
-<?php include_once('inc/sidebar.php'); ?>  
+<?php include_once('inc/sidebar.php'); ?>     
 
 <div class="content-wrapper">
   <div class="row">
@@ -18,40 +19,47 @@
               <!-- single item for looping  -->
                 <tr class="success">
                   <th>Sr No.</th>
-                  <th>User ID</th>
-                  <th>Book ID</th>
+                  <th>Issue ID</th>
+                  <th>User Name</th> <!-- user name -->
+                  <th>Book Name</th> <!-- book name --> 
                   <th>Issue Date</th>
                   <th>Submit Date</th>
-                  <th>Status</th>
-                  <th>Submit</th>
                   <th>Fine</th>
                   <th>Action</th> 
                 </tr>
                 <?php
                     $serial = 1; 
-                    while($book = $books->fetch_assoc()): 
+                    while($book = $books->fetch_assoc()):  
 
                 ?>
                 <tr>
                   <td><?= $serial++; ?></td>
-                  <td><?= $book['user_id']; ?></td>
-                  <td><?= $book['book_id']; ?></td>
+                  <td><?= $book['issue_id']; ?> 
+                  </td> 
+                  <td>
+                    <?php 
+                      $uid = $book['user_id']; 
+                      $userSql = "SELECT username FROM users WHERE id='$uid' ";
+                      $udata = $db->getQuery($userSql);
+                      $user_row = $udata->fetch_assoc();
+                      echo $user_row['username'];
+                    ?>
+                  </td>
+                  <td>
+                    <?php 
+                      $bid = $book['book_id']; 
+                      $bookSql = "SELECT title FROM books WHERE id='$bid' ";
+                      $bdata = $db->getQuery($bookSql);
+                      $b_row = $bdata->fetch_assoc();
+                      echo $b_row['title'];
+                    ?>
+
+                  </td>
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
                   <td><?= date('d-m-Y',strtotime($book['submit_date'])); ?></td>
+                  <td><?= $book['fine']; ?> TK</td>   
                   <td>
-                    <?php if($book['active'] == 1){echo 'Active'; } else { 
-                        echo '<span class="text-danger">Inactive</span>'; 
-                        echo "<br>";
-                    ?> 
-                        <a href="book_issue_active.php?id=<?= $book['id']; ?>" class="text-success"><strong> Make Active</strong></a>
-                    <?php } ?>
-                  </td>   
-                    <td>Expire/Ok</td>
-                    <td>50/100 TK</td>  
-                  <td>
-                    <a href="book_view.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> </a>
-                    <a href="book_edit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a> 
-                   <a href="book_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></a> 
+                   <a href="book_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-success" onclick="return confirm('Are you sure you want to payout this item?');" ><i class="fa fa-money"></i> Pay</a> 
                   </td>
                 </tr> 
               <?php endwhile; ?> 

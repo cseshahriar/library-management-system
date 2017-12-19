@@ -34,29 +34,34 @@
                   <td><?= $book['book_id']; ?></td>
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
                   <td><?= date('d-m-Y',strtotime($book['submit_date'])); ?></td>
+                  
                   <td>
                     <?php if($book['active'] == 1){ echo '<b class="text-success">Active</b>'; ?> 
 
                         <a href="book_issue_cancel.php?id=<?= $book['id']; ?>" class="text-success" onclick="return confirm('Are you sure you want to cancel this item?');"> | Make Cancel</a> 
 
-                    <?php }else if($book['active'] == 2) { echo 'Calceled'; ?>
-
-                           <a href="book_issue_active.php?id=<?= $book['id']; ?>" class="text-success" onclick="return confirm('Are you sure you want to Active this item?');"><strong>| Active</strong></a> 
-
+                    <?php }else if($book['active'] == 2) {   
+                          echo 'Returned'; 
+                    } else if($book['active'] == 3) {   
+                          echo 'Calceled'; 
+                    ?>
+                          <a href="book_issue_active.php?id=<?= $book['id']; ?>" class="text-success" onclick="return confirm('Are you sure you want to Active this item?');">
+                              <strong>| Active</strong>
+                          </a> 
                     <?php } else {  
-                        echo '<span class="text-danger"><b>Inactive!</b></span>'; 
+                          echo '<span class="text-danger"><b>Inactive!</b></span>'; 
                     ?> 
-                        <a href="book_issue_active.php?id=<?= $book['id']; ?>" class="text-success"> | Make Active</a>
+                        <a href="book_issue_active.php?id=<?= $book['id']; ?>" class="text-success"> | Make Active</a> 
                     <?php } ?>  
                   </td>   
+                
+                <?php if($book['active'] != 2): ?>
                   <td>
-                    <!-- <a href="book_issued_view.php" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> </a> -->
-                    <!-- <a href="book_edit.php" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>  -->
                    <a href="book_issue_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"  title="Make Inactive"><i class="fa fa-trash"></i> Inactive</a>
 
-                    <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');"  title="Make Inactive"><i class="fa fa-trash"></i>Return Book</a> 
-                    
+                    <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');"><i class="fa fa-trash"></i>Return Book</a>   
                   </td> 
+                  <?php  endif; ?>
                 </tr> 
               <?php endwhile; ?>    
                 
