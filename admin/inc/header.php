@@ -45,9 +45,9 @@
                 </ul>
           </li>
           <!-- User Menu-->
-          <li class="dropdown">
+          <li class="dropdown"> 
               <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;<span class="hidden-xs"><b>Admin</b></span>
+                  <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;<span class="hidden-xs"><b><?php if(isset($_SESSION['user_username'])) { echo $_SESSION['user_username']; } ?></b></span>
               </a>
               <ul class="dropdown-menu settings-menu">
                   <li><a href="settings_admin.php"><i class="fa fa-cog fa-lg"></i> Settings</a></li>

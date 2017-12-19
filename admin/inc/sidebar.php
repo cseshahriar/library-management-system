@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!-- sidebar start -->
   <style>
     li.sub:hover{
@@ -8,10 +9,16 @@
       <aside class="main-sidebar hidden-print" >
         <section class="sidebar">
           <div class="user-panel">
-            <div class="pull-left image"><img class="img-circle" src="images/user.png" alt="User Image"></div>
+            <?php 
+
+                $id = $_SESSION['user_id'];
+                $sql = "SELECT image FROM admin WHERE id='1' ";
+                $user = $db->getQuery($sql);
+             ?>
+            <div class="pull-left image"><img class="img-circle" src="images/Admin/user.png" alt="User Image"></div> 
             <div class="pull-left info">
-              <p>Username</p>
-              <p class="designation">Admin</p> 
+              <p><?php if(isset($_SESSION['user_name'])) { echo $_SESSION['user_name']; } ?></p>
+              <p class="designation"><?php if(isset($_SESSION['user_username'])) { echo $_SESSION['user_username']; } ?></p> 
             </div>
           </div>
           <!-- Subment Menu-->
@@ -69,7 +76,7 @@
                 </li>
                 &nbsp; 
               </ul>
-            </li> 
+            </li>  
              <!-- Settings -->
             <li class="treeview " style="border-bottom: 1px solid #000 !important;">
                <a href="settings.php"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span><i class="fa fa-angle-right"></i></a>

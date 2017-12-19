@@ -34,11 +34,13 @@
                   <td><?= $row['username']; ?></td>
                   <td><?= $row['email']; ?></td>
                   <td><?= $row['gender']; ?></td>
-                  <td>
+                  <td> 
                     <?php 
                         if($row['role_id'] == 1) {
-                            echo '<span class="text-success">Admin</span>';
-                        } 
+                            echo '<span class="text-success">Teacher</span>';
+                        } else {
+                             echo '<span class="text-success">Student</span>';
+                        }
                     ?>  
                     </td>
                   <td>
