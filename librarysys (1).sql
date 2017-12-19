@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2017 at 06:32 PM
+-- Generation Time: Dec 19, 2017 at 08:58 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -119,6 +119,7 @@ CREATE TABLE `book_return` (
   `issue_id` int(11) NOT NULL,
   `submited_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fine` float NOT NULL,
+  `paid` int(11) NOT NULL DEFAULT '0',
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -126,8 +127,8 @@ CREATE TABLE `book_return` (
 -- Dumping data for table `book_return`
 --
 
-INSERT INTO `book_return` (`id`, `issue_id`, `submited_date`, `fine`, `active`) VALUES
-(1, 1, '2017-12-18 18:00:00', 200, 1);
+INSERT INTO `book_return` (`id`, `issue_id`, `submited_date`, `fine`, `paid`, `active`) VALUES
+(1, 1, '2017-12-18 18:00:00', 0, 1, 0);
 
 -- --------------------------------------------------------
 

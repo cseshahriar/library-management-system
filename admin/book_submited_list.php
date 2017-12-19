@@ -57,10 +57,20 @@
                   </td>
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
                   <td><?= date('d-m-Y',strtotime($book['submit_date'])); ?></td>
-                  <td><?= $book['fine']; ?> TK</td>   
                   <td>
-                   <a href="book_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-success" onclick="return confirm('Are you sure you want to payout this item?');" ><i class="fa fa-money"></i> Pay</a> 
-                  </td>
+                    <?php
+                        if($book['fine'] != 0) {
+                          echo '<b class="text-danger">'.$book['fine'].' TK</b>';  
+                        }else if($book['paid'] == 1){
+                            echo '<b class="text-success">Paid</b>';
+                        } else {
+                            echo '00.00 TK';  
+                        }
+                    ?>
+                  </td>   
+                  <td>
+                   <a href="pay.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-success" onclick="return confirm('Are you sure you want to payout this item?');" ><i class="fa fa-money"></i> Pay</a> 
+                  </td> 
                 </tr> 
               <?php endwhile; ?> 
                 
