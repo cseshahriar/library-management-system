@@ -45,28 +45,29 @@
             <li class="treeview " style="border-bottom: 1px solid #000 !important;">
               <a href="book_list.php"><i class="fa fa-book"></i><span>Books</span><i class="fa fa-angle-right"></i></a>     
               <ul class="treeview-menu">
-                <li class="sub">
+                <!-- <li class="sub">
                   <a href="book_add.php">
                     <i class="fa fa-plus" aria-hidden="true"></i> Add Book
                   </a>
-                </li>
+                </li> -->
                 <li class="sub">
                   <a href="book_list.php">
                     <i class="fa fa-eye" aria-hidden="true"></i> Book List
                   </a>
                 </li>
-                <li class="sub">
-                  <a href="book_edit.php">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Update Book
-                     </a>
+
+                 <li class="sub">
+                  <a href="book_issue_list.php">
+                    <i class="fa fa-eye" aria-hidden="true"></i> Book Issue List
+                  </a>
                 </li>
-                <li class="sub">
-                  <a href="delete.php">
-                    <i class="fa fa-minus" aria-hidden="true"></i> Delete Book
-                     </a>
+
+                 <li class="sub"> 
+                  <a href="book_submited_list.php">   
+                    <i class="fa fa-eye" aria-hidden="true"></i> Book Submited List
+                  </a>
                 </li>
-                &nbsp;
-            
+                &nbsp; 
               </ul>
             </li> 
              <!-- Settings -->
