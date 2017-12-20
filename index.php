@@ -1,36 +1,5 @@
 <?php require_once('include/header.php'); ?>
-<!-- start nav -->
-<div class="container-fluid">
-	<div class="row">
-		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <a class="navbar-brand" href="#">Library Management System</a>
-		    </div>
-		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="#">Home</a></li> <!-- book issue,return, fine etc list -->
-		      <li><a href="#">Books Issue</a></li>
-		      <li><a href="#">Books Return</a></li>
-		    </ul>
-		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-		      <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> 
-		      <li class="dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"> Username<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Profile</a></li>
-		            <li><a href="#">Settings</a></li>
-		            <li><a href="#">Logout</a></li>
-		          </ul>
-		        </li>
-		    </ul>
-		  </div>
-		</nav>
-	</div>
-</div>
-<!-- end nav -->
-
+<?php if(isset($_SESSION['user_id'])): ?>
 <!-- user data -->
 <div class="container-fluid">
 	<div class="row">
@@ -91,3 +60,5 @@
 
 <!-- end content -->
 <?php require_once('include/footer.php'); ?>
+<?php else: header("Location: login.php");?>
+<?php endif; ?> 

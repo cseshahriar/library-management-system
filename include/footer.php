@@ -4,9 +4,9 @@
   <script src="js/main.js"></script>
     <script type="text/javascript">
   	$(document).ready(function(){
-  		$("#msg").show();
+  		$(".msg").show();
   		setTimeout(function(){
-  			$("#msg").hide();
+  			$(".msg").hide();
   		},5000);
   	});
   </script>

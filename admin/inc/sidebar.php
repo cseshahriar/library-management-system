@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <!-- sidebar start -->
   <style>
     li.sub:hover{
@@ -8,13 +8,7 @@
       <!-- Side-Nav-->
       <aside class="main-sidebar hidden-print" >
         <section class="sidebar">
-          <div class="user-panel">
-            <?php 
-
-                $id = $_SESSION['user_id'];
-                $sql = "SELECT image FROM admin WHERE id='1' ";
-                $user = $db->getQuery($sql);
-             ?>
+          <div class="user-panel"> 
             <div class="pull-left image"><img class="img-circle" src="images/Admin/user.png" alt="User Image"></div> 
             <div class="pull-left info">
               <p><?php if(isset($_SESSION['user_name'])) { echo $_SESSION['user_name']; } ?></p>

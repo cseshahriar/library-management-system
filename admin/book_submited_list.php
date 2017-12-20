@@ -12,7 +12,7 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="text-success">Submitted Books List <a href="book_submit.php" class="btn btn-primary pull-right">Submit Books</a></h2>
+          <h2 class="text-success">Submitted Books List </h2>
         </div>
         <div class="panel-body">
           <table class="table table-striped table-responsive table-bordered"> 
