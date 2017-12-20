@@ -20,6 +20,9 @@
 							<th>Fine</th>
 							<td>Paid/Unpaid</td>
 						</tr>
+						<?php 
+
+						?>
 						<tr>
 							<td>01</td>
 							<td>Book Name</td>

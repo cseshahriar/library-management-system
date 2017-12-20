@@ -26,9 +26,11 @@
           <?php if(isset($_SESSION['st_id'])): ?> 
             <li><a href="index.php">Home</a></li> <!-- book issue,return, fine etc list -->
             <li><a href="book_issue.php">Books Issue</a></li>
+            <li><a href="book_issue_list.php">Issued Books List</a></li>
+            <li><a href="book_submited_list.php">Submit Books List</a></li>
            <!--  <li><a href="book_submit.php">Books Return</a></li> -->  
           <?php else: ?>
-              <?php header("Localhost: login.php"); ?>  
+              <?php header("Localhost: login.php"); ?>    
           <?php endif; ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
