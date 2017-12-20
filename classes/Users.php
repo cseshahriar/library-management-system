@@ -1,7 +1,7 @@
-<?php require_once('classes/Database.php'); 
-class Users extends Database
+<?php require_once('Database.php'); 
+class Users extends Database 
 {
-	public function __construct(){
+	public function __construct(){ 
 		parent::__construct(); 
 	}
 	/**
@@ -12,19 +12,19 @@ class Users extends Database
 	 */
 	public function login($usesrNameOrEmail , $password) 
 	{
-		$pass = md5($password);
+		$pass = md5($password); 
 		$sql = "SELECT * FROM users WHERE (username='$usesrNameOrEmail' OR email='$usesrNameOrEmail') AND password='$pass' AND active='1' ";  
 		$data = $this->link->query($sql);   
-		$user = mysqli_fetch_object($data);   
+		$user = mysqli_fetch_object($data);    
 
 		if (mysqli_num_rows($data ) > 0) { 
 			$this->setSession($user->id, $user->name, $user->username, $user->email, $user->role_id );
 			$_SESSION['logInSuccess'] = 'Your are successfully logged in now.';
-			//header("Location: index.php"); 
 			echo "<script>window.location.href = 'index.php'; </script>";
 			exit();
 		} else {
 			$_SESSION['logInError'] = 'Invalid username or email, password';
+			//header('Location: login.php'); //it can problem, use js redirect 
 			echo "<script>window.location.href = 'login.php'; </script>";
 			exit(); 
 		} 

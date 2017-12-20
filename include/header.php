@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php 
+    ob_start(); 
+    session_start();
+    require_once('classes/Database.php'); 
+    require_once('classes/Users.php'); 
+    $db = new Database;
+    $user = new Users;
+?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,4 +54,3 @@
   </div>
 </div>
 <!-- end nav -->
-

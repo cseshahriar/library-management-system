@@ -1,4 +1,4 @@
-<?php 
+<?php session_start();
   require_once('classes/Users.php');
   $user = new Users(); 
   if( isset($_POST['username_email'], $_POST['password'])) {  
@@ -9,11 +9,11 @@
           $userEmail = $_POST['username_email'];
           $password = $_POST['password'];
           //$db->login($userEmail, $password);            
-          $user->login($userEmail, $password);              
+          $user->login($userEmail, $password);               
       } 
   } 
 ?>
-<?php require_once('include/header.php'); ?> 
+<?php require_once('include/header.php'); ?>  
 <!-- user data -->
 <div class="container-fluid">
 	<div class="row">
