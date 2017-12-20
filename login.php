@@ -17,25 +17,25 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<div class="panel panel-success" style="margin-top: 50px">
-				<div class="panel-heading">
-					  <?php if(isset($_SESSION['logInError'])): ?>
+					<?php if(isset($_SESSION['logInError'])): ?>
 				        <!-- alert -->
 				        <div class="msg alert alert-danger alert-dismissable">
 				          <a class="panel-close close" data-dismiss="alert">×</a> 
 				          <i class="fa fa-user"></i>
 				          <strong ><?php echo $_SESSION['logInError']; ?></strong> 
 				        </div>
-				      <?php endif; ?> 
+				    <?php endif; ?> 
 
-					  <?php if(isset($_GET['logoutMsg'])): ?>
-				        <!-- alert -->
-				        <div class="msg alert alert-success alert-dismissable">
-				          <a class="panel-close close" data-dismiss="alert">×</a> 
-				          <i class="fa fa-user"></i>
-				          <strong ><?php echo $_GET['logoutMsg']; ?></strong>  
-				        </div>
-				      <?php endif; ?>
+				  <?php if(isset($_GET['logoutMsg'])): ?> 
+			        <!-- alert -->
+			        <div class="msg alert alert-success alert-dismissable">
+			          <a class="panel-close close" data-dismiss="alert">×</a> 
+			          <i class="fa fa-user"></i>
+			          <strong ><?php echo $_GET['logoutMsg']; ?></strong>   
+			        </div>
+			      <?php endif; ?> 
+			<div class="panel panel-success" style="margin-top:50px">
+				<div class="panel-heading">
 					<h2>Teacher or Student Login</h2>
 				</div>
 				<div class="panel-body">

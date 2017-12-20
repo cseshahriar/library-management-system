@@ -1,4 +1,5 @@
-<?php require_once('include/header.php'); ?>  
+<?php require_once('include/header.php'); ?> 
+<?php if(isset($_SESSION['st_id'])): ?> 
 <!-- user data -->
 <div class="container-fluid">
 	<div class="row">
@@ -56,6 +57,9 @@
 	</div>
 </div>
 <!-- /user data -->
-
 <!-- end content -->
 <?php require_once('include/footer.php'); ?> 
+
+<?php else: ?>
+<?php header("Localhost: login.php"); ?>
+<?php endif; ?>

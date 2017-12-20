@@ -11,21 +11,25 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-  </head>
+  </head> 
   <body> 
     <!-- start nav -->
-<div class="container-fluid">
+<div class="container-fluid"> 
   <div class="row">
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Library Management System</a>
+          <a class="navbar-brand" href="index.php">Library Management System</a>
         </div>
         <ul class="nav navbar-nav">
           <!-- class="active" -->
-          <li><a href="#">Home</a></li> <!-- book issue,return, fine etc list -->
-          <li><a href="book_issue.php">Books Issue</a></li>
-          <li><a href="book_submit.php">Books Return</a></li>
+          <?php if(isset($_SESSION['st_id'])): ?> 
+            <li><a href="index.php">Home</a></li> <!-- book issue,return, fine etc list -->
+            <li><a href="book_issue.php">Books Issue</a></li>
+           <!--  <li><a href="book_submit.php">Books Return</a></li> -->  
+          <?php else: ?>
+              <?php header("Localhost: login.php"); ?>  
+          <?php endif; ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <?php if(! isset($_SESSION['st_id'])): ?>
@@ -40,7 +44,7 @@
                   <li><a href="logout.php">Logout</a></li>  
                 </ul>
               </li>
-            <?php endif; ?> 
+            <?php endif; ?>  
          
         </ul>
       </div>

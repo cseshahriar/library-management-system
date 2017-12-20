@@ -45,7 +45,7 @@ class Users extends Database
 		$_SESSION['st_name'] = $name;
 		$_SESSION['st_username'] = $username;
 		$_SESSION['st_email'] = $email;
-		$_SESSION['st_role_id'] = $role_id;  
+		$_SESSION['st_role_id'] = $role_id;   
 
 	}  
 

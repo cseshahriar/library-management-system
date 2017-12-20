@@ -1,8 +1,9 @@
-<?php require_once('include/header.php'); ?> 
+<?php require_once('include/header.php'); ?>
+<?php if(isset($_SESSION['st_id'])): ?> 
 <?php
   include_once('classes/Database.php');
   $db = new Database();
- 
+
   if(isset($_POST['book_issue'])) { 
     //$user_id = $_POST['user_id']; 
     $user_id = $_SESSION['st_id']; // from session
@@ -74,3 +75,6 @@
 </div>
 
 <?php require_once('include/footer.php'); ?>
+<?php else: ?>
+  <?php header("Localhost: login.php"); ?> 
+<?php endif; ?> 
