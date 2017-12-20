@@ -5,7 +5,7 @@
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<h2>Username's Informations</h2>
+					<h2>Username's Informations</h2> 
 				</div>
 				<div class="panel-body">
 					<table class="table table-bordered table-hover table-striped table-responsive">
@@ -58,5 +58,4 @@
 <!-- /user data -->
 
 <!-- end content -->
-<?php require_once('include/footer.php'); ?>
-<?php echo $_SESSION['user_id']; ?>
+<?php require_once('include/footer.php'); ?> 

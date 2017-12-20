@@ -1,19 +1,18 @@
-<?php session_start();
+<?php require_once('include/header.php'); ?>  
+<?php 
   require_once('classes/Users.php');
-  $user = new Users(); 
+  $user = new Users();  
   if( isset($_POST['username_email'], $_POST['password'])) {  
 
       if(empty($_POST['username_email'] || $_POST['password'] )) {
         $_SESSION['logInError'] = 'Username or Email And Password must not be empty!';
       } else {
           $userEmail = $_POST['username_email'];
-          $password = $_POST['password'];
-          //$db->login($userEmail, $password);            
-          $user->login($userEmail, $password);               
+          $password = $_POST['password'];           
+          $user->login($userEmail, $password);                
       } 
   } 
-?>
-<?php require_once('include/header.php'); ?>  
+?>  
 <!-- user data -->
 <div class="container-fluid">
 	<div class="row">

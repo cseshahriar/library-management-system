@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2017 at 08:58 PM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- Generation Time: Dec 20, 2017 at 01:55 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -106,7 +106,9 @@ INSERT INTO `book_issue` (`id`, `user_id`, `book_id`, `issue_date`, `submit_date
 (1, 10, 1, '2017-12-09 20:00:00', '2017-12-25 00:00:00', 2),
 (2, 11, 2, '2017-12-09 19:00:00', '2017-12-25 00:00:00', 1),
 (3, 11, 2, '2017-12-19 04:27:32', '2017-12-25 00:00:00', 0),
-(4, 11, 1, '2017-12-19 16:46:21', '2017-12-25 00:00:00', 3);
+(4, 11, 1, '2017-12-19 16:46:21', '2017-12-25 00:00:00', 3),
+(5, 20, 1, '2017-12-20 11:57:42', '2017-12-26 00:00:00', 0),
+(7, 20, 2, '2017-12-20 12:33:38', '2017-12-26 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -128,7 +130,7 @@ CREATE TABLE `book_return` (
 --
 
 INSERT INTO `book_return` (`id`, `issue_id`, `submited_date`, `fine`, `paid`, `active`) VALUES
-(1, 1, '2017-12-18 18:00:00', 0, 1, 0);
+(1, 1, '2017-12-19 18:00:00', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -245,7 +247,8 @@ INSERT INTO `department` (`id`, `dept_name`, `active`) VALUES
 (29, 'Marketing', 1),
 (30, 'Finance', 1),
 (31, 'Accounting', 1),
-(32, 'Management', 1);
+(32, 'Management', 1),
+(33, 'CSE', 1);
 
 -- --------------------------------------------------------
 
@@ -266,6 +269,32 @@ CREATE TABLE `role` (
 INSERT INTO `role` (`role_id`, `role_name`, `active`) VALUES
 (1, 'Teacher', 1),
 (2, 'Student', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `students_fine` float NOT NULL,
+  `teachers_fine` float NOT NULL,
+  `students_max_book_limit` int(11) NOT NULL,
+  `teachers_max_book_limit` int(11) NOT NULL,
+  `students_current_limit` int(11) NOT NULL,
+  `teachers_current_limit` int(11) NOT NULL,
+  `students_max_keep_limit` int(11) NOT NULL,
+  `teachers_max_keep_limit` int(11) NOT NULL,
+  `active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `students_fine`, `teachers_fine`, `students_max_book_limit`, `teachers_max_book_limit`, `students_current_limit`, `teachers_current_limit`, `students_max_keep_limit`, `teachers_max_keep_limit`, `active`) VALUES
+(1, 50, 100, 7, 7, 3, 3, 7, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -297,9 +326,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `gender`, `phone`, `username`, `email`, `password`, `class_id`, `dept_id`, `roll`, `designation`, `address`, `image`, `joined_at`, `active`) VALUES
-(10, 1, 'Shahriar Hosen', 'Male', '23456787', 'Shahriar sir', 'teacher2@mail.com', '8d788385431273d11e8b43bb78f3aa41', NULL, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 1),
+(10, 1, 'Shahriar Hosen', 'Male', '23456787', 'shahriarcse', 'teacher2@mail.com', '1edb5a97f2f27f5d894e0efcff5ce3a6', NULL, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 1),
 (11, 2, 'Shahriar Alam', 'Male', '23456787', 'student', 'teacher2@mail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 1),
-(19, 1, 'Salpin', 'Male', '23456787', 'SM sir', 'teacher2@mail.com', '', 8, 0, 0, '', 'Mirpur-Dhaka', 'admin-151350619690353.png', '2017-12-17 10:23:16', 0);
+(19, 1, 'Salpin', 'Male', '23456787', 'SM sir', 'teacher2@mail.com', '', 8, 0, 0, '', 'Mirpur-Dhaka', 'admin-151350619690353.png', '2017-12-17 10:23:16', 1),
+(20, 2, 'sm', 'Male', '345678903456', 'sm', 'sm@gmail.com', 'ed79acb0cd3d7f8320c53c7798335ef0', 0, 0, 343243, '', 'Dhaka', 'admin-151375571523019.png', '2017-12-20 07:41:55', 1);
 
 --
 -- Indexes for dumped tables
@@ -360,6 +390,12 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -389,7 +425,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `book_issue`
 --
 ALTER TABLE `book_issue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `book_return`
@@ -413,7 +449,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -422,10 +458,16 @@ ALTER TABLE `role`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

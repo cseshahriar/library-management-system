@@ -1,7 +1,7 @@
 <?php require_once('Database.php'); 
 class Users extends Database 
 {
-	public function __construct(){ 
+	public function __construct(){  
 		parent::__construct(); 
 	}
 	/**
@@ -15,16 +15,17 @@ class Users extends Database
 		$pass = md5($password); 
 		$sql = "SELECT * FROM users WHERE (username='$usesrNameOrEmail' OR email='$usesrNameOrEmail') AND password='$pass' AND active='1' ";  
 		$data = $this->link->query($sql);   
-		$user = mysqli_fetch_object($data);    
+		$st = mysqli_fetch_object($data);
 
-		if (mysqli_num_rows($data ) > 0) { 
-			$this->setSession($user->id, $user->name, $user->username, $user->email, $user->role_id );
+
+		if (mysqli_num_rows($data ) == 1) { 
+			$this->setUserSession($st->id, $st->name, $st->username, $st->email, $st->role_id );
 			$_SESSION['logInSuccess'] = 'Your are successfully logged in now.';
-			echo "<script>window.location.href = 'index.php'; </script>";
-			exit();
+			//echo "<script>window.location.href = 'index.php'; </script>";
+			header("Location: index.php");
+			exit(); 
 		} else {
-			$_SESSION['logInError'] = 'Invalid username or email, password';
-			//header('Location: login.php'); //it can problem, use js redirect 
+			$_SESSION['logInError'] = 'Invalid username or email, password'; 
 			echo "<script>window.location.href = 'login.php'; </script>";
 			exit(); 
 		} 
@@ -38,13 +39,13 @@ class Users extends Database
 	 * @param [type] $email    [description]
 	 * @param [type] $role_id  [description]
 	 */
-	public function setSession($id, $name, $username, $email, $role_id) 
+	public function setUserSession($id, $name, $username, $email, $role_id) 
 	{
-		$_SESSION['user_id'] = $id;  
-		$_SESSION['user_name'] = $name;
-		$_SESSION['user_username'] = $username;
-		$_SESSION['user_email'] = $email;
-		$_SESSION['user_role_id'] = $role_id;
+		$_SESSION['st_id'] = $id;  
+		$_SESSION['st_name'] = $name;
+		$_SESSION['st_username'] = $username;
+		$_SESSION['st_email'] = $email;
+		$_SESSION['st_role_id'] = $role_id;  
 
 	}  
 

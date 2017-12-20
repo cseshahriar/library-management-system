@@ -1,11 +1,4 @@
-<?php 
-    ob_start(); 
-    session_start();
-    require_once('classes/Database.php'); 
-    require_once('classes/Users.php'); 
-    $db = new Database;
-    $user = new Users;
-?> 
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,24 +22,25 @@
           <a class="navbar-brand" href="#">Library Management System</a>
         </div>
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li> <!-- book issue,return, fine etc list -->
-          <li><a href="#">Books Issue</a></li>
-          <li><a href="#">Books Return</a></li>
+          <!-- class="active" -->
+          <li><a href="#">Home</a></li> <!-- book issue,return, fine etc list -->
+          <li><a href="book_issue.php">Books Issue</a></li>
+          <li><a href="book_submit.php">Books Return</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <?php if(! isset($_SESSION['user_id'])): ?>
+          <?php if(! isset($_SESSION['st_id'])): ?>
             <li><a href="user_add.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           <?php else :  ?>
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"> <?php if(isset($_SESSION['user_username'])) { echo $_SESSION['user_username'];} ?><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"> <?php if(isset($_SESSION['st_username'])) { echo $_SESSION['st_username'];} ?><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Profile</a></li>
                   <li><a href="#">Settings</a></li>
-                  <li><a href="logout.php">Logout</a></li> 
+                  <li><a href="logout.php">Logout</a></li>  
                 </ul>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> 
          
         </ul>
       </div>
