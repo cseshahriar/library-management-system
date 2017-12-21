@@ -3,10 +3,11 @@
 <?php
   include_once('classes/Database.php');
   $db = new Database();
+  $user_id = $_SESSION['st_id'];
 
   if(isset($_POST['book_issue'])) { 
     //$user_id = $_POST['user_id']; 
-    $user_id = $_SESSION['st_id']; // from session
+    //$user_id = $_SESSION['st_id']; // from session
     $book_id = $_POST['book_id'];
     //$issue_date = date('Y-md-d');
     $submit_date = date('Y-m-d', strtotime("+6 days")); //issue date plus 6 days = 7 days
@@ -30,6 +31,16 @@
           <h2 class="text-success">Books Issue</h2>
         </div>
         <div class="panel-body">
+           <!-- restriction 1) at a time limit and 2) per month limit --> 
+            <?php 
+                $limitsql = "SELECT * FROM book_issue WHERE user_id='$user_id' AND active='1' ";
+                $limit = $db->getQuery($limitsql);
+                //$limitdata = $limit->fetch_assoc();
+                $rowcount = mysqli_num_rows($limit );
+                //echo $rowcount;
+                if($rowcount < 3 && $rowcount > ):  
+                //if less than 3 
+            ?>
           <!-- Issue book form -->
           <form action="" method="post">
             <!-- user id -->
@@ -37,7 +48,7 @@
               <label for="user_id">User Name</label>
               <span><?php echo $_SESSION['st_username']; ?></span>
             </div> 
-
+           
              <!-- book id -->
             <div class="form-group">
               <label for="book_id">Book ID</label>
@@ -50,6 +61,7 @@
                     <?php } ?> 
               </select>
             </div>
+         
             
             <!-- issue date -->
             <div class="form-group">
@@ -67,7 +79,9 @@
 
             <button type="submit" name="book_issue" class="btn btn-primary">Book Issue</button>
           </form>
-
+         <?php else: ?>
+              <?php echo 'Return a book first!'; ?>
+        <?php endif; ?>       
         </div>
       </div>
     </div>
