@@ -56,9 +56,9 @@
                 $mrowcount = mysqli_num_rows($mlimit ); //how much row 
             ?>
         <?php 
-            // check role id 
-            if( $role_id == 1) { //teacher
-                if($rowcount < $teachers_max_keep_limit && $mrowcount < $teachers_month_limit ) { ?>
+            // check role id  
+            if( $role_id == 1) { //teacher 
+                if(!($rowcount >= $teachers_max_keep_limit) && !($mrowcount >= $teachers_month_limit) ) { ?>
                       <!-- Issue book form -->
                   <form action="" method="post">
                     <!-- user id -->
@@ -101,7 +101,7 @@
                     echo 'Return a book first!';
                 }
             } else { //studenet
-                if($rowcount < $students_max_keep_limit && $mrowcount < $students_month_limit) { ?>
+                if(!($rowcount >= $students_max_keep_limit) && !($mrowcount >= $students_month_limit)) { ?>
                         <!-- Issue book form -->
                       <form action="" method="post">
                         <!-- user id -->
