@@ -1,6 +1,6 @@
 <?php 
   session_start(); 
-  if($_SESSION['user_role_id'] == 1) :
+  if($_SESSION['user_role_id'] == 1) :  
 ?>
 <?php 
     include_once('classes/Database.php');  
@@ -20,7 +20,7 @@
 
     $datetime1 = new DateTime($issue_date);
     $datetime2 = new DateTime($submit_date);
-    $interval = $datetime2->diff($datetime1);
+    $interval = $datetime2->diff($datetime1); 
 
     $intervalDate = $interval->format('%a'); //diff date got  
     $intervalDate = (int)$intervalDate; // for issue id 1 = 8 days

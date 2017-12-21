@@ -23,7 +23,6 @@
                   <th>Issue Date</th>
                   <th>Submit Date</th>
                   <th>Fine</th>
-                  <th>Action</th> 
                 </tr>
                 <?php
                     $serial = 1; 
@@ -65,10 +64,7 @@
                             echo '00.00 TK';  
                         }
                     ?>
-                  </td>   
-                  <td>
-                   <a href="pay.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-success" onclick="return confirm('Are you sure you want to payout this item?');" ><i class="fa fa-money"></i> Pay</a>  
-                  </td> 
+                  </td>    
                 </tr> 
               <?php endwhile; ?> 
                 

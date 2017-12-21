@@ -1,10 +1,12 @@
 <?php require_once('include/header.php'); ?>   
+<?php if(isset($_SESSION['st_id'])): ?>
 <?php 
   include_once('classes/Database.php');
   $db = new Database();
   $user_id = $_SESSION['st_id'];
+  $role_id = $_SESSION['st_role_id']; 
   $sql = "SELECT * FROM book_issue WHERE user_id='$user_id'"; 
-  $books = $db->getQuery($sql);  
+  $books = $db->getQuery($sql);   
 ?>
 <div class="container">
   <div class="row">
@@ -24,6 +26,7 @@
                   <th>Issue Date</th>
                   <th>Submit Date</th>
                   <th>Status</th>
+                  <th>Fine</th>
                   <th>Action</th> 
                 </tr>
                 <?php 
@@ -38,6 +41,14 @@
                   <td><?= date('d-m-Y',strtotime($book['submit_date'])); ?></td>
                   
                   <td>
+                    <?php 
+                        //expire
+                        $today = date('Y-m-d');
+                        $submit_date = date('Y-m-d',strtotime($book['submit_date']));
+                        if($today > $submit_date && !($book['active'] == 2) ) {
+                          echo '<span class="text-danger">Expire |</span>';
+                        }
+                     ?>
                     <?php if($book['active'] == 1){ echo '<b class="text-success">Active</b>'; ?> 
                     <?php }else if($book['active'] == 2) {   
                           echo 'Returned'; 
@@ -46,7 +57,46 @@
                     ?>
                     <?php } else { echo '<span class="text-danger"><b>Inactive!</b></span>'; } ?>  
                   </td>    
-                
+                <td>
+                   <?php 
+                        date_default_timezone_set('Asia/Dhaka');
+                        $today = date('Y-m-d');
+                        $submit_date = date('Y-m-d',strtotime($book['submit_date'])); 
+                      
+
+                        $datetime1 = new DateTime($today);
+                        $datetime2 = new DateTime($submit_date);
+                        $interval = $datetime2->diff($datetime1); 
+
+                        $intervalDate = $interval->format('%a'); //diff date got  
+                        $intervalDate = (int)$intervalDate; // for issue id 1 = 8 days
+                        
+                        if($intervalDate > 0 ) {
+                            $sqlSelect = "SELECT * FROM settings";
+                            $settings = $db->getQuery($sqlSelect); 
+                            $setting = $settings->fetch_assoc();
+
+                            $teachers_fine =  $setting['teachers_fine']; 
+                            $students_fine = $setting['students_fine'];
+
+                            if($role_id == 1) { //teacher
+                                $tfine = $intervalDate * $teachers_fine;
+                                 if(!($book['active'] == 0)){       
+                                    echo $tfine; 
+                                  }
+                            } else { //students
+                                $sfine = $intervalDate *  $students_fine;
+                                 if(!($book['active'] == 0)){    
+                                    echo $sfine;   
+                                  }
+                            }       
+                        }else if($intervalDate == 0){ 
+                                echo '00.00 TK';      
+                        } else {
+                                echo '00.00 TK';     
+                        }
+                    ?>
+                </td>
                 <?php if($book['active'] != 2): ?>
                   <td>
                     <?php if($book['active'] == 1): ?>
@@ -67,3 +117,6 @@
 </div>
 
 <?php require_once('include/footer.php'); ?>
+<?php else: ?>
+<?php header("Localhost: login.php"); ?>
+<?php endif; ?>
