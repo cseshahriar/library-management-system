@@ -16,8 +16,8 @@
         $issue = $db->insert($sql); 
         
         if($issue) {
-            header("Location: index.php");  
-        }
+            header("Location: book_issue_list.php");  
+        } 
     }
   }
 ?>

@@ -1,0 +1,34 @@
+$fine = '';
+    echo  $issue_id;
+
+   //insert process
+   if( $user_role == 1) { //teacher 100 tk per/day
+      if(!$fineDays < 8) { 
+          $fine = $fineDays * 100;
+      } else {
+          $fine = null; 
+      }
+
+      $sql = "INSERT INTO book_return(issue_id,submited_date, fine, active) VALUES('$issue_id', '$submit_date', '$fine', '1')"; 
+      $insert = $db->insert($sql); //book submit
+      
+      // remove from issue table
+      $update = "UPDATE book_issue SET active='2' WHERE id=' $issue_id' ";
+      $db->update($update); 
+      header("Location: book_submited_list.php");  
+
+   } else { //student 50 tk per/day
+      if(!$fineDays < 8) { 
+          $fine = $fineDays * 50;   
+      } else {
+        $fine = null; 
+      }
+
+      $sql = "INSERT INTO book_return(issue_id,submited_date, fine, active) VALUES('$issue_id', '$submit_date', '$fine', '1')";
+      $insert = $db->insert($sql); //book submit
+
+      $update = "UPDATE book_issue SET active='2' WHERE id='$issue_id' ";
+      $db->update($update);
+      header("Location: book_submited_list.php");
+
+   }  

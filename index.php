@@ -8,13 +8,13 @@
 				<div class="panel-heading">
 					<h2>Username's Informations</h2> 
 				</div>
-				<div class="panel-body">
-					<table class="table table-bordered table-hover table-striped table-responsive">
+				<div class="panel-body"> 
+					<!-- <table class="table table-bordered table-hover table-striped table-responsive">
 						<tr>
 							<th>SR NO.</th>
 							<th>Issued Book Name</th>
 							<th>Status</th>
-							<th>Active Date</th> <!-- issue date -->
+							<th>Active Date</th> 
 							<th>Submit Date</th>
 							<th>Submit Stattus</th>
 							<th>Fine</th>
@@ -33,10 +33,8 @@
 							<td>$50</td>
 							<td>Paid/Unpaid</td>
 						</tr>
-						<!-- not loop -->
-					</table>
-					<!-- calculation table -->
-					<table class="table table-bordered table-hover table-striped table-responsive">
+					</table>-->
+					<!-- <table class="table table-bordered table-hover table-striped table-responsive">
 						<tr>
 							<td>Total Issued Book</td>
 							<td>Submitted Book</td>
@@ -51,7 +49,7 @@
 							<td>$50</td>
 							<td>Paid/Unpaid</td>
 						</tr>
-					</table>
+					</table> -->
 
 				</div>
 			</div>

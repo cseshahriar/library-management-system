@@ -3,13 +3,13 @@
   include_once('classes/Database.php');
   $db = new Database();
   $user_id = $_SESSION['st_id'];
-  $sql = "SELECT * FROM book_issue WHERE user_id='$user_id' AND active='1' "; 
+  $sql = "SELECT * FROM book_issue WHERE user_id='$user_id'"; 
   $books = $db->getQuery($sql);  
 ?>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default"> 
         <div class="panel-heading">
           <h2 class="text-success">Issued Books List <a href="book_issue.php" class="btn btn-primary pull-right">Issue Books</a></h2>
         </div>
@@ -49,7 +49,9 @@
                 
                 <?php if($book['active'] != 2): ?>
                   <td>
+                    <?php if($book['active'] == 1): ?>
                     <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-primary" onclick="return confirm('Are you sure you want to submit this item?');"><i class="fa fa-trash"></i> Return This Book</a>   
+                  <?php endif; ?>   
                   </td> 
                   <?php  endif; ?>
                 </tr> 

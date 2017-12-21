@@ -18,6 +18,7 @@
               <!-- single item for looping  -->
                 <tr class="success">
                   <th>Sr No.</th>
+                  <th>Issue ID</th>
                   <th>User ID</th>
                   <th>Book ID</th>
                   <th>Issue Date</th>
@@ -30,6 +31,7 @@
                     while($book = $books->fetch_assoc()): ?>
                 <tr>
                   <td><?= $serial++; ?></td>
+                  <td><?= $book['id']; ?></td>
                   <td><?= $book['user_id']; ?></td>
                   <td><?= $book['book_id']; ?></td>
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
@@ -59,7 +61,7 @@
                   <td>
                    <a href="book_issue_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"  title="Make Inactive"><i class="fa fa-trash"></i> Inactive</a>
 
-                    <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');"><i class="fa fa-trash"></i>Return Book</a>   
+                    <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');" title="Send issue id"><i class="fa fa-trash"></i>Return Book</a>   
                   </td> 
                   <?php  endif; ?>
                 </tr> 
