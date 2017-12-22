@@ -117,11 +117,11 @@
     }
 
     if(!empty($_FILES['image'])) {
-        $img_file = $_FILES['image']['name']; 
+        $img_file = $_FILES['image']['name'];  
         $tmp_name = $_FILES['image']['tmp_name'];    
         $img_size = $_FILES['image']['size'];
         $uplodad_directory = 'images/users/';  
-        $image_name = 'admin-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);  
+        $image_name = 'user-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);  
         //move_uploaded_file($tmp_name, $uplodad_directory.$image_name);       
     }    
     // validation end
