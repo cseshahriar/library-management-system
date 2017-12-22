@@ -287,4 +287,9 @@ body {
   padding-top: 5px;
   padding-left: 5px;
 }
-
+#search {
+  display: inline-block;
+  width: 60%;
+  margin-left: 50px;
+  margin-top: -5px;
+}
