@@ -2,7 +2,7 @@
 <?php 
   require_once('../classes/Database.php');
   $db = new Database();   
-  $id = $_GET['id'];   
+  $id = $_GET['id'];    
 
   //form value set     
   $sql = "SELECT * FROM users 

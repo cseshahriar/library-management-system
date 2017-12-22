@@ -32,3 +32,30 @@ $fine = '';
       header("Location: book_submited_list.php");
 
    }  
+
+
+   ---------------
+                        if($intervalDate > 0 ) { 
+                            $sqlSelect = "SELECT * FROM settings";
+                            $settings = $db->getQuery($sqlSelect); 
+                            $setting = $settings->fetch_assoc();
+
+                            $teachers_fine =  $setting['teachers_fine']; 
+                            $students_fine = $setting['students_fine'];
+
+                            if($role_id == 1) { //teacher
+                                $tfine = $intervalDate * $teachers_fine;
+                                 if(!($book['active'] == 0)){       
+                                    echo $tfine; 
+                                  }
+                            } else { //students
+                                $sfine = $intervalDate *  $students_fine;
+                                 if(!($book['active'] == 0)){    
+                                    echo $sfine;   
+                                  }
+                            }       
+                        }else if($intervalDate == 0){ 
+                                echo '00.00 TK';      
+                        } else {
+                                echo '00.00 TK';     
+                        } 

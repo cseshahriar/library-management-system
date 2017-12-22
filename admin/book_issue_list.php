@@ -50,7 +50,7 @@
                       while($book = $books->fetch_assoc()): 
                   ?>
                   <tr>
-                    <td><?= $book['id']; ?></td> 
+                    <td><?= $book['id']; ?></td> <!-- issue id -->
                     <td>
                       <?php
                           $user_id = $book['user_id'];
@@ -95,46 +95,65 @@
                     </td>   
 
                     <!-- fine  -->
-                    <td>
+                  <td>
                    <?php 
                         date_default_timezone_set('Asia/Dhaka');
-                        $today = date('Y-m-d');
-                        $submit_date = date('Y-m-d',strtotime($book['submit_date'])); 
+                        $issue_date= date('Y-m-d',strtotime($book['issue_date']));   
+                        $submit_date = date('Y-m-d',strtotime($book['submit_date']));     
                       
 
-                        $datetime1 = new DateTime($today);
-                        $datetime2 = new DateTime($submit_date);
-                        $interval = $datetime2->diff($datetime1); 
+                        $datetime1 = new DateTime($issue_date);
+                        $datetime2 = new DateTime($submit_date); 
+                        $interval = $datetime2->diff($datetime1);    
 
                         $intervalDate = $interval->format('%a'); //diff date got  
                         $intervalDate = (int)$intervalDate; // for issue id 1 = 8 days
+                        //echo $intervalDate.'<br>'; 
+
                         
-                        if($intervalDate > 0 ) {
+                        //echo  $intervalDate; // 7 
+                        if($intervalDate > 0 ) { 
                             $sqlSelect = "SELECT * FROM settings";
                             $settings = $db->getQuery($sqlSelect); 
                             $setting = $settings->fetch_assoc();
 
                             $teachers_fine =  $setting['teachers_fine']; 
-                            $students_fine = $setting['students_fine'];
+                            $teacher_max_keep_limit = $setting['teachers_max_keep_limit']; 
 
-                            if($role_id == 1) { //teacher
-                                $tfine = $intervalDate * $teachers_fine;
-                                 if(!($book['active'] == 0)){       
-                                    echo $tfine; 
-                                  }
-                            } else { //students
-                                $sfine = $intervalDate *  $students_fine;
-                                 if(!($book['active'] == 0)){    
-                                    echo $sfine;   
-                                  }
+                            $students_fine = $setting['students_fine'];
+                            $students_max_keep_limit = $setting['students_max_keep_limit'];
+
+                            if($role_id == 1 ) { //teacher
+                                $tfineday = $intervalDate - $teacher_max_keep_limit;
+
+                                if($tfineday > 0) {
+                                  $tfine = $tfineday * $teachers_fine;
+                                  echo $tfine;  
+                                }else {
+                                  $tfine = '';
+                                } 
+                              
+
+                            } else {  //students
+                               $sfineday = $intervalDate - $students_max_keep_limit; 
+
+                                if($sfineday > 0) {
+                                  $sfine = $sfineday * $students_fine;
+                                  echo $sfine;  
+                                }else {
+                                  $sfine = '';
+                                }
+                                
                             }       
-                        }else if($intervalDate == 0){ 
+
+                        }else if($intervalDate == 0) {   
                                 echo '00.00 TK';      
-                        } else {
-                                echo '00.00 TK';     
-                        }
-                    ?>
-                </td>
+                        } else { 
+                                echo '00.00 TK';      
+                        }    
+                          
+                    ?> 
+                  </td>
 
                   <!-- return -->
                   <?php if($book['active'] != 2): ?>       

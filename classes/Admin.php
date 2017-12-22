@@ -19,14 +19,14 @@ class Admin extends Database
 
 		if (mysqli_num_rows($data ) > 0) { 
 			$this->setSession($user->id, $user->name, $user->username, $user->email, $user->role_id );
-			$_SESSION['logInSuccess'] = 'Your are successfully logged in now.';
+			$logInSuccess = 'Your are successfully logged in now.';
 			header("Location: index.php"); 
 			exit();
 		} else {
-			$_SESSION['logInError'] = 'Invalid username or email, password';
+			$logInError = 'Invalid username or email, password';
 			//header('Location: login.php'); //it can problem, use js redirect 
 			echo "<script>window.location.href = 'login.php'; </script>";
-			exit(); 
+			exit();  
 		} 
 	}
 
