@@ -2,15 +2,32 @@
 <?php 
   require_once('../classes/Database.php');
   $db = new Database();   
-  $id = $_GET['id']; 
+  $id = $_GET['id'];   
 
-  //form value set
-  //$user_data = $db->getWhere("users", "id='$id'"); 
-  $sql = "SELECT * FROM users LEFT JOIN department ON users.dept_id = department.id WHERE users.id='$id' ";
+  //form value set     
+  $sql = "SELECT * FROM users 
+          LEFT JOIN role ON users.role_id=role.role_id
+          LEFT JOIN class ON users.class_id=class.id
+          LEFT JOIN department ON users.dept_id=department.id
+          WHERE users.id='$id' "; 
+
   $user_data = $db->getQuery($sql); 
   $row = $user_data->fetch_assoc();   
-  // end value set code  
+  $role_id = $row['role_id']; 
 
+    /**
+   * [checkInput feltering form data]
+   * @param  [form input] $data [form inputs data]
+   * @return [form input]       [form input data]
+   */
+  function checkInput($data)     
+  {
+      $data = trim($data);
+      $data = htmlentities($data);
+      $data = htmlspecialchars($data); 
+      return $data;   
+  } 
+    
 
   //update code under here 
   $name = $gender = $email = $phone = $dept = $roll = $class = $design = $address  = ''; 
@@ -91,10 +108,10 @@
         if(!preg_match("/^[A-Za-z0-9-, ]*$/", $address)) {
             $address_error = 'Only Letters, Numbers, _,-, comma and white space are allowed';  
         } 
-      }
+      }  
   
       // validation end
-      if($row['role_id'] == 1) { //for teacher
+      if($role_id== 1) { //for teacher 
 
           if(!($name_error && $gender_error && $email_error && $phone_error && $address_error)) {
               $sql = "UPDATE users SET name='$name', gender='$gender', phone='$phone', email='$email', designation='$design', address='$address' ";
@@ -113,19 +130,7 @@
           }
       }     
 }
-
-  /**
-   * [checkInput feltering form data]
-   * @param  [form input] $data [form inputs data]
-   * @return [form input]       [form input data]
-   */
-  function checkInput($data) 
-  {
-      $data = trim($data);
-      $data = htmlentities($data);
-      $data = htmlspecialchars($data);
-      return $data;   
-  }   
+  
 
 ?>
 <?php require_once('inc/header.php'); ?>

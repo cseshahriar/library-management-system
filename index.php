@@ -1,59 +1,99 @@
 <?php require_once('include/header.php'); ?> 
-<?php if(isset($_SESSION['st_id'])): ?> 
+<?php 
+	require_once('classes/Database.php'); 
+	$db = new Database;
+?> 
+<?php if(isset($_SESSION['st_id'])): ?>  
 <!-- user data -->
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-success">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2>Username's Informations</h2> 
+					<h2>User informations</h2>
 				</div>
-				<div class="panel-body"> 
-					<!-- <table class="table table-bordered table-hover table-striped table-responsive">
-						<tr>
-							<th>SR NO.</th>
-							<th>Issued Book Name</th>
-							<th>Status</th>
-							<th>Active Date</th> 
-							<th>Submit Date</th>
-							<th>Submit Stattus</th>
-							<th>Fine</th>
-							<td>Paid/Unpaid</td>
-						</tr>
+				<div class="panel-body text-left">
+					<table class="user table table-bordered table-responsive table-striped table-hover">
 						<?php 
-
+							$user_id = $_SESSION['st_id'];
+							$sql = "SELECT * FROM users WHERE id='$user_id' AND active='1' ";
+							$userdata = $db->getQuery($sql);
+							$row = $userdata->fetch_assoc();  
 						?>
 						<tr>
-							<td>01</td>
-							<td>Book Name</td>
-							<td>Panding/Active</td> 
-							<td>12-12-2017</td>
-							<td>12-12-2017</td>
-							<td>Supmiited/Expired</td>
-							<td>$50</td>
-							<td>Paid/Unpaid</td>
-						</tr>
-					</table>-->
-					<!-- <table class="table table-bordered table-hover table-striped table-responsive">
-						<tr>
-							<td>Total Issued Book</td>
-							<td>Submitted Book</td>
-							<td>Expire Submission</td>
-							<td>Total Fine</td>
-							<td>Paid/Unpaid</td> 
+							<th>Name:</th>
+							<td><?= $row['name']; ?></td>
 						</tr>
 						<tr>
-							<td>03</td>
-							<td>02</td>
-							<td>01</td>
-							<td>$50</td>
-							<td>Paid/Unpaid</td>
+							<th>Gende:</th>
+							<td><?= $row['gender']; ?></td>
 						</tr>
-					</table> -->
+						<tr>
+							<th>Phone:</th>
+							<td><?= $row['phone']; ?></td>
+						</tr>
+						<tr>
+							<th>Username:</th>
+							<td><?= $row['username']; ?></td>
+						</tr>
+						<tr>
+							<th>Email:</th>
+							<td><?= $row['email']; ?></td>
+						</tr> 
+						<?php if($_SESSION['st_role_id'] == 2): ?> 
+						<tr>
+							<th>Class:</th> 
+							<td>
+								<?php  
+									$sql = "SELECT * FROM users LEFT JOIN class ON users.class_id=class.id WHERE users.id='$user_id' ";
+									$class_data = $db->getQuery($sql);
+									$class_name = $class_data->fetch_assoc();
+									echo $class_name['class_name'];  
+								?> 
+							</td>
+						</tr> 
+						<?php endif; ?> 
+						<tr>
+							<th>Department:</th>
+							<td>
+								<?php 
+									$sql = "SELECT * FROM users LEFT JOIN department ON users.dept_id=department.id WHERE users.id='$user_id' "; 
+									$dept_data = $db->getQuery($sql);
+									$dept_name = $dept_data->fetch_assoc();
+									echo $dept_name['dept_name'];   
+								?>
 
+							</td>
+						</tr>  
+					<?php if($_SESSION['st_role_id'] == 2): ?>
+						<tr>
+							<th>Roll:</th>
+							<td><?= $row['roll']; ?></td>
+						</tr>  
+					<?php endif; ?>
+					<?php if($_SESSION['st_role_id'] == 1): ?>
+						<tr>
+							<th>Designation:</th>
+							<td><?= $row['designation']; ?></td>
+						</tr>  
+					<?php endif; ?>
+						<tr>
+							<th>Address:</th>
+							<td><?= $row['address']; ?></td>
+						</tr>   
+						<tr>
+							<th>Image:</th>
+							<td>
+								<img class="thumbnail" src="admin/images/users/<?= $row['image']; ?>" width="160" alt=""> 
+							</td>
+						</tr>    
+						<tr>
+							<th>Joined:</th>
+							<td><?= $row['joined_at']; ?></td>
+						</tr> 
+					</table>
 				</div>
 			</div>
-			
 		</div>	
 	</div>
 </div>
