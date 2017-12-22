@@ -35,14 +35,30 @@
                 <tr>
                   <td><?= $serial++; ?></td>
                   <td><?= $book['id']; ?></td> <!-- issue id -->
-                  <td><?= $book['user_id']; ?></td>
-                  <td><?= $book['book_id']; ?></td>
+                  <td>
+                    <?php 
+                        $user_id = $book['user_id'];
+                        $sql = "SELECT username from users WHERE id='$user_id' ";
+                        $data = $db->getQuery($sql); 
+                        $row = $data->fetch_assoc();
+                        echo $row['username'];
+                     ?>
+                  </td>
+                  <td>
+                     <?php 
+                        $book_id = $book['book_id'];
+                        $sql = "SELECT title from books WHERE id='$book_id' "; 
+                        $data = $db->getQuery($sql); 
+                        $row = $data->fetch_assoc(); 
+                        echo $row['title'];   
+                     ?>
+                  </td>         
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
                   <td><?= date('d-m-Y',strtotime($book['submit_date'])); ?></td>
                   
                   <td>
                     <?php 
-                        //expire
+                        //expire 
                         $today = date('Y-m-d');
                         $submit_date = date('Y-m-d',strtotime($book['submit_date']));
                         if($today > $submit_date && !($book['active'] == 2) ) {

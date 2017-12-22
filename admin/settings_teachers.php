@@ -17,8 +17,8 @@
         $sql2 = "UPDATE settings SET teachers_fine='$per_day_fine', teachers_max_book_limit='$book_limit', teachers_current_limit='$current_limit', teachers_max_keep_limit='$limit_per_month' "; 
 
         $db->update($sql2);
-        $msg = 'Update successfull!. please refresh for the change';
-      }
+        $msg = 'Update successfull!. please refresh for the change';  
+      } 
     }
  ?>
 <?php include "inc/header.php";?> 
@@ -40,12 +40,13 @@
       <!-- change settings for student -->
       <div class="col-md-12">
        <!-- alert -->
-       <?php if(isset($msg)) ?>
+       <?php if(isset($msg)): ?>
         <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
          <?php echo $msg; ?>
         </div> 
+      <?php endif; ?> 
 
         <div class="panel panel-default">
           <div class="panel-heading">

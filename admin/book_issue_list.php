@@ -43,6 +43,7 @@
                     <th>Issue Date</th>
                     <th>Submit Date</th>
                     <th>Status</th>
+                    <th>Fine</th>
                     <th>Action</th> 
                   </tr>
                   <?php
@@ -50,14 +51,15 @@
                       while($book = $books->fetch_assoc()): ?>
                   <tr>
                     <td><?= $serial++; ?></td>
-                    <td><?= $book['id']; ?></td>
+                    <td><?= $book['id']; ?></td> 
                     <td>
                       <?php
                           $user_id = $book['user_id'];
-                          $usql = "SELECT username from users WHERE id='$user_id' ";
+                          $usql = "SELECT username, role_id from users WHERE id='$user_id' ";
                           $user = $db->getQuery($usql);
                           $data = $user->fetch_assoc();
-                          echo $data['username'];  
+                          $role_id = $data['role_id']; //user role  
+                          echo $data['username'];       
                       ?>  
                     </td>
                     <td> 
@@ -92,7 +94,50 @@
                           <a href="book_issue_active.php?id=<?= $book['id']; ?>" class="text-success"> | Make Active</a> 
                       <?php } ?>  
                     </td>   
-                  
+
+                    <!-- fine  -->
+                    <td>
+                   <?php 
+                        date_default_timezone_set('Asia/Dhaka');
+                        $today = date('Y-m-d');
+                        $submit_date = date('Y-m-d',strtotime($book['submit_date'])); 
+                      
+
+                        $datetime1 = new DateTime($today);
+                        $datetime2 = new DateTime($submit_date);
+                        $interval = $datetime2->diff($datetime1); 
+
+                        $intervalDate = $interval->format('%a'); //diff date got  
+                        $intervalDate = (int)$intervalDate; // for issue id 1 = 8 days
+                        
+                        if($intervalDate > 0 ) {
+                            $sqlSelect = "SELECT * FROM settings";
+                            $settings = $db->getQuery($sqlSelect); 
+                            $setting = $settings->fetch_assoc();
+
+                            $teachers_fine =  $setting['teachers_fine']; 
+                            $students_fine = $setting['students_fine'];
+
+                            if($role_id == 1) { //teacher
+                                $tfine = $intervalDate * $teachers_fine;
+                                 if(!($book['active'] == 0)){       
+                                    echo $tfine; 
+                                  }
+                            } else { //students
+                                $sfine = $intervalDate *  $students_fine;
+                                 if(!($book['active'] == 0)){    
+                                    echo $sfine;   
+                                  }
+                            }       
+                        }else if($intervalDate == 0){ 
+                                echo '00.00 TK';      
+                        } else {
+                                echo '00.00 TK';     
+                        }
+                    ?>
+                </td>
+
+                  <!-- return -->
                   <?php if($book['active'] != 2): ?>       
                     <td>
                      <a href="book_issue_inactive.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"  title="Make Inactive"><i class="fa fa-trash"></i> Inactive</a>
