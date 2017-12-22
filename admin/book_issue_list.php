@@ -3,7 +3,7 @@
   $db = new Database();
   $books = $db->get("book_issue");  
 ?>
-<?php require_once('inc/header.php'); ?> 
+<?php require_once('inc/header.php'); ?>  
 <?php include_once('inc/sidebar.php'); ?>  
 <div class="content-wrapper"> 
   <div class="row">
@@ -13,13 +13,13 @@
             <div class="panel-heading">
                 <h3 style="display: inline-block;">Search from issue list</h3>
                 <!-- search -->
-                <input type="text" name="search" id="search" class="form-control" placeholder="Search by Issue ID, User ID and Book Name" />  
+                <input type="text" name="search" id="search" class="form-control" placeholder="Search by Issue ID, Username and Book Title" />  
             </div>
             <div class="panel-body">
                 <table id="result" class="table table-striped table-responsive table-bordered">
                  <!-- search result view here --> 
 
-                </table> 
+                </table>  
             </div>
         </div>
         <!-- /search -->

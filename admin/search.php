@@ -1,42 +1,32 @@
-<?php 
+<?php
 	include_once('../classes/Database.php');
+	include_once('../css/bootstrap.min.css');
 	$db = new Database;
-	$search = $_POST['search'];
+	$search = $_POST['search']; 
+
 	if(!empty($search)){
-		$query = "SELECT * FROM book_issue WHERE id LIKE '%$search%' OR user_id LIKE '%$search%' OR book_id LIKE '%$search%' ";  
-		$data = $db->getQuery($query);  
-		$row = $data->fetch_assoc(); ?> 
-              <tr class="success">
-                <th>Issue ID</th> 
+		$query = "SELECT * FROM book_issue 
+		LEFT JOIN users ON book_issue.user_id=users.id 
+		LEFT JOIN books ON book_issue.book_id=books.id 
+		WHERE book_issue.id LIKE '%$search%' OR username LIKE '%$search%' OR title LIKE '%$search%' ";     
+		
+		$data = $db->getQuery($query); ?>  
+			<tr class="success">
+                <th>Issue ID</th>     
                 <th>Username</th> <!-- user name -->
-                <th>Book ID</th><!--  book name --> 
+                <th>Book ID</th><!--  book name -->  
                 <th>Issue Date</th>
-                <th>Submit Date</th>
+                <th>Submit Date</th> 
                 <th>Status</th>
-                <th>Action</th> 
-              </tr>
-              <tr>
-              	<td><?= $row['id']; ?></td>
-              	<td>
-              		<?php
-                      $user_id = $row['user_id'];
-                      $usql = "SELECT username from users WHERE id='$user_id' ";
-                      $user = $db->getQuery($usql);
-                      $data = $user->fetch_assoc();
-                      echo $data['username'];  
-                    ?> 
-              	</td>
-              	<td>
-          		 <?php
-                      $book_id = $row['book_id'];
-                      $usql = "SELECT title from books WHERE id='$book_id' ";
-                      $user = $db->getQuery($usql);
-                      $data = $user->fetch_assoc();
-                      echo $data['title']; 
-                  ?> 
-              	</td>
+                <th>Action</th>       
+            </tr>  
+		<?php while($row = $data->fetch_assoc()): ?>         
+              <tr> 
+              	<td><?= $row['id']; ?></td>  
+              	<td><?= $row['username']; ?></td> 
+              	<td><?= $row['title']; ?></td>
               	<td><?= $row['issue_date']; ?></td>
-              	<td><?= $row['submit_date']; ?></td>
+              	<td><?= $row['submit_date']; ?></td> 
               	<!-- status -->
               	<td>
                       <?php if($row['active'] == 1){ echo '<b class="text-success">Active</b>'; ?> 
@@ -57,6 +47,7 @@
                           <a href="book_issue_active.php?id=<?= $row['id']; ?>" class="text-success"> | Make Active</a>   
                       <?php } ?>    
                     </td>  
+
 					<!-- return -->
                     <?php if($row['active'] != 2): ?>
                     <td>
@@ -64,7 +55,7 @@
 
                       <a href="book_submit.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');" title="Send issue id"><i class="fa fa-trash"></i>Return Book</a>   
                     </td> 
-                    <?php  endif; ?> 
+                    <?php  endif; ?>  
               </tr> 
-	<?php }
- ?>
+          <?php endwhile; ?>  
+	<?php } ?>
