@@ -10,3 +10,9 @@ ALTER TABLE users DROP INDEX email;
 
 //foreign key remove
 ALTER TABLE users DROP FOREIGN KEY users_ibfk_3   
+
+
+
+------------ not done ------------
+// user passs and picture update  
+// 

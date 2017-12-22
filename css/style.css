@@ -41,3 +41,15 @@ table tr td{
 .view-img:hover{
 	transform: scale(3);
 }
+.user{
+	text-align: left;
+}
+.user tr{
+	 
+}
+.user tr th{
+	text-align: left;
+}
+.user tr td{
+	text-align: left; 
+}

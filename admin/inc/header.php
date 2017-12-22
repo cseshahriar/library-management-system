@@ -18,6 +18,7 @@
     <a class="logo" href="index.php">
       <b style="color:#fff; font-size: 30px; 
         font-style:italic; font-family:Courier, Monaco, monospace;">LMS </b>Admin Panel </a>
+    <!-- nav -->
     <nav class="navbar navbar-static-top" >
       <a class="sidebar-toggle" href="" data-toggle="offcanvas"></a>
       <!-- Navbar Right Menu-->
@@ -47,13 +48,19 @@
           <!-- User Menu-->
           <li class="dropdown"> 
               <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;<span class="hidden-xs"><b><?php if(isset($_SESSION['user_username'])) { echo $_SESSION['user_username']; } ?></b></span>
+                  <i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;
+                  <span class="hidden-xs">
+                    <b>
+                    <?php if(isset($_SESSION['user_username'])) { echo $_SESSION['user_username']; } ?>
+                      
+                    </b>
+                  </span>
               </a>
               <ul class="dropdown-menu settings-menu">
-                  <li><a href="settings_admin.php"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
+                  <li><a href="settings.php"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
                   <li><a href="profile.php"><i class="fa fa-user fa-lg"></i> Profile</a></li>
                   <li><a href="login.php"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
-              </ul>
+              </ul> 
           </li>
         </ul> 
       </div>

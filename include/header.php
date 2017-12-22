@@ -41,8 +41,9 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"> <?php if(isset($_SESSION['st_username'])) { echo $_SESSION['st_username'];} ?><span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Settings</a></li>
+                  <li><a href="profile.php">Profile</a></li>  
+                  <li><a href="user_update.php">Update</a></li>
+                  <li><a href="settings.php">Settings</a></li>  
                   <li><a href="logout.php">Logout</a></li>  
                 </ul>
               </li>

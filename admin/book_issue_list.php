@@ -36,7 +36,7 @@
             <table class="table table-striped table-responsive table-bordered">
                 <!-- single item for looping  -->
                   <tr class="success">
-                    <th>Sr No.</th> 
+            
                     <th>Issue ID</th> 
                     <th>Username</th> <!-- user name -->
                     <th>Book ID</th><!--  book name --> 
@@ -47,10 +47,9 @@
                     <th>Action</th> 
                   </tr>
                   <?php
-                      $serial = 1; 
-                      while($book = $books->fetch_assoc()): ?>
+                      while($book = $books->fetch_assoc()): 
+                  ?>
                   <tr>
-                    <td><?= $serial++; ?></td>
                     <td><?= $book['id']; ?></td> 
                     <td>
                       <?php
