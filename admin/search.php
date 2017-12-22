@@ -1,6 +1,5 @@
 <?php
 	include_once('../classes/Database.php');
-	include_once('../css/bootstrap.min.css');
 	$db = new Database;
 	$search = $_POST['search']; 
 
@@ -11,17 +10,17 @@
 		WHERE book_issue.id LIKE '%$search%' OR username LIKE '%$search%' OR title LIKE '%$search%' ";     
 		
 		$data = $db->getQuery($query); ?>  
-			<tr class="success">
+			      <tr class="result_tr">
                 <th>Issue ID</th>     
                 <th>Username</th> <!-- user name -->
                 <th>Book ID</th><!--  book name -->  
                 <th>Issue Date</th>
                 <th>Submit Date</th> 
                 <th>Status</th>
-                <th>Action</th>       
+                <th>Action</th>          
             </tr>  
 		<?php while($row = $data->fetch_assoc()): ?>         
-              <tr> 
+              <tr class="result_tr"> 
               	<td><?= $row['id']; ?></td>  
               	<td><?= $row['username']; ?></td> 
               	<td><?= $row['title']; ?></td>
@@ -53,9 +52,24 @@
                     <td>
                      <a href="book_issue_inactive.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"  title="Make Inactive"><i class="fa fa-trash"></i> Inactive</a>
 
-                      <a href="book_submit.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');" title="Send issue id"><i class="fa fa-trash"></i>Return Book</a>   
+                      <a href="book_submit.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-warning" onclick="return confirm('Are you sure you want to submit this item?');" title="Send issue id">Return</a>   
                     </td> 
-                    <?php  endif; ?>  
+                    <?php  endif; ?>    
               </tr> 
           <?php endwhile; ?>  
 	<?php } ?>
+
+
+<style>
+  .result_tr{
+
+  }
+  .result_tr th{
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  .result_tr td {
+    padding: 6px;
+    border: 1px solid #ddd;
+  }
+</style>
