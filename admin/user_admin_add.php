@@ -2,7 +2,19 @@
 <?php 
   require_once('../classes/Database.php');
   $db = new Database();   
-  function checkInput($data){} //for problem fix
+  
+  /**
+   * [checkInput feltering form data]
+   * @param  [form input] $data [form inputs data]
+   * @return [form input]       [form input data]
+   */
+  function checkInput($data) 
+  {
+      $data = trim($data);
+      $data = htmlentities($data);
+      $data = htmlspecialchars($data);
+      return $data;    
+  }
 
   $name = $gender = $username = $email = $password = $phone = $image = $address = $image_name = $uplodad_directory = '';
   $name_error = $gender_error = $username_error = $email_error = $password_error = $phone_error = $image_error = $address_error = $pass_mathc_error = '';      
@@ -105,18 +117,7 @@
 
   }     
 
-  /**
-   * [checkInput feltering form data]
-   * @param  [form input] $data [form inputs data]
-   * @return [form input]       [form input data]
-   */
-  function checkInput($data) 
-  {
-      $data = trim($data);
-      $data = htmlentities($data);
-      $data = htmlspecialchars($data);
-      return $data;    
-  }   
+    
 ?>
 <?php require_once('inc/header.php'); ?>
 <?php include_once('inc/sidebar.php'); ?> 

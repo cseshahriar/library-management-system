@@ -89,4 +89,4 @@
 </div>
 </div>
 <?php include "inc/footer.php";?> 
-<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?>  

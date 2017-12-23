@@ -1,12 +1,32 @@
-<?php session_start(); if($_SESSION['user_id']) : ?>
-<?php $id = $_GET['id']; 
+<?php require_once('inc/header.php'); ?>
+<?php include_once('inc/sidebar.php'); ?> 
+<?php 
+    if($_SESSION['user_id']) :
+ ?>
+<?php 
+  $id = $_GET['id']; 
   require_once('../classes/Database.php');  
   $db = new Database();   
   $data = $db->getWhere("admin", "id='$id'");  
-  $row = $data->fetch_assoc();  
+  $row = $data->fetch_assoc(); 
+
+
 
   $name = $gender = $email = $phone = $address = ''; 
-  $name_error = $gender_error = $email_error = $phone_error = $address_error = '';         
+  $name_error = $gender_error = $email_error = $phone_error = $address_error = '';   
+
+  /**
+   * [checkInput feltering form data]
+   * @param  [form input] $data [form inputs data]
+   * @return [form input]       [form input data]
+   */
+  function checkInput($data) 
+  {
+      $data = trim($data);
+      $data = htmlentities($data);
+      $data = htmlspecialchars($data);
+      return $data;   
+  }        
 
   if( isset($_POST['admin_update'])) {
     //admin_roel = 1 manuali 
@@ -64,28 +84,16 @@
         // insert process
         $sql = "UPDATE admin SET name='$name', gender='$gender',email='$email', phone='$phone', address='$address' WHERE id='$id' "; 
         $user = $db->update($sql);     
-        if($user) { 
-          header("Location: users_admin_list.php");   
+        if($user) {   
+           echo "<script>window.location.href = 'users_admin_list.php'; </script>";  
         }
     }
 
   }     
 
-  /**
-   * [checkInput feltering form data]
-   * @param  [form input] $data [form inputs data]
-   * @return [form input]       [form input data]
-   */
-  function checkInput($data) 
-  {
-      $data = trim($data);
-      $data = htmlentities($data);
-      $data = htmlspecialchars($data);
-      return $data;   
-  }   
+   
 ?>
-<?php require_once('inc/header.php'); ?>
-<?php include_once('inc/sidebar.php'); ?> 
+ 
 <div class="content-wrapper">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -139,7 +147,7 @@
             </div>  
             <button type="submit" name="admin_update" class="btn btn-success btn-block btn-lg">Update</button>
            
-          </form>   
+          </form>    
         </div>
       </div>
     </div>
@@ -147,4 +155,8 @@
 </div>
 
 <?php require_once('inc/footer.php'); ?>
-<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 
+<?php 
+    else: 
+      echo "<script>window.location.href = 'login.php'; </script>"; 
+    endif; 
+?> 

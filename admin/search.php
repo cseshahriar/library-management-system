@@ -9,9 +9,8 @@
 		LEFT JOIN books ON book_issue.book_id=books.id 
 		WHERE book_issue.id LIKE '%$search%' OR username LIKE '%$search%' OR title LIKE '%$search%' ";     
 		
-		$data = $db->getQuery($query); ?>  
-			      <tr class="result_tr">
-                <th>Issue ID</th>     
+		$data = $db->getQuery($query); ?>     
+			      <tr class="result_tr">   
                 <th>Username</th> <!-- user name -->
                 <th>Book ID</th><!--  book name -->  
                 <th>Issue Date</th>
@@ -20,8 +19,7 @@
                 <th>Action</th>          
             </tr>  
 		<?php while($row = $data->fetch_assoc()): ?>         
-              <tr class="result_tr"> 
-              	<td><?= $row['id']; ?></td>  
+              <tr class="result_tr">  
               	<td><?= $row['username']; ?></td> 
               	<td><?= $row['title']; ?></td>
               	<td><?= $row['issue_date']; ?></td>

@@ -1,5 +1,4 @@
-<?php 
-  session_start();  
+<?php  
   include_once('../classes/Admin.php');
   $db = new Database; 
    $role_id = $_SESSION['user_role_id'];

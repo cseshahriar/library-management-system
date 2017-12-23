@@ -1,4 +1,5 @@
-<?php require_once('include/header.php'); ?> 
+<?php require_once('include/header.php'); ?>
+<?php if(isset($_SESSION['st_id'])): ?> 
 <?php 
   include_once('classes/Database.php'); 
   $db = new Database();
@@ -78,3 +79,8 @@
 </div>
 
 <?php require_once('include/footer.php'); ?>
+<?php 
+  else: 
+      echo "<script>window.location.href = 'login.php'; </script>"; 
+  endif;
+?>

@@ -1,16 +1,16 @@
-<?php session_start(); if($_SESSION['user_id']) : ?>
+<?php require_once('inc/header.php'); ?>
+<?php include_once('inc/sidebar.php'); ?>
+<?php if($_SESSION['user_id']) : ?>
 <?php 
-    require_once('../classes/Database.php');
+    require_once('../classes/Database.php'); 
     $db = new Database();
     $data = $db->get("users");     
 ?>
-<?php require_once('inc/header.php'); ?>
-<?php include_once('inc/sidebar.php'); ?>
 
 <div class="content-wrapper">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-default"> 
         <div class="panel-heading">
           <h2 class="text-success">Users List <a href="user_add.php" class="btn btn-success pull-right">Add Admin</a></h2>  
         </div>

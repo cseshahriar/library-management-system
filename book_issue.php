@@ -153,6 +153,8 @@
 </div>
 
 <?php require_once('include/footer.php'); ?>
-<?php else: ?>
-  <?php header("Localhost: login.php"); ?> 
-<?php endif; ?> 
+<?php 
+  else: 
+      echo "<script>window.location.href = 'login.php'; </script>"; 
+  endif;
+?>

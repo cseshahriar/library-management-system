@@ -1,13 +1,15 @@
-<?php session_start(); if($_SESSION['user_id']) : ?>
+<?php require_once('inc/header.php'); ?>
+<?php include_once('inc/sidebar.php'); ?> 
+<?php  
+  if($_SESSION['user_id']) :  
+?>
 <?php 
     require_once('../classes/Database.php');
-    $db = new Database();
-    $data = $db->get("admin");    
+    $db = new Database;
+    $data = $db->getQuery("SELECT * FROM admin");  
+    var_dump($data) ; 
 ?>
-<?php require_once('inc/header.php'); ?>
-<?php include_once('inc/sidebar.php'); ?>
-
-<div class="content-wrapper">
+<div class="content-wrapper"> 
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">

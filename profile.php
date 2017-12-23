@@ -1,9 +1,9 @@
 <?php require_once('include/header.php'); ?> 
+<?php if(isset($_SESSION['st_id'])): ?>  
 <?php 
 	require_once('classes/Database.php'); 
 	$db = new Database;
 ?> 
-<?php if(isset($_SESSION['st_id'])): ?>  
 <!-- user data -->
 <div class="container-fluid">
 	<div class="row">
@@ -95,6 +95,8 @@
 <!-- end content -->
 <?php require_once('include/footer.php'); ?> 
 
-<?php else: ?>
-<?php header("Localhost: login.php"); ?>
-<?php endif; ?>
+<?php 
+  else: 
+      echo "<script>window.location.href = 'login.php'; </script>"; 
+  endif;
+?>

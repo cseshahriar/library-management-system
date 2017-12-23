@@ -1,12 +1,14 @@
-<?php session_start(); if($_SESSION['user_id']) : ?>
+<?php require_once('inc/header.php'); ?>
+<?php include_once('inc/sidebar.php'); ?>    
+<?php 
+  if($_SESSION['user_id']) :
+ ?>
 <?php $id = $_GET['id'];
     require_once('../classes/Database.php');
     $db = new Database();
     $data = $db->getWhere("admin", "id='$id'");      
     $row = $data->fetch_assoc(); 
 ?>
-<?php require_once('inc/header.php'); ?>
-<?php include_once('inc/sidebar.php'); ?>    
 
 <div class="content-wrapper">
   <div class="row">
@@ -44,7 +46,7 @@
                 </tr>
                 <tr>
                   <td>Picture</td>
-                  <td><img src="images/admin/<?= $row['image']; ?>"></td> 
+                  <td><img class="thumbnail" src="images/admin/<?= $row['image']; ?>"  width="200" alt=""></td>  
                 </tr>
                 <tr>
                   <td>Address</td>
@@ -70,3 +72,6 @@
 </div>
 
 <?php require_once('inc/footer.php'); ?>
+<?php else: ?>
+  <?php echo "<script>window.location.href = 'login.php'; </script>"; ?>  
+<?php endif; ?>

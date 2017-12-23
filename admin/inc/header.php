@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php  session_start();  ?> 
+<!DOCTYPE html> 
 <html>
 <head>
   <meta charset="utf-8">
@@ -18,7 +19,7 @@
     <a class="logo" href="index.php">
       <b style="color:#fff; font-size: 30px; 
         font-style:italic; font-family:Courier, Monaco, monospace;">LMS </b>Admin Panel </a>
-    <!-- nav -->
+    <!-- nav --> 
     <nav class="navbar navbar-static-top" >
       <a class="sidebar-toggle" href="" data-toggle="offcanvas"></a>
       <!-- Navbar Right Menu-->
