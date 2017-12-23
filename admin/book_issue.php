@@ -3,33 +3,34 @@
   $db = new Database();
 
   //settings 
-    $sqlSelect = "SELECT * FROM settings";
-    $settings = $db->getQuery($sqlSelect); 
-    $setting = $settings->fetch_assoc();
+  $sqlSelect = "SELECT * FROM settings";
+  $settings = $db->getQuery($sqlSelect); 
+  $setting = $settings->fetch_assoc(); 
 
-    //$teachers_fine =  $setting['teachers_fine']; 
-    $teacher_max_keep_limit = $setting['teachers_max_keep_limit']; 
-    //$students_fine = $setting['students_fine'];
-    $students_max_keep_limit = $setting['students_max_keep_limit'];
+  $teacher_max_keep_limit = $setting['teachers_max_keep_limit']; 
 
-      
+  $students_max_keep_limit = $setting['students_max_keep_limit'];
 
-  /*if(isset($_POST['book_issue'])) {  
+  $std_submit_date = date('Y-m-d', strtotime("+$teacher_max_keep_limit days")); 
+  $t_submit_date = date('Y-m-d', strtotime("+$students_max_keep_limit days")); 
+
+  if(isset($_POST['book_issue'])) {   
+
     $user_id = $_POST['user_id'];
     $book_id = $_POST['book_id'];
     $issue_date = date('Y-m-d');  //today 
-    $std_submit_date = date('Y-m-d', strtotime("+$teacher_max_keep_limit days")); //issue date plus 6 days = 7 days 
-    $t_submit_date = date('Y-m-d', strtotime("+$students_max_keep_limit days")); //issue date plus 6 days = 7 days 
+    $std_submit_date = date('Y-m-d', strtotime("+$teacher_max_keep_limit days"));  
+    $t_submit_date = date('Y-m-d', strtotime("+$students_max_keep_limit days")); 
 
-    if(!empty($_POST)){
-      $sql = "INSERT INTO book_issue(user_id, book_id, submit_date, active) VALUES('$user_id', '$book_id', '$submit_date', '1')"; 
-        $issue = $db->insert($sql); 
-        
-        if($issue) {
-            header("Location: book_issue_list.php");  
-        }
-    }
-  } */
+    if(!empty($user_id || $book_id)){
+     $sql = "INSERT INTO book_issue(user_id, book_id, submit_date, active) VALUES('$user_id', '$book_id', '$t_submit_date', '1')"; 
+      $issue = $db->insert($sql); 
+      if($issue) {
+           echo "<script>window.location.href = 'book_issue_list.php'; </script>";  
+      } 
+    }//end empty 
+
+  }//end isset post
 ?>
 <?php require_once('inc/header.php'); ?> 
 <?php include_once('inc/sidebar.php'); ?>  
@@ -74,17 +75,10 @@
               <label>Issue Date: </label>
               <span><?php echo date('Y-m-d'); ?></span>
               <!-- <input type="date" name="issue_date" class="form-control" /> -->
-            </div>
-
-            <!-- Submit date -->
-            <div class="form-group"> 
-              <label>Submit Date</label>
-              <span><?php echo date('Y-m-d', strtotime("+7 days")) ?></span> 
-              <!-- <input type="date" name="sbmit_date" class="form-control"> -->
-            </div>  
+            </div> 
 
             <button type="submit" name="book_issue" class="btn btn-primary">Book Issue</button>
-          </form>
+          </form>  
 
         </div>
       </div>

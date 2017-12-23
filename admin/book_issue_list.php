@@ -99,16 +99,16 @@
                    <?php 
                         date_default_timezone_set('Asia/Dhaka');
                         $issue_date= date('Y-m-d',strtotime($book['issue_date']));   
-                        $submit_date = date('Y-m-d',strtotime($book['submit_date']));     
+                        $submited_date = date('Y-m-d'); //today      
                       
 
-                        $datetime1 = new DateTime($issue_date);
-                        $datetime2 = new DateTime($submit_date); 
+                        $datetime1 = new DateTime($issue_date);//issue date
+                        $datetime2 = new DateTime($submited_date); // today  
                         $interval = $datetime2->diff($datetime1);    
 
                         $intervalDate = $interval->format('%a'); //diff date got  
-                        $intervalDate = (int)$intervalDate; // for issue id 1 = 8 days
-                        //echo $intervalDate.'<br>'; 
+                        $intervalDate = (int)$intervalDate; // 
+                        //echo $intervalDate; 
 
                         
                         //echo  $intervalDate; // 7 
@@ -125,9 +125,10 @@
 
                             if($role_id == 1 ) { //teacher
                                 $tfineday = $intervalDate - $teacher_max_keep_limit;
+                                //echo $tfineday;
 
                                 if($tfineday > 0) {
-                                  $tfine = $tfineday * $teachers_fine;
+                                  $tfine = $tfineday * $teachers_fine; 
                                   echo $tfine;  
                                 }else {
                                   $tfine = '';
@@ -136,7 +137,7 @@
 
                             } else {  //students
                                $sfineday = $intervalDate - $students_max_keep_limit; 
-
+                               //echo $sfineday;  
                                 if($sfineday > 0) {
                                   $sfine = $sfineday * $students_fine;
                                   echo $sfine;  
