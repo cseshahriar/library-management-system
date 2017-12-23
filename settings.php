@@ -18,8 +18,6 @@
 	 }
 	
 
-	 
-
 	//update image
 	 if(isset($_POST['img'])){  
 		if(!empty($_FILES['image'])) {

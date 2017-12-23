@@ -1,15 +1,26 @@
-
+<?php 
+  session_start();  
+  include_once('../classes/Admin.php');
+  $db = new Database; 
+   $role_id = $_SESSION['user_role_id'];
+   $sql = "SELECT image From admin WHERE id='$role_id' ";
+   $data = $db->getQuery($sql);
+   $image = $data->fetch_assoc();  
+?>
 <!-- sidebar start -->
   <style>
     li.sub:hover{
-    background:#0D1214;
+    background:#0D1214;   
   }
   </style> 
       <!-- Side-Nav-->
       <aside class="main-sidebar hidden-print" >
         <section class="sidebar">
           <div class="user-panel"> 
-            <div class="pull-left image"><img class="img-circle" src="images/Admin/user.png" alt="User Image"></div> 
+            <div class="pull-left image">
+             
+              <img class="img-circle" src="images/Admin/<?= $image['image']; ?>" alt="User Image">
+            </div>  
             <div class="pull-left info">
               <p><?php if(isset($_SESSION['user_name'])) { echo $_SESSION['user_name']; } ?></p>
               <p class="designation"><?php if(isset($_SESSION['user_username'])) { echo $_SESSION['user_username']; } ?></p> 

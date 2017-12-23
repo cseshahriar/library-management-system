@@ -1,64 +1,90 @@
-<?php session_start(); if($_SESSION['user_id']) : ?>
+<?php session_start(); 
+    if($_SESSION['user_id']) :  
+?>
+<?php 
+  require_once('../classes/Database.php');    
+  $db = new Database;
+  $user_id = $_SESSION['user_id']; 
+
+  //update password
+   if(isset($_POST['pass'])){
+    $password = $_POST['password'];  
+    $pass = md5($password);
+    if(!empty($pass)){
+      $update = "UPDATE admin SET password='$pass' WHERE id='$user_id' ";  
+      $update_pass = $db->update($update);
+      if($update_pass){
+        header("Location: profile.php");       
+      }
+    }
+   }
+  
+  //update image
+   if(isset($_POST['img'])){  
+    if(!empty($_FILES['image'])) {
+          $img_file = $_FILES['image']['name']; 
+          $tmp_name = $_FILES['image']['tmp_name'];    
+          $img_size = $_FILES['image']['size'];
+          $uplodad_directory = 'images/admin/';   
+          $image_name = 'user-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);     
+          
+          $update = "UPDATE admin SET image='$image_name' WHERE id='$user_id' ";   
+        $update_img = $db->update($update);
+      if($update_img){
+        move_uploaded_file($tmp_name, $uplodad_directory.$image_name);  
+        header("Location: profile.php");    
+      }   
+      } 
+  
+   }
+?> 
 <?php include "inc/header.php";?> 
 <?php include "inc/sidebar.php";?> 
- 
- <div class="container">
-
+<div class="container">
 <div class="content-wrapper">
-  <div class="row">
-      
-      <!-- image change --> 
-      <!-- <div class="col-md-3">
-        <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
+ <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <!-- password -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>Update Password</h2>
         </div>
-      </div> -->
-
-      <!-- change settings for student -->
-      <div class="col-md-12">
-       <!-- alert -->
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-          This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div> 
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-              <h3>Settings for Students</h3>
-          </div>
-          <div class="panel-body">
-            <!-- settings for student -->
-            <form action="process.php" method="post">
-              <div class="form-group">
-                <label for="sibl">Per Month Book Issue Limit amount</label> 
-                <input type="number" name="limit_per_month" id="sibl" class="form-control" placeholder="How much Book issue per month ?">
-              </div>
-
-              <div class="form-group">
-                <label for="sibl">At a Time Book Issue Limit amount</label> 
-                <input type="number" name="limit_per_month" id="sibl" class="form-control" placeholder="How much Book issue at a time ?">
-              </div>
-              <!-- <div class="form-group">
-                <label id="mbil">Max Book Issue Limit amount</label>
-                <input type="number" name="max_book_limit" id="mbil" class="form-control" placeholder="Max Book issue limit ?">
-              </div> -->
-              <div class="form-group">
-                <label id="pdfine">Per Day Fine amount</label>
-                <input type="number" name="per_day_fine" id="pdfine" class="form-control" placeholder="How much fine for per day ?">
-              </div>
-              <div class="form-group">
-                <label for="brdl">Every Book Return Days Limit</label>
-                <input type="number" name="book_rlimit" id="brdl" class="form-control" placeholder="How much days keep evey book ?" />
-              </div>
-               <button type="submit" class="btn btn-success btn-block">Save Change</button>
-            </form> 
-          </div>
+        <div class="panel-body text-left">
+          <h3>Change Password</h3>
+          <form action="" method="post">
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control">
+            </div>
+            <button type="Submit" name="pass" class="btn btn-primary">Update Password</button>
+          </form>
         </div>
       </div>
+
+      <!-- picture -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>Update Image</h2> 
+        </div>
+        <div class="panel-body text-left">
+          <h3>Change Image</h3>
+          <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+              <?php 
+                $sql ="SELECT image FROM admin WHERE id='$user_id' ";   
+                $userimg = $db->getQuery($sql);
+                $uimg = $userimg->fetch_assoc();     
+              ?>
+              <img src="images/admin/<?= $uimg['image']; ?>" class="pull-right thumbnail" height="180" alt="">
+
+              <label for="image">Image</label>
+              <input type="file" name="image" class="form-control-file"> 
+            </div> 
+            <button type="Submit" name="img" class="btn btn-primary">Change Image</button>
+          </form> 
+        </div>
+      </div>  
+    </div>  
   </div>
 </div>
 </div>
