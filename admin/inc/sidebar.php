@@ -9,7 +9,7 @@
 <!-- sidebar start -->
   <style>
     li.sub:hover{
-    background:#0D1214;   
+    background:#0D1214;    
   }
   </style> 
       <!-- Side-Nav-->
@@ -83,11 +83,11 @@
             </li>  
              <!-- Settings -->
             <li class="treeview " style="border-bottom: 1px solid #000 !important;">
-               <a href="settings.php"><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span><i class="fa fa-angle-right"></i></a>
+               <a href=""><i class="fa fa-cogs" aria-hidden="true"></i><span>Settings</span><i class="fa fa-angle-right"></i></a> 
 
               <ul class="treeview-menu">
                 <li class="sub">
-                  <a href="settings_student.php">
+                  <a href="settings_student2.php">
                     <i class="fa fa-cog" aria-hidden="true"></i>Settings for Students
                   </a>
                 </li> 

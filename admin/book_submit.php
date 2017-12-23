@@ -16,9 +16,10 @@
 
     date_default_timezone_set('Asia/Dhaka');
     $issue_date = date('Y-m-d', strtotime($data['issue_date']));
-    $submit_date = date('Y-m-d', time()); //today
+    $submit_date = date('Y-m-d', time()); //today  
 
     $datetime1 = new DateTime($issue_date);
+    $datetime2 = new DateTime($submit_date);
     $datetime2 = new DateTime($submit_date);
     $interval = $datetime2->diff($datetime1);
 
@@ -60,7 +61,7 @@
   // submit process
   if($user_role_id == 1) { //teachers
       $sql = "INSERT INTO book_return(issue_id,submited_date, fine, active) 
-      VALUES('$issue_id', '$submit_date', '$tfine', '1')"; 
+      VALUES('$issue_id', '$submit_date', '$tfine', '1')";   
       $insert = $db->insert($sql); //book submit
       
       // remove from issue table

@@ -1,9 +1,10 @@
-<?php include_once("inc/header.php");?> 
+<?php include_once("inc/header.php"); ?>  
+<?php include_once("inc/sidebar.php");?> 
 <?php if($_SESSION['user_id']) : ?> 
 <?php 
     include_once('../classes/Database.php');
     $db = new Database;
-    $sql = "SELECT * FROM settings";
+    $sql = "SELECT * FROM settings"; 
     $query = $db->getQuery($sql);
     $data = $query->fetch_assoc();  
 
@@ -15,36 +16,26 @@
       $book_limit = $_POST['book_limit']; 
 
       if(!empty($limit_per_month || $current_limit ||  $per_day_fine || $book_limit)) {
-        $sql = "UPDATE settings SET students_fine='$per_day_fine', students_max_book_limit='$book_limit', students_current_limit='$current_limit', students_max_keep_limit='$limit_per_month' "; 
+        $sql2 = "UPDATE settings SET students_fine='$per_day_fine', students_max_book_limit='$book_limit', students_current_limit='$current_limit', students_max_keep_limit='$limit_per_month' "; 
 
-        $db->update($sql);
-        $msg = 'Update successfull!. please refresh for the change';   
-      }     
+        $db->update($sql2); 
+        $msg = 'Update successfull! please refresh for the change';  
+      } 
     } 
  ?>
-<?php include_once("inc/sidebar.php"); ?> 
+
 <div class="container">
 <div class="content-wrapper">
   <div class="row"> 
-      
-      <!-- image change --> 
-      <!-- <div class="col-md-3">
-        <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
-        </div>
-      </div> -->
-
+    
       <!-- change settings for student -->
-      <div class="col-md-12"> 
+      <div class="col-md-12">
        <!-- alert -->
        <?php if(isset($msg)): ?>
         <div class="alert alert-info alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-coffee"></i>
-         <?php echo $msg; ?>    
+         <?php echo $msg; ?>
         </div> 
       <?php endif; ?> 
 
@@ -58,7 +49,7 @@
             <form action="" method="post">
               <div class="form-group">
                 <label for="sibl">Per Month Book Issue Limit amount</label> 
-                <input type="number" name="limit_per_month" id="sibl" class="form-control" value="<?=  $data['students_max_book_limit']; ?>" />
+                <input type="number" name="limit_per_month" id="sibl" class="form-control" value="<?= $data['students_max_book_limit']; ?>" />
               </div>
               <div class="form-group">
                 <label for="sibl">At a Time Book Issue Limit amount</label> 
@@ -77,12 +68,15 @@
                 <input type="number" name="book_limit" id="brdl" class="form-control" value="<?=  $data['students_max_keep_limit']; ?>"/>
               </div>
                <button type="submit" name="submit" class="btn btn-success btn-block">Save Change</button>
-            </form> 
+            </form>  
           </div>
         </div>
       </div>
   </div>
 </div>
 </div>
-<?php include_once("inc/footer.php"); ?> 
-<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 
+<?php include "inc/footer.php";?> 
+<?php else:
+     echo "<script>window.location.href = 'login.php'; </script>"; 
+      endif; 
+?> 

@@ -1,10 +1,12 @@
-<?php session_start(); if($_SESSION['user_id']) : ?>
+<?php include_once("inc/header.php"); ?>  
+<?php include_once("inc/sidebar.php");?> 
+<?php if($_SESSION['user_id']) : ?> 
 <?php 
     include_once('../classes/Database.php');
     $db = new Database;
-    $sql = "SELECT * FROM settings";
+    $sql = "SELECT * FROM settings"; 
     $query = $db->getQuery($sql);
-    $data = $query->fetch_assoc(); 
+    $data = $query->fetch_assoc();  
 
     //update 
     if(isset($_POST['submit'])){
@@ -17,26 +19,15 @@
         $sql2 = "UPDATE settings SET teachers_fine='$per_day_fine', teachers_max_book_limit='$book_limit', teachers_current_limit='$current_limit', teachers_max_keep_limit='$limit_per_month' "; 
 
         $db->update($sql2);
-        $msg = 'Update successfull!. please refresh for the change';  
+        $msg = 'Update successfull! please refresh for the change';  
       } 
-    }
+    } 
  ?>
-<?php include "inc/header.php";?> 
-<?php include "inc/sidebar.php";?> 
+
 <div class="container">
 <div class="content-wrapper">
   <div class="row"> 
-      
-      <!-- image change --> 
-      <!-- <div class="col-md-3">
-        <div class="text-center">
-          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
-        </div>
-      </div> -->
-
+    
       <!-- change settings for student -->
       <div class="col-md-12">
        <!-- alert -->
@@ -50,7 +41,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-              <h3>Settings for Students</h3>
+              <h3>Settings for Teachers</h3> 
           </div>
           <div class="panel-body">
 
@@ -58,7 +49,7 @@
             <form action="" method="post">
               <div class="form-group">
                 <label for="sibl">Per Month Book Issue Limit amount</label> 
-                <input type="number" name="limit_per_month" id="sibl" class="form-control" value="<?=  $data['teachers_max_book_limit']; ?>" />
+                <input type="number" name="limit_per_month" id="sibl" class="form-control" value="<?= $data['teachers_max_book_limit']; ?>" />
               </div>
               <div class="form-group">
                 <label for="sibl">At a Time Book Issue Limit amount</label> 
@@ -85,4 +76,7 @@
 </div>
 </div>
 <?php include "inc/footer.php";?> 
-<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 
+<?php else:
+     echo "<script>window.location.href = 'login.php'; </script>"; 
+      endif; 
+?> 
