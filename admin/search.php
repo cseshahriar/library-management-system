@@ -4,10 +4,10 @@
 	$search = $_POST['search']; 
 
 	if(!empty($search)){
-		$query = "SELECT * FROM book_issue 
+		$query = "SELECT * FROM book_issue   
 		LEFT JOIN users ON book_issue.user_id=users.id 
 		LEFT JOIN books ON book_issue.book_id=books.id 
-		WHERE book_issue.id LIKE '%$search%' OR username LIKE '%$search%' OR title LIKE '%$search%' ";     
+		WHERE isbn LIKE '%$search%' OR book_issue.id LIKE '%$search%' OR username LIKE '%$search%' OR title LIKE '%$search%' ";        
 		
 		$data = $db->getQuery($query); ?>     
 			      <tr class="result_tr">   
