@@ -27,7 +27,7 @@
 			$data = $this->link->query($sql);   
 			$user = mysqli_fetch_object($data);   
 
-			if (mysqli_num_rows($data ) > 0) { 
+			if (mysqli_num_rows($data) > 0) { 
 				$this->setSession($user->id, $user->name, $user->username, $user->email, $user->role_id );
 				$logInSuccess = 'Your are successfully logged in now.';
 				header("Location: index.php"); 
@@ -50,13 +50,13 @@
 		 */
 		public function setSession($id, $name, $username, $email, $role_id) 
 		{
+			$_SESSION['admin'] = true;   
 			$_SESSION['user_id'] = $id;  
 			$_SESSION['user_name'] = $name;
 			$_SESSION['user_username'] = $username;
 			$_SESSION['user_email'] = $email;
 			$_SESSION['user_role_id'] = $role_id;
-
-		}  
+		}   
 
 		/**
 		 * [logout description]

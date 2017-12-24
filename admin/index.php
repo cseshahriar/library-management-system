@@ -4,12 +4,11 @@
 ?>
 <?php require_once('inc/header.php'); ?>
 <?php include_once('inc/sidebar.php'); ?>
-
 <div class="content-wrapper"> 
   <div class="page-title">
     <div>
       <h1><i class="fa fa-dashboard"></i>&nbsp;Welcome to Dashboard </h1>
-      <p>Your home Page ..</p>
+      <p>Your home Page ..</p> 
     </div>
     <div>
       <ul class="breadcrumb">
