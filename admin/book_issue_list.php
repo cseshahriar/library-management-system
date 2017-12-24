@@ -7,7 +7,7 @@
 <?php include_once('inc/sidebar.php'); ?>  
 <div class="content-wrapper"> 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12"> 
         <!-- search -->
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -38,6 +38,7 @@
                   <tr class="success">
             
                     <th>Issue ID</th> 
+                    <th>ISBN</th> 
                     <th>Username</th> <!-- user name -->
                     <th>Book ID</th><!--  book name --> 
                     <th>Issue Date</th>
@@ -51,6 +52,16 @@
                   ?>
                   <tr>
                     <td><?= $book['id']; ?></td> <!-- issue id -->
+                    <td>
+                      <?php        
+                          $issueid = $book['id'];
+                          $isbnsql = "SELECT isbn from books LEFT JOIN book_issue ON books.id = book_issue.book_id WHERE book_issue.id='$issueid' "; 
+                          $isbns = $db->getQuery($isbnsql);
+                          $isbn = $isbns->fetch_assoc();
+                          $isbn_number = $isbn['isbn']; //user role  
+                          echo $isbn_number;    
+                      ?> 
+                    </td> <!-- isbn -->
                     <td>
                       <?php
                           $user_id = $book['user_id'];
