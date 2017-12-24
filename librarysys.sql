@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2017 at 08:03 AM
+-- Generation Time: Dec 24, 2017 at 08:46 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -48,7 +48,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `role_id`, `name`, `gender`, `username`, `email`, `password`, `phone`, `image`, `address`, `joined_at`, `active`) VALUES
-(1, 1, 'Md. Shahriar Hosen', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', '01710835453', 'user-151400322647284.jpg', 'Dhaka', '2017-12-15 08:36:10', 1),
+(1, 1, 'Md. Shahriar Hosen', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', '01710835453', 'admin-151410148897014.png', 'Dhaka', '2017-12-15 08:36:10', 1),
 (14, 1, 'Shahriar Hosen', 'Male', 'shahriarcse', 'shahriar@datatrixsoft.com', '1edb5a97f2f27f5d894e0efcff5ce3a6', '01710835653', 'admin-151400490560998.png', 'Dhka', '2017-12-23 04:55:06', 0);
 
 -- --------------------------------------------------------
@@ -109,7 +109,7 @@ INSERT INTO `book_issue` (`id`, `user_id`, `book_id`, `issue_date`, `submit_date
 (4, 11, 1, '2017-12-16 16:46:21', '2017-12-21 00:00:00', 1),
 (5, 20, 1, '2017-12-10 11:57:42', '2017-12-17 00:00:00', 1),
 (7, 20, 2, '2017-12-13 12:33:38', '2017-12-20 00:00:00', 1),
-(22, 20, 1, '2017-12-24 07:01:45', '2017-12-31 00:00:00', 1);
+(22, 20, 1, '2017-12-24 07:01:45', '2017-12-31 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -332,7 +332,7 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `gender`, `phone`, `username`, `em
 (10, 1, 'Shahriar Hosen', 'Male', '23456787', 'shahriarcse', 'teacher2@mail.com', '1edb5a97f2f27f5d894e0efcff5ce3a6', NULL, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 1),
 (11, 2, 'Shahriar Alam', 'Male', '23456787', 'student', 'teacher2@mail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 1),
 (19, 1, 'Salpin', 'Male', '23456787', 'SM sir', 'teacher2@mail.com', '', 8, 0, 0, '', 'Mirpur-Dhaka', 'admin-151350619690353.png', '2017-12-17 10:23:16', 1),
-(20, 2, 'sm', 'Male', '345678903456', 'sm', 'sm@gmail.com', 'ed79acb0cd3d7f8320c53c7798335ef0', 0, 0, 343243, '', 'Dhaka', 'admin-151375571523019.png', '2017-12-20 07:41:55', 1);
+(20, 2, 'sm', 'Male', '345678903456', 'sm', 'sm@gmail.com', 'ed79acb0cd3d7f8320c53c7798335ef0', 5, 1, 343243, '', 'Dhaka', 'admin-151375571523019.png', '2017-12-20 07:41:55', 1);
 
 --
 -- Indexes for dumped tables

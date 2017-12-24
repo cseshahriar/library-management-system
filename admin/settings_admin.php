@@ -25,8 +25,8 @@
           $img_file = $_FILES['image']['name']; 
           $tmp_name = $_FILES['image']['tmp_name'];    
           $img_size = $_FILES['image']['size'];
-          $uplodad_directory = 'images/admin/';   
-          $image_name = 'user-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);     
+          $uplodad_directory = 'images/admin/';    
+          $image_name = 'admin-'.time().rand(10000,100000).'.'.pathinfo($img_file, PATHINFO_EXTENSION);     
           
           $update = "UPDATE admin SET image='$image_name' WHERE id='$user_id' ";   
         $update_img = $db->update($update);
