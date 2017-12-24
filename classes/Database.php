@@ -9,6 +9,8 @@
 
 	/**
 	 * Database class
+	 * @copyright Datatrixsoft
+	 * @author Md. Shahriar Hosen <shahriar@datatrixsoft.com>
 	 */
 	class Database{ 
 		/**

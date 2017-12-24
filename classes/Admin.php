@@ -1,4 +1,10 @@
 <?php require_once('Database.php'); 
+
+/**
+* Class Admin
+* @copyright Datatrixsoft
+* @author Md. Shahriar Hosen <shahriar@datatrixsoft.com>
+*/
 class Admin extends Database
 {
 	public function __construct(){
