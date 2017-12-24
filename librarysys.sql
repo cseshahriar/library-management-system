@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2017 at 12:12 PM
+-- Generation Time: Dec 24, 2017 at 08:03 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -48,9 +48,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `role_id`, `name`, `gender`, `username`, `email`, `password`, `phone`, `image`, `address`, `joined_at`, `active`) VALUES
-(1, 1, 'Md. Shahriar Hosen', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', '01710835453', 'user.png', 'Dhaka', '2017-12-15 08:36:10', 1),
-(12, 1, 'shahriar murol', 'Male', 'sm', 'shahriarmurol@gmail.com', 'ed79acb0cd3d7f8320c53c7798335ef0', '12345678', 'admin-151350531257583.png', 'Mirpur-Dhaka', '2017-12-17 10:08:32', 0),
-(13, 1, '', '', '', '', 'd41d8cd98f00b204e9800998ecf8427e', '', 'admin-151357631136731.', '', '2017-12-18 05:51:51', 0);
+(1, 1, 'Md. Shahriar Hosen', 'Male', 'admin', 'admin@lms.com', '21232f297a57a5a743894a0e4a801fc3', '01710835453', 'user-151400322647284.jpg', 'Dhaka', '2017-12-15 08:36:10', 1),
+(14, 1, 'Shahriar Hosen', 'Male', 'shahriarcse', 'shahriar@datatrixsoft.com', '1edb5a97f2f27f5d894e0efcff5ce3a6', '01710835653', 'admin-151400490560998.png', 'Dhka', '2017-12-23 04:55:06', 0);
 
 -- --------------------------------------------------------
 
@@ -81,7 +80,8 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`id`, `cat_id`, `isbn`, `title`, `author`, `quantity`, `purchase_date`, `edition`, `price`, `pages`, `year`, `publisher`, `bill_no`, `active`) VALUES
 (1, 1, '978-0596006302', 'Head First PHP and MySQLi', 'Michael Morriso', 2, '2017-10-31 00:00:00', 'Second Edition', 1843, 778, '2012', 'OREILL', '234567893', 1),
-(2, 21, '34567890456789', 'Murachs PHP and MySQL', 'Ray Harris &amp;amp; Anne Boehm', 1, '2017-12-19 11:01:00', 'First Edition', 1500, 606, '2015', 'OREILLY', '4356789345', 1);
+(2, 21, '34567890456789', 'Murachs PHP and MySQL', 'Ray Harris &amp;amp; Anne Boehm', 1, '2017-12-19 11:01:00', 'First Edition', 1500, 606, '2015', 'OREILLY', '4356789345', 1),
+(3, 2, '234567890', 'Test', 'Test Author', 1, '2017-12-23 11:05:44', 'First Edition', 200, 49, '2015', 'Test', '23456789', 1);
 
 -- --------------------------------------------------------
 
@@ -103,17 +103,13 @@ CREATE TABLE `book_issue` (
 --
 
 INSERT INTO `book_issue` (`id`, `user_id`, `book_id`, `issue_date`, `submit_date`, `active`) VALUES
-(1, 10, 1, '2017-12-11 20:00:00', '2017-12-20 00:00:00', 1),
+(1, 10, 1, '2017-12-11 20:00:00', '2017-12-19 00:00:00', 2),
 (2, 11, 2, '2017-12-13 19:00:00', '2017-12-21 00:00:00', 1),
-(3, 11, 2, '2017-12-15 04:27:32', '2017-12-21 00:00:00', 1),
+(3, 11, 2, '2017-12-15 04:27:32', '2017-12-22 00:00:00', 1),
 (4, 11, 1, '2017-12-16 16:46:21', '2017-12-21 00:00:00', 1),
-(5, 20, 1, '2017-12-10 11:57:42', '2017-12-19 00:00:00', 1),
+(5, 20, 1, '2017-12-10 11:57:42', '2017-12-17 00:00:00', 1),
 (7, 20, 2, '2017-12-13 12:33:38', '2017-12-20 00:00:00', 1),
-(8, 20, 1, '2017-12-14 05:30:35', '2017-12-21 00:00:00', 0),
-(9, 20, 2, '2017-12-15 05:31:26', '2017-12-22 00:00:00', 0),
-(10, 20, 1, '2017-12-14 06:04:13', '2017-12-23 00:00:00', 0),
-(11, 20, 2, '2017-12-21 10:27:03', '2017-12-27 00:00:00', 0),
-(16, 20, 2, '2017-12-21 11:09:26', '2017-12-27 00:00:00', 0);
+(22, 20, 1, '2017-12-24 07:01:45', '2017-12-31 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -135,7 +131,9 @@ CREATE TABLE `book_return` (
 --
 
 INSERT INTO `book_return` (`id`, `issue_id`, `submited_date`, `fine`, `paid`, `active`) VALUES
-(1, 5, '2017-12-20 18:00:00', 0, 1, 0);
+(1, 5, '2017-12-20 18:00:00', 0, 1, 0),
+(2, 17, '2017-12-22 18:00:00', 0, 0, 1),
+(3, 1, '2017-12-22 18:00:00', 400, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -418,25 +416,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `book_issue`
 --
 ALTER TABLE `book_issue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `book_return`
 --
 ALTER TABLE `book_return`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `book_type`

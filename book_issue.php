@@ -6,22 +6,47 @@
   $user_id = $_SESSION['st_id'];
   $role_id = $_SESSION['st_role_id'];  
 
+
+   //settings
+    $sqlSelect = "SELECT * FROM settings";
+    $settings  = $db->getQuery($sqlSelect); 
+    $setting   = $settings->fetch_assoc();
+
+    $teachers_max_keep_limit = $setting['teachers_current_limit'];  //7
+    $students_max_keep_limit = $setting['students_current_limit']; //7
+    $teachers_month_limit = $setting['teachers_max_book_limit'];  //10 
+    $students_month_limit = $setting['students_max_book_limit']; //7
+
   if(isset($_POST['book_issue'])) { 
     //$user_id = $_POST['user_id']; 
     //$user_id = $_SESSION['st_id']; // from session
     $book_id = $_POST['book_id'];
     //$issue_date = date('Y-md-d');
-    $submit_date = date('Y-m-d', strtotime("+6 days")); //issue date plus 6 days = 7 days
+    $st_submit_date = date('Y-m-d', strtotime("+$students_max_keep_limit days")); 
+    $t_submit_date = date('Y-m-d', strtotime("+$teachers_max_keep_limit  days"));
 
     if(!empty($_POST)){ 
-      $sql = "INSERT INTO book_issue(user_id, book_id, submit_date, active) VALUES('$user_id', '$book_id', '$submit_date', '0')"; 
-        $issue = $db->insert($sql); 
-        
-        if($issue) {
-            header("Location: book_issue_list.php");  
-        } 
+
+      if($role_id == 1) { //teachers
+          $sql = "INSERT INTO book_issue(user_id, book_id, submit_date, active) VALUES('$user_id', '$book_id', '$t_submit_date', '0')"; 
+          $issue = $db->insert($sql); 
+          if($issue) {
+              header("Location: book_issue_list.php");  
+          } 
+
+      } else { //students
+          $sql = "INSERT INTO book_issue(user_id, book_id, submit_date, active) VALUES('$user_id', '$book_id', ' $st_submit_date', '0')"; 
+          $issue = $db->insert($sql); 
+          
+          if($issue) {
+              header("Location: book_issue_list.php");  
+          } 
+
+      }
+      
     }
-  }
+
+  } 
 ?>
 
 <div class="container">
@@ -35,14 +60,14 @@
            <!-- restriction 1) at a time limit and 2) per month limit --> 
             <?php 
                 //settings
-                $sqlSelect = "SELECT * FROM settings";
+                $sqlSelect = "SELECT * FROM settings"; 
                 $settings  = $db->getQuery($sqlSelect); 
                 $setting   = $settings->fetch_assoc();
 
-                $teachers_max_keep_limit = $setting['teachers_current_limit'];  //7
-                $students_max_keep_limit = $setting['students_current_limit']; //7
-                $teachers_month_limit = $setting['teachers_max_book_limit'];  //10 
-                $students_month_limit = $setting['students_max_book_limit']; //7
+                $teachers_max_keep_limit = $setting['teachers_current_limit'];  
+                $students_max_keep_limit = $setting['students_current_limit']; 
+                $teachers_month_limit = $setting['teachers_max_book_limit'];  
+                $students_month_limit = $setting['students_max_book_limit']; 
 
                 //max keep limit
                 $ccurrentSql = "SELECT * FROM book_issue WHERE user_id='$user_id' AND active='1' ";
@@ -156,5 +181,5 @@
 <?php 
   else: 
       echo "<script>window.location.href = 'login.php'; </script>"; 
-  endif;
+  endif;  
 ?>

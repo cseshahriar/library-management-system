@@ -1,10 +1,14 @@
 <?php require_once('Database.php'); 
 
-	/**
-	 * Users class
-	 * @copyright Datatrixsoft
-	 * @author Md. Shahriar Hosen <shahriar@datatrixsoft.com>
-	 */  
+/**
+ * Users class
+ * Project Title: Library Management System
+ * @copyright Datatrixsoft
+ * @author Md. Shahriar Hosen <shahriar@datatrixsoft.com>
+ * @version 1.0 beta
+ * @license open source     
+ */  
+
 class Users extends Database 
 {
 	public function __construct(){   

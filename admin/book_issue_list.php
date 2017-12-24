@@ -28,9 +28,9 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h2 class="text-success"> 
-              Issued Books List     
+              Issued Books List      
               <!-- make issue -->
-              <a href="book_issue.php" class="btn btn-primary pull-right">Issue Books</a></h2>
+              <a href="book_issue2.php" class="btn btn-primary pull-right">Issue Books</a></h2>
           </div>
           <div class="panel-body">
             <table class="table table-striped table-responsive table-bordered">

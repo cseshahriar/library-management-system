@@ -8,10 +8,14 @@
 	define('DB_NAME', 'librarysys'); 
 
 	/**
+	 * Project Title: Library Management System
 	 * Database class
 	 * @copyright Datatrixsoft
 	 * @author Md. Shahriar Hosen <shahriar@datatrixsoft.com>
+	 * @version 1.0 beta
+	 * @license open source
 	 */
+
 	class Database{ 
 		/**
 		 * Database Connection Properties

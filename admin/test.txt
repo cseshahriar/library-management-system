@@ -59,3 +59,17 @@ $fine = '';
                         } else {
                                 echo '00.00 TK';     
                         } 
+
+            ----------------
+            <div class="form-group">
+              <label for="book_id">Book ID</label>
+              <select name="book_id" class="selpadfix form-control">
+                <option value="" selected>Choose Book ID</option>
+                <?php 
+                    $books = $db->getWhere("books", "active='1'"); 
+                    while($book = $books->fetch_assoc()) { ?>
+                        <option value="<?= $book['id']; ?>"> <?= $book['title']; ?></option> 
+                    <?php } ?>   
+              </select>
+            </div>
+            <button type="submit" name="Book_ID" class="btn btn-primary">Book Issue</button>
