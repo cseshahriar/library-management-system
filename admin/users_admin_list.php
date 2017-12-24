@@ -7,7 +7,7 @@
     require_once('../classes/Database.php');
     $db = new Database;
     $data = $db->getQuery("SELECT * FROM admin");  
-    var_dump($data) ; 
+    //var_dump($data) ; 
 ?>
 <div class="content-wrapper"> 
   <div class="row">
@@ -29,6 +29,7 @@
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
+              <?php if($data != false) : ?>  
                 <?php while($row = $data->fetch_assoc()) : ?>                
                 <tr>
                   <td><?= $row['id']; ?></td> 
@@ -66,6 +67,11 @@
                 </tr>
                 <?php endwhile; ?>    
                 <!-- /single item for looping  -->
+              <?php else: ?>
+                <tr>
+                  <h4 class="text-danger font-weight-bold">Data not found!</h4>
+                </tr>
+              <?php endif; ?> 
                 
               </table>
         </div>

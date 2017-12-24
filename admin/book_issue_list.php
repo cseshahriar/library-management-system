@@ -47,6 +47,8 @@
                     <th>Fine</th>
                     <th>Action</th> 
                   </tr>
+
+               <?php if($books != false) : ?> 
                   <?php
                       while($book = $books->fetch_assoc()): 
                   ?>
@@ -176,7 +178,13 @@
                     </td> 
                     <?php  endif; ?>
                   </tr> 
-                <?php endwhile; ?>    
+                <?php endwhile; ?>
+              <?php else: ?>
+                <tr>
+                  <h4 class="text-danger font-weight-bold">No issue found!</h4> 
+                </tr>
+                </
+              <?php endif; ?> 
                   <!-- /single item for looping  -->
             </table>
           </div>

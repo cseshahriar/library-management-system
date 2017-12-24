@@ -27,6 +27,7 @@
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
+              <?php if($data != false) : ?> 
                 <?php while($row = $data->fetch_assoc()) : ?>                
                 <tr>
                   <td><?= $row['id']; ?></td> 
@@ -63,6 +64,11 @@
                   </td> 
                 </tr>
                 <?php endwhile; ?>  
+              <?php else: ?>
+                <tr>
+                  <h4 class="text-danger font-weight-bold">Data not found!</h4>
+                </tr>
+              <?php endif; ?>  
                 <!-- /single item for looping  -->
                 
               </table>

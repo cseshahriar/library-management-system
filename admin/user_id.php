@@ -6,8 +6,15 @@
 	$db = new Database;   
   $sql3 = "SELECT * FROM users LEFT JOIN book_issue ON users.id=book_issue.user_id WHERE users.id='$id'";
   $data = $db->getQuery($sql3);
-  $row = $data->fetch_assoc();  
-  $user_role_id = $row['role_id']; // user role id here 
+
+  $row = ''; 
+  if($data != false){
+    $row = $data->fetch_assoc();   
+  }
+   $user_role_id = ''; 
+  if($row != false) {
+    $user_role_id = $row['role_id']; // user role id here 
+  }
 
   //settings
   $sqlSelect = "SELECT * FROM settings";
@@ -22,13 +29,19 @@
   //current max book keep limit
   $ccurrentSql = "SELECT * FROM book_issue WHERE user_id='$id' AND active='1' ";
   $climit = $db->getQuery($ccurrentSql); 
-  $rowcount = mysqli_num_rows($climit ); //how much row  
+  $rowcount = '';
+  if($climit != false){
+    $rowcount = mysqli_num_rows($climit ); //how much row  
+  }
 
   //know monthly limit 
   $monthlyLimit = "SELECT * FROM book_issue WHERE user_id='$id' AND YEAR(issue_date) = YEAR(CURRENT_DATE()) AND MONTH(issue_date) = MONTH(CURRENT_DATE());";
 
   $mlimit = $db->getQuery($monthlyLimit); 
-  $mrowcount = mysqli_num_rows($mlimit ); //how much row    
+  $mrowcount = '';
+  if($mlimit != false){
+    $mrowcount = mysqli_num_rows($mlimit ); //how much row    
+  } 
 
   // check role id  
   if($user_role_id == 1){ //teachers 

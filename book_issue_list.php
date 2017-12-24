@@ -29,6 +29,7 @@
                   <th>Fine</th>
                   <th>Action</th> 
                 </tr>
+              <?php if($books != false): ?>
                 <?php 
                     $serial = 1; 
                     while($book = $books->fetch_assoc()): ?>
@@ -122,6 +123,9 @@
                   <?php  endif; ?>
                 </tr> 
               <?php endwhile; ?>    
+            <?php else: ?>
+              <tr class="text-danger">Data not found!</tr> 
+            <?php endif; ?>
                 
                 <!-- /single item for looping  -->
                 

@@ -27,6 +27,7 @@
                   <th>Fine</th>
                   <th>Action</th> 
                 </tr>
+              <?php if($books != false): ?>
                 <?php
                     $serial = 1; 
                     while($book = $books->fetch_assoc()):  
@@ -36,7 +37,9 @@
                   <td><?= $serial++; ?></td>
                   <td><?= $book['issue_id']; ?> 
                   </td> 
+
                   <td>
+                  <?php if($book['user_id'] != false) : ?>
                     <?php 
                       $uid = $book['user_id']; 
                       $userSql = "SELECT username FROM users WHERE id='$uid' ";
@@ -44,15 +47,23 @@
                       $user_row = $udata->fetch_assoc();
                       echo $user_row['username'];
                     ?>
+                  <?php else: ?>
+                    <td class="text-danger">Data not found!</td>
+                  <?php endif; ?>
                   </td>
+
                   <td>
-                    <?php 
-                      $bid = $book['book_id']; 
-                      $bookSql = "SELECT title FROM books WHERE id='$bid' ";
-                      $bdata = $db->getQuery($bookSql);
-                      $b_row = $bdata->fetch_assoc();
-                      echo $b_row['title'];
+                  <?php  if($book['book_id']) : ?>
+                    <?php
+                        $bid = $book['book_id']; 
+                        $bookSql = "SELECT title FROM books WHERE id='$bid' ";
+                        $bdata = $db->getQuery($bookSql);
+                        $b_row = $bdata->fetch_assoc();
+                        echo $b_row['title']; 
                     ?>
+                  <?php else: ?>
+                    <td class="text-danger">Data not found!</td>
+                  <?php endif; ?>
 
                   </td>
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
@@ -73,6 +84,9 @@
                   </td> 
                 </tr> 
               <?php endwhile; ?> 
+            <?php else: ?>
+                <h4 class="text-danger font-weight-bold">Data not found!</h4>
+            <?php endif; ?> 
                 
                 <!-- /single item for looping  -->
                 

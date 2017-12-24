@@ -25,6 +25,7 @@
                   <th>Submit Date</th>
                   <th>Fine</th>
                 </tr>
+              <?php if($books != false): ?>
                 <?php
                     $serial = 1; 
                     while($book = $books->fetch_assoc()):  
@@ -68,9 +69,9 @@
                   </td>    
                 </tr> 
               <?php endwhile; ?> 
-                
-                <!-- /single item for looping  -->
-                
+            <?php else: ?>
+              <tr class="text-danger">Data not foudn!</tr>
+            <?php endif; ?>
               </table>
         </div>
       </div>

@@ -26,6 +26,7 @@
                   <th>Status</th>
                   <th>Action</th> 
                 </tr>
+              <?php if($books != false) : ?>  
                 <?php while($book = $books->fetch_assoc()): ?>
                 <tr>
                   <td><?= $book['id']; ?></td>
@@ -48,7 +49,11 @@
                   </td>
                 </tr> 
               <?php endwhile; ?>
-                
+            <?php else: ?>
+              <tr>
+                <h4 class="text-danger font-weight-bold">Data not found!</h4>
+              </tr>
+            <?php endif; ?> 
                 <!-- /single item for looping  -->
                 
               </table>
