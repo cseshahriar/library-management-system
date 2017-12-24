@@ -22,7 +22,7 @@
                 <tr class="success">
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Username</th>
+                 <!--  <th>Username</th> -->
                   <th>Email</th>
                   <th>Gender</th>
                   <th>User Role</th>
@@ -34,7 +34,6 @@
                 <tr>
                   <td><?= $row['id']; ?></td> 
                   <td><?= $row['name']; ?></td>
-                  <td><?= $row['username']; ?></td>
                   <td><?= $row['email']; ?></td>
                   <td><?= $row['gender']; ?></td>
                   <td>

@@ -20,19 +20,25 @@
                 <tr class="success">
                   <th>ID</th>
                   <th>Name</th>
-                  <th>Username</th>
+                  <th title="Only fro Student">Roll No <small>(If Sudents)</small></th>
                   <th>Email</th>
                   <th>Gender</th>
                   <th>User Role</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
-              <?php if($data != false) : ?> 
+              <?php if($data != false) : ?>   
                 <?php while($row = $data->fetch_assoc()) : ?>                
                 <tr>
                   <td><?= $row['id']; ?></td> 
                   <td><?= $row['name']; ?></td>
-                  <td><?= $row['username']; ?></td>
+                  <td>
+                    <?php 
+                        if($row['role_id'] == 2){
+                          echo $row['roll'];
+                        } 
+                    ?>    
+                  </td>
                   <td><?= $row['email']; ?></td>
                   <td><?= $row['gender']; ?></td>
                   <td> 

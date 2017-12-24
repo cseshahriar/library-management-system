@@ -31,12 +31,10 @@
                 <?php
                     $serial = 1; 
                     while($book = $books->fetch_assoc()):  
-
                 ?>
                 <tr>
                   <td><?= $serial++; ?></td>
-                  <td><?= $book['issue_id']; ?> 
-                  </td> 
+                  <td><?= $book['issue_id']; ?></td> 
 
                   <td>
                   <?php if($book['user_id'] != false) : ?>
@@ -47,10 +45,10 @@
                       $user_row = $udata->fetch_assoc();
                       echo $user_row['username'];
                     ?>
+                  </td>
                   <?php else: ?>
                     <td class="text-danger">Data not found!</td>
                   <?php endif; ?>
-                  </td>
 
                   <td>
                   <?php  if($book['book_id']) : ?>
@@ -61,11 +59,11 @@
                         $b_row = $bdata->fetch_assoc();
                         echo $b_row['title']; 
                     ?>
+                  </td>
                   <?php else: ?>
                     <td class="text-danger">Data not found!</td>
                   <?php endif; ?>
 
-                  </td>
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
                   <td><?= date('d-m-Y',strtotime($book['submit_date'])); ?></td>
                   <td>
@@ -86,15 +84,12 @@
               <?php endwhile; ?> 
             <?php else: ?>
                 <h4 class="text-danger font-weight-bold">Data not found!</h4>
-            <?php endif; ?> 
-                
-                <!-- /single item for looping  -->
-                
-              </table>
+            <?php endif; ?>                 
+          </table>  
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<?php require_once('inc/footer.php'); ?>
+<?php require_once('inc/footer.php'); ?> 
