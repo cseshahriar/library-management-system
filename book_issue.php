@@ -64,25 +64,35 @@
                 $teachers_max_keep_limit = $setting['teachers_current_limit'];  
                 $students_max_keep_limit = $setting['students_current_limit']; 
                 $teachers_month_limit = $setting['teachers_max_book_limit'];  
-                $students_month_limit = $setting['students_max_book_limit']; 
+                $students_month_limit = $setting['students_max_book_limit'];   
 
                 //max keep limit
-                $ccurrentSql = "SELECT * FROM book_issue WHERE user_id='$user_id' AND active='1' ";
-                $climit = $db->getQuery($ccurrentSql); 
-                $rowcount = mysqli_num_rows($climit ); //how much row  
+                $ccurrentSql = "SELECT * FROM book_issue WHERE user_id='$user_id' AND active='1' OR active='0' "; 
+                $climit = $db->getQuery($ccurrentSql);
+                $rowcount = '';
+                if( $climit != false){
+                  $rowcount = mysqli_num_rows($climit ); //how much row  
+                }else { 
+                  //echo 'Data not found';
+                }
 
                 //know monthly limit
                 $monthlyLimit = "SELECT * FROM book_issue WHERE user_id='$user_id' AND YEAR(issue_date) = YEAR(CURRENT_DATE()) AND MONTH(issue_date) = MONTH(CURRENT_DATE());";
 
-                $mlimit = $db->getQuery($monthlyLimit); 
-                $mrowcount = mysqli_num_rows($mlimit ); //how much row 
+                $mlimit = $db->getQuery($monthlyLimit);
+                $mrowcount = ''; 
+                if($mlimit != false){
+                  $mrowcount = mysqli_num_rows($mlimit ); //how much row 
+                }else {
+                  //data not found 
+                }
             ?>
         <?php 
             // check role id  
             if( $role_id == 1) { //teacher 
                 if(!($rowcount >= $teachers_max_keep_limit) && !($mrowcount >= $teachers_month_limit) ) { ?>
                       <!-- Issue book form -->
-                  <form action="" method="post">
+                  <form action="" method="post"> 
                     <!-- user id -->
                     <div class="form-group">
                       <label for="user_id">User Name:</label>
@@ -116,7 +126,9 @@
                     echo 'Return a book first!';
                 }
             } else { //studenet
-                if(!($rowcount >= $students_max_keep_limit) && !($mrowcount >= $students_month_limit)) { ?>
+                    // row = 3 > limit = 3 (if row < limit)
+                    //!($rowcount >= $students_max_keep_limit) && !($mrowcount >= $students_month_limit)
+                if(!($rowcount >= $students_max_keep_limit) && !($mrowcount >= $students_month_limit)) { ?> 
                         <!-- Issue book form -->
                       <form action="" method="post">
                         <!-- user id -->

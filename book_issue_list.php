@@ -11,7 +11,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default"> 
+      <div class="panel panel-default">   
         <div class="panel-heading">
           <h2 class="text-success">Issued Books List <a href="book_issue.php" class="btn btn-primary pull-right">Issue Books</a></h2>
         </div>
@@ -21,8 +21,8 @@
                 <tr class="success">
                   <th>Sr No.</th>
                   <th>Issue ID</th>
-                  <th>User ID</th>
-                  <th>Book ID</th>
+                  <th>User Name</th>
+                  <th>Book Name</th>
                   <th>Issue Date</th>
                   <th>Submit Date</th>
                   <th>Status</th>
@@ -39,19 +39,23 @@
                   <td>
                     <?php 
                         $user_id = $book['user_id'];
-                        $sql = "SELECT username from users WHERE id='$user_id' ";
+                        $sql = "SELECT username FROM users WHERE id='$user_id' ";
                         $data = $db->getQuery($sql); 
-                        $row = $data->fetch_assoc();
-                        echo $row['username'];
+
+                        $urow = $data->fetch_assoc();
+                        echo $urow['username']; 
                      ?>
                   </td>
                   <td>
                      <?php 
-                        $book_id = $book['book_id'];
-                        $sql = "SELECT title from books WHERE id='$book_id' "; 
-                        $data = $db->getQuery($sql); 
-                        $row = $data->fetch_assoc(); 
-                        echo $row['title'];   
+                        $book_id = $book['book_id']; 
+                        $sql = "SELECT title FROM books WHERE id='$book_id' "; 
+                        $data = $db->getQuery($sql);
+                        $brow =  '';
+                        if($data != false) {
+                          $brow = $data->fetch_assoc(); 
+                        }
+                        echo $brow['title'];   
                      ?>
                   </td>         
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
