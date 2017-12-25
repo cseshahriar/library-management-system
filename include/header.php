@@ -31,7 +31,7 @@
         <ul class="nav navbar-nav">
           <!-- class="active" -->
           <?php if(isset($_SESSION['st_id'])): ?> 
-            <li><a href="index.php">Home</a></li> <!-- book issue,return, fine etc list -->
+            <li><a href="index.php">Users data</a></li> <!-- book issue,return, fine etc list -->
             <li><a href="book_issue.php">Books Issue</a></li>
             <li><a href="book_issue_list.php">Issued Books List</a></li>
             <li><a href="book_submited_list.php">Submit Books List</a></li>

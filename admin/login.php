@@ -7,7 +7,7 @@
   if( isset($_POST['username_email'], $_POST['password'])) {  
 
       if(empty($_POST['username_email'] || $_POST['password'] )) {
-        $logInError = 'Username or Email And Password must not be empty!';
+        $logerror = 'Username or Email And Password must not be empty!';
       } else {
           $userEmail = $_POST['username_email'];
           $password = $_POST['password'];           
@@ -31,17 +31,27 @@
     </section>
     <section class="login-content">
       <div class="logo" style="font-family: verdana;color:#fff;">
-        <?php if(isset($logInError)): ?>
+        
+        <?php if(isset($logerror)): ?> 
         <!-- alert -->
-        <div id="msg" class="alert alert-success alert-dismissable">
+        <div id="msg" class="alert alert-danger alert-dismissable">
           <a class="panel-close close" data-dismiss="alert">×</a> 
           <i class="fa fa-user"></i>
-          <strong ><?php echo $logInError; ?></strong> 
+          <strong ><?php echo $logerror; ?></strong> 
         </div>
       <?php endif; ?>
+
+        <?php if(isset($_SESSION['logInError'])): ?> 
+        <!-- alert -->
+        <div id="msg" class="alert alert-danger alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-user"></i>
+          <strong ><?php echo $_SESSION['logInError']; ?></strong> 
+        </div>
+      <?php endif; ?>
+
       </div>
       <div class="login-box">
-
         <!-- admin login form -->
         <form class="login-form" action="" method="POST">  
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Admin Sign In</h3>

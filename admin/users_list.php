@@ -17,7 +17,7 @@
         <div class="panel-body"> 
           <table class="table table-striped table-responsive table-bordered">
               <!-- single item for looping  -->
-                <tr class="success">
+                <tr class="success">  
                   <th>ID</th>
                   <th>Name</th>
                   <th title="Only fro Student">Roll No <small>(If Sudents)</small></th>
@@ -50,7 +50,7 @@
                         }
                     ?>  
                     </td>
-                  <td>
+                    <td>
                     <?php 
                         if($row['active'] == 1) { 
                             echo '<span class="text-success"><strong>Active</strong></span>'; 
@@ -59,6 +59,7 @@
                             <a href="user_active.php?id=<?= $row['id']; ?>" class="text-success"><strong> Make Active</strong></a>
                        <?php } ?>   
                     </td>
+
                   <td> 
                       <a href="user_view.php?id=<?= $row['id']; ?>" class="btn btn-xs btn-success"><i class="fa fa-eye"></i> </a> 
 
@@ -69,7 +70,8 @@
                       </a>   
                   </td> 
                 </tr>
-                <?php endwhile; ?>  
+                <?php endwhile; ?> 
+
               <?php else: ?>
                 <tr>
                   <h4 class="text-danger font-weight-bold">Data not found!</h4>

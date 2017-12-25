@@ -24,7 +24,13 @@
                 </tr>
                 <tr>
                   <td>User Role</td>
-                  <td><?php if($row['role_id'] == 1){ echo 'Teacher';} else {echo 'Student';} ?></td>
+                  <td>
+                      <?php if($row['role_id'] == 1){ 
+                          echo 'Teacher';
+                      } else {
+                          echo 'Student';
+                      } ?>
+                    </td>
                 </tr>
                 <tr>
                   <td>Gender</td>

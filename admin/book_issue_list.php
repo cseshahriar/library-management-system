@@ -44,8 +44,13 @@
                     <th>Issue Date</th>
                     <th>Submit Date</th>
                     <th>Status</th>
-                    <th>Fine</th>
-                    <th>Action</th> 
+                    <th>Fine</th> 
+                    <?php 
+                        $active = $books->fetch_assoc();
+                        if(!($active['active'] == 2)){
+                            echo '<th>Action</th>';
+                        } 
+                    ?>
                   </tr>
 
                <?php if($books != false) : ?> 

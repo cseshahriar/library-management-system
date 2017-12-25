@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2017 at 08:46 AM
+-- Generation Time: Dec 25, 2017 at 07:46 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -79,9 +79,9 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `cat_id`, `isbn`, `title`, `author`, `quantity`, `purchase_date`, `edition`, `price`, `pages`, `year`, `publisher`, `bill_no`, `active`) VALUES
-(1, 1, '978-0596006302', 'Head First PHP and MySQLi', 'Michael Morriso', 2, '2017-10-31 00:00:00', 'Second Edition', 1843, 778, '2012', 'OREILL', '234567893', 1),
+(1, 1, '97805960063021', 'Head First PHP and MySQLi', 'Michael Morriso', 2, '2017-12-24 16:43:33', 'Second Edition', 1843, 778, '2012', 'OREILL', '234567893', 1),
 (2, 21, '34567890456789', 'Murachs PHP and MySQL', 'Ray Harris &amp;amp; Anne Boehm', 1, '2017-12-19 11:01:00', 'First Edition', 1500, 606, '2015', 'OREILLY', '4356789345', 1),
-(3, 2, '234567890', 'Test', 'Test Author', 1, '2017-12-23 11:05:44', 'First Edition', 200, 49, '2015', 'Test', '23456789', 1);
+(3, 2, '23456789064768', 'Test', 'Test Author', 1, '2017-12-24 16:43:24', 'First Edition', 200, 49, '2015', 'Test', '23456789', 1);
 
 -- --------------------------------------------------------
 
@@ -103,13 +103,13 @@ CREATE TABLE `book_issue` (
 --
 
 INSERT INTO `book_issue` (`id`, `user_id`, `book_id`, `issue_date`, `submit_date`, `active`) VALUES
-(1, 10, 1, '2017-12-11 20:00:00', '2017-12-19 00:00:00', 2),
-(2, 11, 2, '2017-12-13 19:00:00', '2017-12-21 00:00:00', 1),
-(3, 11, 2, '2017-12-15 04:27:32', '2017-12-22 00:00:00', 1),
-(4, 11, 1, '2017-12-16 16:46:21', '2017-12-21 00:00:00', 1),
-(5, 20, 1, '2017-12-10 11:57:42', '2017-12-17 00:00:00', 1),
-(7, 20, 2, '2017-12-13 12:33:38', '2017-12-20 00:00:00', 1),
-(22, 20, 1, '2017-12-24 07:01:45', '2017-12-31 00:00:00', 0);
+(1, 20, 2, '2017-12-25 05:18:16', '2017-12-28 00:00:00', 2),
+(2, 20, 1, '2017-12-25 05:18:21', '2017-12-28 00:00:00', 2),
+(3, 20, 1, '2017-12-25 05:18:25', '2017-12-28 00:00:00', 2),
+(5, 20, 1, '2017-12-25 05:24:55', '2017-12-28 00:00:00', 2),
+(6, 20, 2, '2017-12-25 05:36:06', '2017-12-28 00:00:00', 2),
+(7, 20, 1, '2017-12-25 05:36:30', '2017-12-28 00:00:00', 2),
+(8, 20, 1, '2017-12-25 05:36:44', '2017-12-28 00:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -131,9 +131,13 @@ CREATE TABLE `book_return` (
 --
 
 INSERT INTO `book_return` (`id`, `issue_id`, `submited_date`, `fine`, `paid`, `active`) VALUES
-(1, 5, '2017-12-20 18:00:00', 0, 1, 0),
-(2, 17, '2017-12-22 18:00:00', 0, 0, 1),
-(3, 1, '2017-12-22 18:00:00', 400, 0, 1);
+(1, 1, '2017-12-24 18:00:00', 0, 0, 1),
+(2, 2, '2017-12-24 18:00:00', 0, 0, 1),
+(3, 3, '2017-12-24 18:00:00', 0, 0, 1),
+(4, 5, '2017-12-24 18:00:00', 0, 0, 1),
+(5, 6, '2017-12-24 18:00:00', 0, 0, 1),
+(6, 7, '2017-12-24 18:00:00', 0, 0, 1),
+(7, 8, '2017-12-24 18:00:00', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -330,7 +334,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `gender`, `phone`, `username`, `email`, `password`, `class_id`, `dept_id`, `roll`, `designation`, `address`, `image`, `joined_at`, `active`) VALUES
 (10, 1, 'Shahriar Hosen', 'Male', '23456787', 'shahriarcse', 'teacher2@mail.com', '1edb5a97f2f27f5d894e0efcff5ce3a6', NULL, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340956920748.png', '2017-12-16 07:32:49', 1),
-(11, 2, 'Shahriar Alam', 'Male', '23456787', 'student', 'teacher2@mail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 0, '', 'Mirpur-Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 1),
+(11, 2, 'Shahriar Alam', 'Male', '23456787', 'student', 'teacher2@mail.com', 'cd73502828457d15655bbd7a63fb0bc8', 5, 1, 543434, '', 'Mirpur-Dhaka', 'admin-151340968362100.png', '2017-12-16 07:34:43', 1),
 (19, 1, 'Salpin', 'Male', '23456787', 'SM sir', 'teacher2@mail.com', '', 8, 0, 0, '', 'Mirpur-Dhaka', 'admin-151350619690353.png', '2017-12-17 10:23:16', 1),
 (20, 2, 'sm', 'Male', '345678903456', 'sm', 'sm@gmail.com', 'ed79acb0cd3d7f8320c53c7798335ef0', 5, 1, 343243, '', 'Dhaka', 'admin-151375571523019.png', '2017-12-20 07:41:55', 1);
 
@@ -428,13 +432,13 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `book_issue`
 --
 ALTER TABLE `book_issue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `book_return`
 --
 ALTER TABLE `book_return`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `book_type`
@@ -486,8 +490,7 @@ ALTER TABLE `books`
 -- Constraints for table `book_issue`
 --
 ALTER TABLE `book_issue`
-  ADD CONSTRAINT `book_issue_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `book_issue_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`);
+  ADD CONSTRAINT `book_issue_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`

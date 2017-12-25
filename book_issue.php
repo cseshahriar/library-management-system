@@ -123,7 +123,12 @@
                     <button type="submit" name="book_issue" class="btn btn-primary">Book Issue</button>
                   </form>
                 <?php } else {
-                    echo 'Return a book first!';
+                     //error message
+                    if( $rowcount >= $teachers_max_keep_limit){        
+                      echo 'Return a book first!'; 
+                    } else {
+                      echo 'Monthly limit over!';
+                    }
                 }
             } else { //studenet
                     // row = 3 > limit = 3 (if row < limit)
@@ -160,7 +165,12 @@
                         <button type="submit" name="book_issue" class="btn btn-primary">Book Issue</button> 
                       </form>
                 <?php } else {
-                   echo 'Return a book first!'; 
+                    //error message
+                    if( $rowcount >= $students_max_keep_limit){
+                      echo 'Return a book first!'; 
+                    } else {
+                      echo 'Monthly limit over!';
+                    }
                 }
             }
         ?>

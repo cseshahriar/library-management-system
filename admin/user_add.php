@@ -5,6 +5,19 @@
   //$admin = new Admin();
   $db = new Database();   
 
+  /**
+   * [checkInput feltering form data]
+   * @param  [form input] $data [form inputs data]
+   * @return [form input]       [form input data]
+   */
+  function checkInput($data)  
+  {
+      $data = trim($data);
+      $data = htmlentities($data);
+      $data = htmlspecialchars($data);  
+      return $data;   
+  } 
+
   $user_type = $name = $gender = $username = $email = $password = $class = $roll = $dept = $design = $phone = $image = $address = $image_name = $uplodad_directory = ''; 
   $user_type_error = $name_error = $gender_error = $phone_error = $username_error = $email_error = $password_error = $class_error  = $roll_error = $dept_error = $design_error = $image_error = $address_error = $pass_mathc_error = '';        
 
@@ -103,7 +116,7 @@
     if(empty($_POST['design'])) {
         $design_error = 'Designation is required!'; 
     } else {
-      $design = checkInput($_POST['design']);
+      $design = checkInput($_POST['design']); 
     }
 
     //address validation
@@ -137,7 +150,7 @@
             if($user) { 
               header("Location: users_list.php");      
             }
-        }
+        }  
 
     } else { //for student
 
@@ -156,19 +169,8 @@
 
 
   }     
+  
 
-  /**
-   * [checkInput feltering form data]
-   * @param  [form input] $data [form inputs data]
-   * @return [form input]       [form input data]
-   */
-  function checkInput($data) 
-  {
-      $data = trim($data);
-      $data = htmlentities($data);
-      $data = htmlspecialchars($data);  
-      return $data;   
-  }   
 ?>
 <?php require_once('inc/header.php'); ?>
 <?php include_once('inc/sidebar.php'); ?> 
@@ -254,7 +256,7 @@
                       <?php 
                         $class = $db->get('class'); 
                         while($row = $class->fetch_assoc()) { ?>
-                            <option value="<?= $row['class_id']; ?>"><?= $row['class_name']; ?></option> 
+                            <option value="<?= $row['id']; ?>"><?= $row['class_name']; ?></option> 
                         <?php } ?> 
                     </select>
                      
@@ -274,8 +276,8 @@
                       <?php 
                         $dept = $db->get('department');  
                         while($row = $dept->fetch_assoc()) { ?> 
-                            <option value="<?= $row['dept_id']; ?>"><?= $row['dept_name']; ?></option> 
-                        <?php } ?>
+                            <option value="<?= $row['id']; ?>"><?= $row['dept_name']; ?></option> 
+                        <?php } ?>    
                     </select> 
                     <span id="msg" class="error text-danger"><?php if(isset($dept_error)) {echo $dept_error; } ?></span>
                   </div>   

@@ -26,8 +26,15 @@
                   <th>Issue Date</th>
                   <th>Submit Date</th>
                   <th>Status</th>
-                  <th>Fine</th>
-                  <th>Action</th> 
+                  <th>Fine</th> 
+
+                  <?php 
+                      $active = $books->fetch_assoc();
+                      if(!($active['active']) == 2) :
+                  ?>
+                  <th>Action</th>
+                  <?php endif; ?>
+
                 </tr>
               <?php if($books != false): ?>
                 <?php 
@@ -139,25 +146,23 @@
                         } else { 
                                 echo '00.00 TK';       
                         }    
-                          
                     ?> 
                   </td>
-                <?php if($book['active'] != 2): ?>
-                  <td>
-                    <?php if($book['active'] == 1): ?>
-                    <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-primary" onclick="return confirm('Are you sure you want to submit this item?');"><i class="fa fa-trash"></i> Return This Book</a>   
-                  <?php endif; ?>   
-                  </td> 
-                  <?php  endif; ?>
+
+                  <?php if($book['active'] != 2): ?>
+                      <td>
+                        <?php if($book['active'] == 1): ?>
+                        <a href="book_submit.php?id=<?= $book['id']; ?>" class="btn btn-xs btn-primary" onclick="return confirm('Are you sure you want to submit this item?');"><i class="fa fa-trash"></i> Return This Book</a>   
+                      <?php endif; ?>   
+                      </td> 
+                  <?php endif; ?>
                 </tr> 
               <?php endwhile; ?>    
             <?php else: ?>
               <tr class="text-danger">Data not found!</tr> 
-            <?php endif; ?>
+            <?php endif; ?> 
                 
-                <!-- /single item for looping  -->
-                
-              </table>
+            </table>
         </div>
       </div>
     </div>

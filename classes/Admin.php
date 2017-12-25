@@ -33,7 +33,7 @@
 				header("Location: index.php"); 
 				exit();
 			} else {
-				$logInError = 'Invalid username or email, password';
+				$_SESSION['logInError'] = 'Invalid username or email, password'; 
 				//header('Location: login.php'); //it can problem, use js redirect 
 				echo "<script>window.location.href = 'login.php'; </script>";
 				exit();  

@@ -73,28 +73,28 @@
       }
 
       //class
-      if($_POST['classes']) {
+      if(empty($_POST['classes'])) {
           $class_error = 'Class is required!';
       } else {
           $class = checkInput($_POST['classes']); 
       }
 
       //roll
-      if($_POST['roll']) {
+      if(empty($_POST['roll'])) {
           $roll_error = 'Roll NO. is required!';
       } else {
           $roll = checkInput($_POST['roll']);
       }
 
       //department dept
-      if($_POST['dept']) {
+      if(empty($_POST['dept'])) {
           $dept_error = 'Class is required!';
       } else {
           $dept = checkInput($_POST['dept']);
       }
 
       //designation design
-       if($_POST['design']) {
+       if(empty($_POST['design'])) {
           $design_error = 'Class is required!';
       } else {
           $design = checkInput($_POST['design']);
@@ -107,14 +107,14 @@
         $address = checkInput($_POST['address']); 
         if(!preg_match("/^[A-Za-z0-9-, ]*$/", $address)) {
             $address_error = 'Only Letters, Numbers, _,-, comma and white space are allowed';  
-        } 
-      }  
+        }  
+      }   
   
       // validation end
       if($role_id== 1) { //for teacher 
 
           if(!($name_error && $gender_error && $email_error && $phone_error && $address_error)) {
-              $sql = "UPDATE users SET name='$name', gender='$gender', phone='$phone', email='$email', designation='$design', address='$address' ";
+              $sql = "UPDATE users SET name='$name', gender='$gender', phone='$phone', email='$email', designation='$design', address='$address' WHERE id='$id' ";
               $user = $db->update($sql);    
               if($user) { 
                 header("Location: users_list.php");     
@@ -122,12 +122,12 @@
           } 
       } else { //for student
            if(!($name_error && $gender_error && $email_error && $phone_error && $address_error)) {
-              $sql = "UPDATE users SET name='$name', gender='$gender', phone='$phone', email='$email', roll='$roll',address='$address' "; 
+              $sql = "UPDATE users SET name='$name', gender='$gender', phone='$phone', email='$email',class_id='$class', roll='$roll',address='$address' WHERE id='$id' ";  
               $user = $db->update($sql);     
               if($user) { 
                 header("Location: users_list.php");      
               }
-          }
+          } 
       }     
 }
   
@@ -201,26 +201,28 @@
                     <span id="msg" class="error text-danger"><?php if(isset($email_error)) {echo $email_error; } ?></span> 
                   </div>  
 
-                  
                   <div class="form-group"> 
                     <label for="classes">Class</label>
                     <select name="classes" id="classed" class="form-control selpadfix" >
-                      <option value="<?= $row['class_id']; ?>" selected><?= $row['class_id']; ?></option>
                       <?php 
-                        $class = $db->get('class');  
+                        $class = $db->get('class');    
                         while($data = $class->fetch_assoc()) { ?>
+                        <?php if($data != false): ?>
                             <option value="<?= $data['id']; ?>"><?= $data['class_name']; ?></option>
-                        <?php } ?>   
+                          <?php else: ?>
+                              <option>Data not found</option>
+                          <?php endif; ?>
+                        <?php } ?>      
                     </select> 
-                      <span id="msg" class="error text-danger"><?php if(isset($class_error)) {echo $class_error; } ?></span> 
-                  </div> 
+                      <span id="msg" class="error text-danger"><?php if(isset($class_error)) {echo $class_error; } ?></span>   
+                  </div>  
              
-
                   <div class="form-group"> 
                     <label for="roll">Roll No.</label>
                     <input type="number" name="roll" id="roll" class="form-control" value="<?= $row['role']; ?>" />
                     <span id="msg" class="error text-danger"><?php if(isset($roll_error)) {echo $roll_error; } ?></span>
                   </div>
+              
         
 
                   <div class="form-group">

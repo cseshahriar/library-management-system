@@ -97,9 +97,10 @@
                 <input type="text" name="quantity" id="quantity" class="form-control" value="<?= $book['quantity']; ?>" /"> 
              </div>
 
+             <!-- date value set problem -->
              <div class="form-group">
                <label for="p_date">Purchase Data</label>
-                <input type="date" name="p_date" id="p_date" class="form-control" />
+                <input type="date" name="p_date" id="p_date" value="<?= date('Y-m-d',strtotime($book['purchase_date'])); ?>" class="form-control" />
                 <span>Purchase Date: <?= $book['purchase_date']; ?></span>
              </div>
              <div class="form-group">
@@ -108,8 +109,8 @@
              </div>
              <div class="form-group"> 
                <label id="price">Price</label>
-               <input type="number" name="price" id="price" class="form-control" value="<?= $book['price']; ?>" />
-             </div>
+               <input type="number" name="price" id="price" class="form-control" value="<?= $book['price']; ?>" /> 
+             </div> 
              <div class="form-group">
                <label for="pages">Pages</label>
                <input type="number" name="pages" id="pages" class="form-control" value="<?= $book['pages']; ?>" />
