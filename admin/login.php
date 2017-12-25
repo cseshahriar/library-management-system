@@ -1,7 +1,8 @@
-<?php session_start();
-  //require_once('../classes/Database.php');
+<?php session_start(); ?>
+<?php if(!isset($_SESSION['user'])) : ?> <!-- if user is not login -->
+
+<?php
   require_once('../classes/Admin.php');
-  //$db = new Database();
   $admin = new Admin(); 
   if( isset($_POST['username_email'], $_POST['password'])) {  
 
@@ -9,8 +10,7 @@
         $logInError = 'Username or Email And Password must not be empty!';
       } else {
           $userEmail = $_POST['username_email'];
-          $password = $_POST['password'];
-          //$db->login($userEmail, $password);            
+          $password = $_POST['password'];           
           $admin->login($userEmail, $password);              
       } 
   } 
@@ -92,8 +92,11 @@
     $(document).ready(function(){
       $("#msg").show();
       setTimeout(function(){
-        $("#msg").hide();
+        $("#msg").hide(); 
       },5000);
     });
   </script>
 </html>
+<?php else: ?>
+  <?php echo 'User logged in the Browser now. At this time you can\'t login'; ?>
+<?php endif; ?>

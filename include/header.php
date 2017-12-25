@@ -1,4 +1,9 @@
 <?php session_start(); ?>
+<?php if(!isset($_SESSION['admin'])) : ?> <!-- if admin is not login -->
+<?php 
+    include_once('classes/Database.php');
+    $db = new Database; 
+ ?>
 <!DOCTYPE html>
 <html lang="en">     
   <head>
@@ -41,7 +46,12 @@
             <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           <?php else :  ?>
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"> <?php if(isset($_SESSION['st_username'])) { echo $_SESSION['st_username'];} ?><span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span>
+                  </span>
+                    <?php if(isset($_SESSION['st_username'])) { echo $_SESSION['st_username'];} ?>
+                    <span class="caret"></span>
+                </a>
                 <ul class="dropdown-menu">
                   <li><a href="profile.php">Profile</a></li>  
                   <li><a href="user_update.php">Update</a></li>
@@ -57,3 +67,9 @@
   </div>
 </div>
 <!-- end nav -->
+
+<!-- if admin login  -->
+<?php else: ?>
+  <?php echo '<p style="color:red">Only one type user can login. Admin is now logged in this Browser, You can\'t login at this time.</p>';  ?>        
+<?php endif; ?>   
+<!-- if admin login  -->

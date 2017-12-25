@@ -1,6 +1,5 @@
 <?php require_once('include/header.php'); ?> 
-<?php if(!isset($_SESSION['admin'])) : ?> if admin is not login
-
+<?php if(!isset($_SESSION['admin'])) : ?> <!-- if admin is not login -->
 <?php if(isset($_SESSION['st_id'])): ?>   
 <?php 
 	require_once('classes/Database.php'); 
@@ -12,7 +11,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h2>User informations</h2>
+					<h2>Users informations</h2> 
 				</div>
 				<div class="panel-body text-left">
 					<table class="user table table-bordered table-responsive table-striped table-hover">
@@ -101,16 +100,11 @@
 </div>
 <!-- /user data -->
 <!-- end content -->
-<?php require_once('include/footer.php'); ?> 
+<?php require_once('include/footer.php'); ?>  
 
 <?php 
   else: 
       echo "<script>window.location.href = 'login.php'; </script>"; 
   endif;
 ?> 
-
-<!-- if admin login  -->
-<?php else: ?>
-	<?php echo "<script>window.location.href = 'login.php'; </script>";  ?>        
-<?php endif; ?>   
-<!-- if admin login  -->
+<?php endif; ?>

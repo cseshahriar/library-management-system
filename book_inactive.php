@@ -8,4 +8,4 @@
 	$db->active($sql);
 	header("Location: book_list.php");  
 ?>
-<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?> 
+<?php else: echo "<script>window.location.href = 'login.php'; </script>";  endif; ?>  

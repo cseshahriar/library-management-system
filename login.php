@@ -1,4 +1,5 @@
 <?php require_once('include/header.php'); ?>  
+<?php if(!isset($_SESSION['admin'])) : ?> <!-- if admin is not login -->
 <?php 
   require_once('classes/Users.php');
   $user = new Users();  
@@ -11,7 +12,7 @@
           $password = $_POST['password'];           
           $user->login($userEmail, $password);                
       } 
-  } 
+  }  
 ?>  
 <!-- user data -->
 <div class="container-fluid">
@@ -60,4 +61,5 @@
 <!-- /user data -->
 
 <!-- end content -->
-<?php require_once('include/footer.php'); ?>
+<?php require_once('include/footer.php'); ?> 
+<?php endif; ?>

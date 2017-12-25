@@ -4,7 +4,7 @@
   include_once('classes/Database.php'); 
   $db = new Database();
   $sql = "SELECT * FROM book_return LEFT JOIN book_issue ON book_return.issue_id=book_issue.id";  
-  $books = $db->getQuery($sql);  
+  $books = $db->getQuery($sql);   
 ?>
 <div class="content-wrapper">
   <div class="row">
@@ -35,6 +35,7 @@
                   <td><?= $serial++; ?></td>
                   <td><?= $book['issue_id']; ?> 
                   </td> 
+                  <?php if($book['user_id'] != false): ?>
                   <td>
                     <?php 
                       $uid = $book['user_id']; 
@@ -44,6 +45,11 @@
                       echo $user_row['username'];
                     ?>
                   </td>
+                <?php else: ?>
+                  <td></td> 
+                <?php endif; ?>  
+
+                <?php if($book['book_id'] != false): ?>
                   <td>
                     <?php 
                       $bid = $book['book_id']; 
@@ -52,8 +58,11 @@
                       $b_row = $bdata->fetch_assoc();
                       echo $b_row['title'];
                     ?>
-
                   </td>
+                <?php else: ?>
+                  <td></td>
+                <?php endif; ?>
+
                   <td><?= date('d-m-Y',strtotime($book['issue_date'])); ?></td>
                   <td><?= date('d-m-Y',strtotime($book['submit_date'])); ?></td>
                   <td>
@@ -70,7 +79,7 @@
                 </tr> 
               <?php endwhile; ?> 
             <?php else: ?>
-              <tr class="text-danger">Data not foudn!</tr>
+              <h4 class="text-danger">Data not foudn!</h4>
             <?php endif; ?>
               </table>
         </div>

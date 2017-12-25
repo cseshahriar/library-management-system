@@ -1,7 +1,5 @@
-<?php 
-  session_start(); 
-  if($_SESSION['user_role_id'] == 1) :  
-?>
+<?php session_start(); ?>
+<?php if(isset($_SESSION['st_id'])): ?> 
 <?php 
     include_once('classes/Database.php');  
     $db = new Database(); 
